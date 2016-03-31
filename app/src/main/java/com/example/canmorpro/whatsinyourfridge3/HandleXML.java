@@ -90,13 +90,13 @@ public class HandleXML {
                     case XmlPullParser.START_TAG:
                         break;
 
-                        XmlPullParser.TEXT:
+                    case XmlPullParser.TEXT:
                         text = myParser.getText();
-//                        break;
+                        break;
 
-
+                    case XmlPullParser.END_TAG:
 //                        Log.i("text", text);
-//                        Log.i("tag", text);
+                        Log.i("tag", text);
 
                         if(name.equals("Status")){
                             Status = text;
@@ -138,7 +138,6 @@ public class HandleXML {
 //                        }
 
                         break;
-                    case XmlPullParser.END_TAG:
                 }
                 event = myParser.next();
             }
