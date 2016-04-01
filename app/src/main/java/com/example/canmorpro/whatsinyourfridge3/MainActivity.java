@@ -15,11 +15,11 @@ public class MainActivity extends AppCompatActivity {
 
         DBHelper dbHelper = new DBHelper(MainActivity.this);
 
-        IngredientSearch ingSearch = new IngredientSearch("garlic","","");
-        ingSearch.storeData();
+//        IngredientSearch ingSearch = new IngredientSearch("garlic","","");
+//        ingSearch.storeData();
 
-//        RecipeSearch recipSearch = new RecipeSearch("omelette");
-//        recipSearch.storeData();
+        RecipeSearch recipSearch = new RecipeSearch("omelette");
+        recipSearch.storeData();
 
     }
 }
