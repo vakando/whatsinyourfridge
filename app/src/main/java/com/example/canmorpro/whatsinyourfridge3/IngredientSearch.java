@@ -1,5 +1,7 @@
 package com.example.canmorpro.whatsinyourfridge3;
 
+import java.util.ArrayList;
+
 /**
  * Created by CanMorPro on 16-03-30.
  */
@@ -29,10 +31,12 @@ public class IngredientSearch {
         obj1.fetchXML();
 //        System.out.println(url_recipesByIngredient);
         while(obj1.parsingComplete);
+//         System.out.println("retourne ID index 1:  "+obj1.getRecipeID().get(0)+ "index 2 : "+obj1.getRecipeID().get(1));
+        getIngredients(obj1.getRecipeID());
+
+
 //        obj1.getStatus();
-//            System.out.println("total count "+obj1.getTotalCount());
-//          System.out.println("Recipe ID "+obj1.getRecipeID());
-//        obj1.getRecipeID();
+//        obj1.getTotalCount();
 //        obj1.getRecipeID();
 //        obj1.getRecipeName();
 //        obj1.getNumberOfIngredients();
@@ -40,18 +44,24 @@ public class IngredientSearch {
 
     }
 
-    public void getIngredients(){
+    public void getIngredients(ArrayList ingredients){
 
 
-        String recipeId = "64859";
-        url_recipesById = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipeByRecipeID?iRecipeID="+recipeId+"&bStripHTML=true&iBrandID=1&iLangID=1";
-        obj2 = new HandleXML(url_recipesById);
-        obj2.fetchXML();
-        while(obj2.parsingComplete);
-        System.out.println(obj2.getIngredientID());
-        obj2.getIngredientName();
-        obj2.getPreparationDescription();
+        for(int i=0; i<ingredients.size() ; i++) {
+            String recipeId = obj1.getRecipeID().get(i).toString();
+            url_recipesById = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipeByRecipeID?iRecipeID=" + recipeId + "&bStripHTML=true&iBrandID=1&iLangID=1";
+            System.out.println("url" +i+ " est : "+url_recipesById);
 
+            obj2 = new HandleXML(url_recipesById);
+            obj2.fetchXML();
+            while (obj2.parsingComplete) ;
+//            System.out.println(obj2.getIngredientID());
+            System.out.println("retourne ID index 1:  "+obj2.getIngredientID().get(0)+ "index 2 : "+obj2.getIngredientID().get(1));
+
+//            obj2.getIngredientID();
+//            obj2.getIngredientName();
+//            obj2.getPreparationDescription();
+        }
     }
 
 

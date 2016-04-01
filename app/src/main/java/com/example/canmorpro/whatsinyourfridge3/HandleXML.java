@@ -9,22 +9,25 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+import java.util.ArrayList;
 
 
 public class HandleXML {
 
 
 
+    private ArrayList<String> RecipeIdList =  new ArrayList<String>();
+    private ArrayList<String> RecipeNameList =  new ArrayList<String>();
+    private ArrayList<String> NumberOfIngredientsList =  new ArrayList<String>();
+    private ArrayList<String> PhotoUrlList =  new ArrayList<String>();
+    private ArrayList<String> IngredientIdList =  new ArrayList<String>();
+    private ArrayList<String> IngredientNameList =  new ArrayList<String>();
+    private ArrayList<String> PreparationDescriptionList =  new ArrayList<String>();
+
+
     private String Status = "Status";
     private String TotalCount = "TotalCount";
-    private String RecipeID = "RecipeID";
-    private String RecipeName = "RecipeName";
-    private String NumberOfIngredients = "NumberOfIngredients";
-    private String PhotoURL = "PhotoURL";
-    private String IngredientID = "IngredientID";
-    private String IngredientName = "IngredientName";
-    private String PreparationDescription = "Description";
+
     private String urlString = null;
 //    private Context context;
     private XmlPullParserFactory xmlFactoryObject;
@@ -36,6 +39,12 @@ public class HandleXML {
     public HandleXML(String url){
         this.urlString = url;
 //        this.context = context;
+//        RecipeIdList = null;
+//        RecipeNameList = null;
+//        NumberOfIngredientsList = null;
+//        PhotoUrlList = null;
+//        IngredientIdList= null;
+//        IngredientNameList = null;
     }
 
     public String getStatus(){
@@ -47,32 +56,30 @@ public class HandleXML {
     }
 
 
-    public String getRecipeID(){
-        return RecipeID;
+    public ArrayList getRecipeID(){
+        return RecipeIdList;
     }
 
-    public String getRecipeName(){
-        return RecipeName;
+    public ArrayList getRecipeName(){
+        return RecipeNameList;
     }
 
-    public String getNumberOfIngredients(){
-        return NumberOfIngredients;
+    public ArrayList getNumberOfIngredients(){return NumberOfIngredientsList; }
+
+    public ArrayList getPhotoURL(){
+        return PhotoUrlList;
     }
 
-    public String getPhotoURL(){
-        return PhotoURL;
+    public ArrayList getIngredientID(){
+        return IngredientIdList;
     }
 
-    public String getIngredientID(){
-        return IngredientID;
+    public ArrayList getIngredientName(){
+        return IngredientNameList;
     }
 
-    public String getIngredientName(){
-        return IngredientName;
-    }
-
-    public String getPreparationDescription(){
-        return PreparationDescription;
+    public ArrayList getPreparationDescription(){
+        return PreparationDescriptionList;
     }
 
 
@@ -96,7 +103,6 @@ public class HandleXML {
 
                     case XmlPullParser.END_TAG:
 //                        Log.i("text", text);
-                        Log.i("tag", text);
 
                         if(name.equals("Status")){
                             Status = text;
@@ -107,31 +113,31 @@ public class HandleXML {
                         }
 
                         else if(name.equals("RecipeID")){
-                            RecipeID = text;
+                            RecipeIdList.add(text);
                         }
 
                         else if(name.equals("RecipeName")){
-                            RecipeName = text;
+                            RecipeNameList.add(text);
                         }
 
                         else if(name.equals("NumberOfIngredients")){
-                            NumberOfIngredients = text;
+                            NumberOfIngredientsList.add(text);
                         }
 
                         else if(name.equals("PhotoURL")){
-                            PhotoURL = text;
+                            PhotoUrlList.add(text);
                         }
 
                         else if(name.equals("IngredientID")){
-                            IngredientID = text;
+                            IngredientIdList.add(text);
                         }
 
                         else if(name.equals("IngredientName")){
-                            IngredientName = text;
+                            IngredientNameList.add(text);
                         }
 
                         else if(name.equals("Description")){
-                            PreparationDescription = text;
+                            PreparationDescriptionList.add(text);
                         }
 
 //                        else{

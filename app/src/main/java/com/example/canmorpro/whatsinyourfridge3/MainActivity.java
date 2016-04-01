@@ -17,5 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
         IngredientSearch ingSearch = new IngredientSearch("garlic","","");
         ingSearch.storeData();
+
     }
 }
