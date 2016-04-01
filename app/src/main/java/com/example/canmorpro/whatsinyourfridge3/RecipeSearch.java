@@ -54,7 +54,7 @@ public class RecipeSearch {
             String recipeId = obj1.getRecipeID().get(i).toString();
             url_recipesById = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipeByRecipeID?iRecipeID=" + recipeId + "&bStripHTML=true&iBrandID=1&iLangID=1";
 //            System.out.println("url" +i+ " est : "+url_recipesById);
-
+//
             obj2 = new HandleXML(url_recipesById);
             obj2.fetchXML();
             while (obj2.parsingComplete) ;
