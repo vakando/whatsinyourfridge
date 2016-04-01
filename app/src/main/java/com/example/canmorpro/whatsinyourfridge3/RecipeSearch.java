@@ -13,7 +13,7 @@ public class RecipeSearch {
     private String url_recipesByKeyword, url_recipesById;
     private String keyword ;
     private int startRow, endRow;
-    private HandleXML obj1, obj2 ;
+    private HandleXML obj1,  obj2 ;
 
 
 
