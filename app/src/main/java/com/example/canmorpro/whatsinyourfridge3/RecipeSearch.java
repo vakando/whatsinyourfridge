@@ -34,7 +34,7 @@ public class RecipeSearch {
       System.out.println(url_recipesByKeyword);
         while(obj1.parsingComplete);
 
-//        System.out.println("recipe ID is "+obj1.getRecipeID().get(0)+" the second is "+obj1.getRecipeID().get(1));
+        System.out.println("recipe ID is "+obj1.getRecipeID().get(0)+" the second is "+obj1.getRecipeID().get(1));
         obj1.getStatus();
         obj1.getTotalCount();
         obj1.getRecipeID();
@@ -42,7 +42,7 @@ public class RecipeSearch {
         obj1.getNumberOfIngredients();
         obj1.getPhotoURL();
 
-        getIngredients(obj1.getRecipeID()); // chercher les ingredients a partir de recipeID
+//        getIngredients(obj1.getRecipeID()); // chercher les ingredients a partir de recipeID
 
 
     }
