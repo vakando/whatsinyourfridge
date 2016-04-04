@@ -39,8 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
 //    private static final String KEY_AUTO_COMP_INGREDIENT_ID = "_id";
 //    private static final String KEY_AUTO_COMP_RECIPE_ID = "_id";
     private static final String KEY_ID_RECIPE = "id_recipe";
-    private static final String KEY_TMP_RECIPE = "tmp_recipe";
-    private static final String KEY_TMP_INGREDIENT = "tmp_ingredient";
+    private static final String KEY_TMP = "tmp";
     private static final String KEY_RECIPE_NAME = "recipe_name";
     private static final String KEY_INGREDIENT_NB = "ingredient_nb";
     private static final String KEY_RECIPE_IMAGE_URL = "recipe_image_url";
@@ -71,7 +70,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 + KEY_INGREDIENT_NB + " INTEGER, "
                 + KEY_RECIPE_IMAGE_URL + " TEXT, "
                 + KEY_FAVORITES + " BOOLEAN, "
-                + KEY_TMP_RECIPE + " BOOLEAN, "
                 + KEY_TO_DO_DATE_TIME + " TEXT);";
         Log.d("CREATE_TABLE_RECIPES", CREATE_TABLE_RECIPES);
         db.execSQL(CREATE_TABLE_RECIPES);
@@ -79,7 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String CREATE_TABLE_INGREDIENTS = "CREATE TABLE " + TABLE_INGREDIENTS + " ("
                 + KEY_ID_INGREDIENT + " INTEGER PRIMARY KEY, "
                 + KEY_INGREDIENT_NAME + " TEXT, "
-                + KEY_TMP_INGREDIENT + " BOOLEAN, "
+                + KEY_TMP + " BOOLEAN, "
                 + KEY_SHOPPING_LIST + " BOOLEAN);";
         Log.d("TABLE_INGREDIENTS", CREATE_TABLE_INGREDIENTS);
         db.execSQL(CREATE_TABLE_INGREDIENTS);
@@ -152,6 +150,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getFavorites(){
         Cursor c =  db.rawQuery( "select * from "+TABLE_RECIPES+" where favorites=true", null );
+        return c;
+    }
+
+    public Cursor getTmp(){
+        Cursor c =  db.rawQuery( "select * from "+TABLE_RECIPES+" where tmp=true", null );
         return c;
     }
 
