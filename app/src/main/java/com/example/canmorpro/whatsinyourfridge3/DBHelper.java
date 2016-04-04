@@ -20,35 +20,35 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "whats_in_your_fridge.db";
+    public static final String DATABASE_NAME = "whats_in_your_fridge.db";
 
     // Tables Name
-    private static final String TABLE_RECIPES = "recipes";
-    private static final String TABLE_INGREDIENTS = "ingredients";
-    private static final String TABLE_PREPARATIONS = "preparations";
-    private static final String TABLE_LINK_RECIPE_INGREDIENT = "link_recipe_ingredients";
+    public static final String TABLE_RECIPES = "recipes";
+    public static final String TABLE_INGREDIENTS = "ingredients";
+    public static final String TABLE_PREPARATIONS = "preparations";
+    public static final String TABLE_LINK_RECIPE_INGREDIENT = "link_recipe_ingredients";
 //    private static final String TABLE_AUTOCOMPLETE_INGREDIENT = "autocomplete_ingredient";
 //    private static final String TABLE_AUTOCOMPLETE_RECIPE = "autocomplete_recipe";
-    private static final String TABLE_REQUEST = "request";
+    public static final String TABLE_REQUEST = "request";
 
 
 
     //Table Columns
-    private static final String KEY_LINK_ID = "_id";
-    private static final String KEY_REQUEST_ID = "_id";
+    public static final String KEY_LINK_ID = "_id";
+    public static final String KEY_REQUEST_ID = "_id";
 //    private static final String KEY_AUTO_COMP_INGREDIENT_ID = "_id";
 //    private static final String KEY_AUTO_COMP_RECIPE_ID = "_id";
-    private static final String KEY_ID_RECIPE = "id_recipe";
-    private static final String KEY_TMP = "tmp";
-    private static final String KEY_RECIPE_NAME = "recipe_name";
-    private static final String KEY_INGREDIENT_NB = "ingredient_nb";
-    private static final String KEY_RECIPE_IMAGE_URL = "recipe_image_url";
-    private static final String KEY_FAVORITES = "favorites";
-    private static final String KEY_TO_DO_DATE_TIME = "to_do_date_time";
-    private static final String KEY_ID_INGREDIENT = "id_ingredient";
-    private static final String KEY_INGREDIENT_NAME = "ingredient_name";
-    private static final String KEY_SHOPPING_LIST = "shopping_list";
-    private static final String KEY_PREPARATION = "preparations";
+    public static final String KEY_ID_RECIPE = "id_recipe";
+    public static final String KEY_TMP = "tmp";
+    public static final String KEY_RECIPE_NAME = "recipe_name";
+    public static final String KEY_INGREDIENT_NB = "ingredient_nb";
+    public static final String KEY_RECIPE_IMAGE_URL = "recipe_image_url";
+    public static final String KEY_FAVORITES = "favorites";
+    public static final String KEY_TO_DO_DATE_TIME = "to_do_date_time";
+    public static final String KEY_ID_INGREDIENT = "id_ingredient";
+    public static final String KEY_INGREDIENT_NAME = "ingredient_name";
+    public static final String KEY_SHOPPING_LIST = "shopping_list";
+    public static final String KEY_PREPARATION = "preparations";
 //    private static final String KEY_RESPONSE = "response";
 //    private static final String KEY_NUMBER_RESULT = "number_results";
 
