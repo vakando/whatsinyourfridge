@@ -31,9 +31,8 @@ public class IngredientSearch {
         obj1.fetchXML();
 //      System.out.println(url_recipesByIngredient);
         while(obj1.parsingComplete);
-        System.out.println("recipe ID is "+obj1.getRecipeID().get(0)+" the second is "+obj1.getRecipeID().get(1));
-        obj1.getStatus();
-        obj1.getTotalCount();
+//        System.out.println("recipe ID is "+obj1.getRecipeID().get(0)+" the second is "+obj1.getRecipeID().get(1));
+        obj1.getTotalCount(); // number_result
         obj1.getRecipeID();
         obj1.getRecipeName();
         obj1.getNumberOfIngredients();
@@ -44,10 +43,10 @@ public class IngredientSearch {
 
     }
 
-    public void getIngredients(ArrayList ingredients){
+    public void getIngredients(ArrayList recipesId){
 
 
-        for(int i=0; i<ingredients.size() ; i++) {
+        for(int i=0; i<recipesId.size() ; i++) {
             String recipeId = obj1.getRecipeID().get(i).toString();
             url_recipesById = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipeByRecipeID?iRecipeID=" + recipeId + "&bStripHTML=true&iBrandID=1&iLangID=1";
 //            System.out.println("url" +i+ " est : "+url_recipesById);
@@ -61,6 +60,8 @@ public class IngredientSearch {
             obj2.getIngredientID();
             obj2.getIngredientName();
             obj2.getPreparationDescription();
+            recipesId.get(i); //id recette
+
         }
     }
 

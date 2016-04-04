@@ -25,7 +25,6 @@ public class HandleXML {
     private ArrayList<String> PreparationDescriptionList =  new ArrayList<String>();
 
 
-    private String Status = "Status";
     private String TotalCount = "TotalCount";
 
     private String urlString = null;
@@ -47,9 +46,7 @@ public class HandleXML {
 //        IngredientNameList = null;
     }
 
-    public String getStatus(){
-        return Status;
-    }
+
 
     public String getTotalCount(){
         return TotalCount;
@@ -104,11 +101,9 @@ public class HandleXML {
                     case XmlPullParser.END_TAG:
 //                        Log.i("text", text);
 
-                        if(name.equals("Status")){
-                            Status = text;
-                        }
 
-                        else if(name.equals("TotalCount")){
+
+                        if(name.equals("TotalCount")){
                             TotalCount = text;
                         }
 
