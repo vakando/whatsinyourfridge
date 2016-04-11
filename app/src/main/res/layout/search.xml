@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--<ScrollView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/scrollView"-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android">-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.dore.view1.MainActivityView1"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:id="@+id/imageView"
+            android:src="@mipmap/i_logo" />
+
+        <TextView
+            android:layout_width="337dp"
+            android:layout_height="60dp"
+            android:text="What&apos;sInYourFridge helps tou find recipes by ingredients or recipe&apos;s name"
+            android:id="@+id/textView9"
+            android:singleLine="false"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView4"
+            android:src="@mipmap/search_bar" />
+
+        <AutoCompleteTextView
+            android:layout_width="278dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/atc_tv_Id"
+            android:hint=""
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:id="@+id/addButton"
+            style="?android:attr/buttonStyleSmall"
+            android:visibility="visible"
+            android:background="#75a1ec" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="by ingredient"
+            android:id="@+id/ingredientButton"
+            android:clickable="true"
+            android:checked="true"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:phoneNumber="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="by recipe"
+            android:id="@+id/recipeButton"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:checked="false"
+            android:layout_gravity="right" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alwaysDrawnWithCache="false"
+        android:animateLayoutChanges="false"
+        android:animationCache="false"
+        android:baselineAligned="false"
+        android:duplicateParentState="false"
+        android:layout_marginTop="15dp"
+        android:keepScreenOn="false"
+        android:textAlignment="gravity"
+        android:background="@drawable/big_back">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="ingredient1"
+                android:id="@+id/ingrView1"
+                android:gravity="center"
+                android:visibility="visible" />
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:text="x"
+                android:id="@+id/delButton1"
+                android:textColor="#e41b1b"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:clipToPadding="false">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="ingredient2"
+                android:id="@+id/ingrView2"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:text="x"
+                android:id="@+id/delButton2"
+                android:textColor="#e41b1b"
+                android:layout_marginRight="150dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="ingredient3"
+                android:id="@+id/ingrView3"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:text="x"
+                android:id="@+id/delButton3"
+                android:textColor="#e41b1b"
+                android:layout_marginRight="150dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/searchButtonIngr"
+        android:layout_gravity="center_horizontal"
+        android:layout_row="16"
+        android:layout_column="1"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:allowUndo="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/searchButtonReci"
+        android:singleLine="false"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible" />
+</LinearLayout>
+    <!--</ScrollView>-->

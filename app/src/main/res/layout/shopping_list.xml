@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollView"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.empress.shoppinglist.MainActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:id="@+id/search_icone"
+            android:contentDescription="@string/searchImage"
+            android:src="@mipmap/search_bar"
+            android:layout_weight="1" />
+
+        <AutoCompleteTextView
+            android:layout_width="278dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/searching"
+            android:layout_marginLeft="10dp"
+            android:hint="@string/searchHint"
+            android:layout_weight="1" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/addButton"
+            android:id="@+id/add_button"
+            android:background="@color/green" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        style="?android:attr/buttonBarStyle"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="SELECT ALL"
+            android:id="@+id/select_button"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            style="?android:attr/buttonBarButtonStyle"
+            android:background= "@color/lightGreen"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="DELETE SELECTED"
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/delete_button"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:background="@color/red" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/shopping_list"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
+    </ScrollView>
