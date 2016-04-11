@@ -13,6 +13,22 @@
     <color name="black">#000</color>
     <color name="red">#f3920505</color>
     <color name="lightBlue">#9fa4db</color>
-
-
+    <color name="colorPrimary2">#7984ee</color>
+    <color name="grey">#FF615E5E</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="theme_darkblue_1">#0f0ca6</color>
+    <color name="theme_darkblue_2">#030559</color>
+    <color name="theme_darkblue_3">#0300a6</color>
+    <color name="theme_darkblue_4">#030730</color>
+    <color name="theme_darkblue_5">#151bd0</color>
+    <color name="theme_darkred_1">#a90808</color>
+    <color name="theme_darkred_2">#5d0202</color>
+    <color name="theme_darkred_3">#a90000</color>
+    <color name="theme_darkred_4">#270101</color>
+    <color name="theme_darkred_5">#6e0404</color>
+    <color name="theme_black_1">#2b2626</color>
+    <color name="theme_black_2">#000000</color>
+    <color name="theme_black_3">#1f1e1e</color>
+    <color name="theme_black_5">#373434</color>
+    <color name="theme_black_4">#000000</color>
 </resources>

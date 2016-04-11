@@ -11,6 +11,7 @@
         android:uiOptions="splitActionBarWhenNarrow">
 
         <activity android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"
             android:uiOptions="splitActionBarWhenNarrow">
 
             <intent-filter>

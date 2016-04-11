@@ -1,4 +1,4 @@
-package com.example.empress.whatsinyourfridge3;
+package com.example.canmorpro.whatsinyourfridge3;
 
 import android.content.ContentValues;
 import android.content.Context;

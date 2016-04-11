@@ -14,10 +14,16 @@
     <string name="textviewAddSL">ADD TO SHOPPING LIST</string>
     <string name="addToShoppingList">ADD TO SHOPPING LIST</string>
     <string name="deleteIngredient">X</string>
-
     <string name="shareButton">SHARE</string>
     <string name="settingsButton">SETTINGS</string>
     <string name="send">SHARE SHOPPING LIST BY..</string>
     <string name="theme">THEMES</string>
+    <string name="themeHint">Veuillez sélectionner un thème :</string>
+    <string name="theme1">Default</string>
+    <string name="theme2">Black</string>
+    <string name="theme3">Dark Red</string>
+    <string name="theme4">White</string>
+    <string name="theme5">Dark Blue</string>
+
     <string name="hint">What\'sInYourFridge helps you find recipes by ingredients or recipe\'s name</string>
 </resources>

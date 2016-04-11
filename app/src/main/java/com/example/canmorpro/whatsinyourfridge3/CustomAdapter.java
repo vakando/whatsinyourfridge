@@ -1,4 +1,4 @@
-package com.example.empress.whatsinyourfridge3;
+package com.example.canmorpro.whatsinyourfridge3;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -11,15 +11,16 @@ import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import com.example.canmorpro.whatsinyourfridge3.R;
+import com.example.empress.whatsinyourfridge3.DBHelper;
 
 import java.util.ArrayList;
 
 public class CustomAdapter extends CursorAdapter{
 
-    public ArrayList<Boolean> itemChecked = new ArrayList<Boolean>();
-    public ArrayList<String> checked = new ArrayList<String>();
-    public ArrayList<String> unchecked = new ArrayList<String>();
-    public ArrayList<String> item = new ArrayList<String>();
+    public ArrayList<Boolean> itemChecked = new ArrayList<>();
+    public ArrayList<String> checked = new ArrayList<>();
+    public ArrayList<String> unchecked = new ArrayList<>();
+    public ArrayList<String> item = new ArrayList<>();
 
 
     public CustomAdapter(Context context, Cursor cursor, int flags, ArrayList<String> ch, ArrayList<String> unch) {
