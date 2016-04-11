@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/bottomtoolbarmain"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content">
+    <!-- HEADER NAVIGATION -->
+    <!-- CONTENT -->
+    <!-- FOOTER NAVIGATION -->
+    <LinearLayout
+        android:id="@+id/footer_border_top"
+        android:layout_width="match_parent"
+        android:layout_height="5px"
+        android:background="@color/colorApp"
+        android:layout_alignBottom="@+id/footer" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/footer">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorApp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/tab1">
+            <ImageButton
+                android:id="@+id/menu_search_button"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:src="@mipmap/search_menu"
+                android:clickable="true"
+                android:fontFamily="sans-serif-light"
+                android:layout_weight="3"
+                android:background="#ffffff" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/menu_search_text"
+                android:textSize="8dp"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:text="Search"
+                android:layout_weight="1"
+                android:background="#ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorApp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/tab2">
+            <ImageButton
+                android:id="@+id/menu_shopping_button"
+                android:layout_weight="3"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:src="@mipmap/shopping_menu"
+                android:clickable="true"
+                android:fontFamily="sans-serif-light"
+                android:background="#ffffff" />
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:id="@+id/menu_shopping_text"
+                android:textSize="8dp"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:text="Shopping List"
+                android:background="#ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorApp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/tab3">
+            <ImageButton
+                android:id="@+id/menu_calendar_button"
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@mipmap/calendar_menu"
+                android:clickable="true"
+                android:fontFamily="sans-serif-light"
+                android:background="#ffffff" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/menu_calendar_text"
+                android:layout_weight="1"
+                android:textSize="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="@string/calendar"
+                android:background="#ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorApp"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/tab4">
+            <ImageButton
+                android:id="@+id/menu_favorites_button"
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@mipmap/fav_0"
+                android:clickable="true"
+                android:fontFamily="sans-serif-light"
+                android:background="#ffffff" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/menu_favorites_text"
+                android:layout_weight="1"
+                android:textSize="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="Favorites"
+                android:background="#ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorApp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/footer_border_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="5px"
+        android:layout_above="@+id/footer"
+        android:background="@color/colorApp" />
+
+</RelativeLayout>

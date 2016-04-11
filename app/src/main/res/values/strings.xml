@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">WhatsInYourFridge3</string>
+    <string name="app_name">WhatsInYourFridge</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="shopping">Shopping</string>
+    <string name="calendar">Calendar</string>
+    <string name="favorites">Favorites</string>
+
+    <string name="searchImage">search_icone</string>
+    <string name="deleteButton">DELETE SELECTED</string>
+    <string name="selectButton">SELECT ALL</string>
+    <string name="addButton">+</string>
+    <string name="searchHint">ingredient</string>
+    <string name="textviewAddSL">ADD TO SHOPPING LIST</string>
+    <string name="addToShoppingList">ADD TO SHOPPING LIST</string>
+    <string name="deleteIngredient">X</string>
+
+    <string name="shareButton">SHARE</string>
+    <string name="settingsButton">SETTINGS</string>
+    <string name="send">SHARE SHOPPING LIST BY..</string>
+    <string name="theme">THEMES</string>
 </resources>
