@@ -17,7 +17,9 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingLeft="10dp">
 
         <ImageView
             android:layout_width="40dp"
@@ -28,7 +30,7 @@
         <TextView
             android:layout_width="337dp"
             android:layout_height="60dp"
-            android:text="What&apos;sInYourFridge helps tou find recipes by ingredients or recipe&apos;s name"
+            android:text="@string/hint"
             android:id="@+id/textView9"
             android:singleLine="false"
             android:layout_weight="1" />
@@ -43,10 +45,11 @@
         android:layout_marginTop="10dp">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:id="@+id/imageView4"
-            android:src="@mipmap/search_bar" />
+            android:src="@mipmap/search_bar"
+            android:layout_marginTop="10dp" />
 
         <AutoCompleteTextView
             android:layout_width="278dp"
@@ -62,7 +65,8 @@
             android:id="@+id/addButton"
             style="?android:attr/buttonStyleSmall"
             android:visibility="visible"
-            android:background="#75a1ec" />
+            android:background="@color/colorApp"
+            android:textSize="30dp" />
 
     </LinearLayout>
 
@@ -111,7 +115,9 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,7 +125,7 @@
                 android:text="ingredient1"
                 android:id="@+id/ingrView1"
                 android:gravity="center"
-                android:visibility="visible" />
+                android:visibility="invisible" />
 
             <Button
                 android:layout_width="30dp"
@@ -127,22 +133,24 @@
                 android:text="x"
                 android:id="@+id/delButton1"
                 android:textColor="#e41b1b"
-                android:visibility="visible" />
+                android:visibility="invisible" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:clipToPadding="false">
+            android:clipToPadding="false"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="ingredient2"
                 android:id="@+id/ingrView2"
-                android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:visibility="invisible" />
 
             <Button
                 android:layout_width="30dp"
@@ -150,21 +158,23 @@
                 android:text="x"
                 android:id="@+id/delButton2"
                 android:textColor="#e41b1b"
-                android:layout_marginRight="150dp" />
+                android:visibility="invisible" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="ingredient3"
                 android:id="@+id/ingrView3"
-                android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:visibility="invisible" />
 
             <Button
                 android:layout_width="30dp"
@@ -172,7 +182,7 @@
                 android:text="x"
                 android:id="@+id/delButton3"
                 android:textColor="#e41b1b"
-                android:layout_marginRight="150dp" />
+                android:visibility="invisible" />
         </LinearLayout>
     </LinearLayout>
 
@@ -185,8 +195,10 @@
         android:layout_row="16"
         android:layout_column="1"
         android:gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:allowUndo="false" />
+        android:layout_marginTop="10dp"
+        android:allowUndo="false"
+        android:background="@color/colorApp"
+        android:paddingTop="8dp" />
 
     <Button
         android:layout_width="wrap_content"

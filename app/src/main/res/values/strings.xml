@@ -19,4 +19,5 @@
     <string name="settingsButton">SETTINGS</string>
     <string name="send">SHARE SHOPPING LIST BY..</string>
     <string name="theme">THEMES</string>
+    <string name="hint">What\'sInYourFridge helps you find recipes by ingredients or recipe\'s name</string>
 </resources>
