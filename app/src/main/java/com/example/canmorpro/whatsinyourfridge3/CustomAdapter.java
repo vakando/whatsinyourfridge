@@ -11,7 +11,7 @@ import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import com.example.canmorpro.whatsinyourfridge3.R;
-import com.example.empress.whatsinyourfridge3.DBHelper;
+import com.example.canmorpro.whatsinyourfridge3.DBHelper;
 
 import java.util.ArrayList;
 

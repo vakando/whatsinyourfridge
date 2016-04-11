@@ -110,6 +110,7 @@ public class Menu extends Fragment implements View.OnClickListener {
             searchButton.setBackgroundColor(selectedColor);
             searchText.setBackgroundColor(selectedColor);
 
+
             fragment = new Search();
             replaceFragment(fragment);
         }

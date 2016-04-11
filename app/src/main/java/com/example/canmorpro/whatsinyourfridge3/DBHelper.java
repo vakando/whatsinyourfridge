@@ -295,4 +295,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getAllRecipes(){
         return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_NAME, null, null, null, null);
     }
+
+    public Cursor getRecipesTmpTrue(){
+        return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_TMP + " = ?", new String[]{"1"}, null, null, null);
+    }
 }

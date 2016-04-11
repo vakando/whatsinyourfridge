@@ -19,8 +19,8 @@ import android.widget.ListView;
 
 import com.example.canmorpro.whatsinyourfridge3.MainActivity;
 import com.example.canmorpro.whatsinyourfridge3.R;
-import com.example.empress.whatsinyourfridge3.CustomAdapter;
-import com.example.empress.whatsinyourfridge3.DBHelper;
+import com.example.canmorpro.whatsinyourfridge3.CustomAdapter;
+import com.example.canmorpro.whatsinyourfridge3.DBHelper;
 
 import java.util.ArrayList;
 

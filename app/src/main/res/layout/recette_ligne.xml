@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:id="@+id/favoriteImage"
-        android:layout_weight="1"
-        android:layout_gravity="center_vertical" />
+    android:layout_height="70dp">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="1">
+        android:layout_width="122dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="43dp"
+            android:layout_height="match_parent"
+            android:id="@+id/favoriteImage"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="217dp"
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_width="match_parent"
@@ -22,8 +26,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Small Text"
             android:id="@+id/favoriteTitre"
-            android:layout_weight="1"
-            android:paddingLeft="10dp" />
+            android:layout_weight="1" />
 
         <TextView
             android:layout_width="match_parent"
@@ -31,14 +34,21 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Small Text"
             android:id="@+id/favoriteIngrediants"
-            android:layout_weight="1"
-            android:paddingLeft="10dp" />
+            android:layout_weight="1" />
     </LinearLayout>
 
-    <ImageButton
-        android:layout_width="90dp"
-        android:layout_height="25dp"
-        android:id="@+id/favoriteImageButton"
-        android:layout_weight="1" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/favoriteImageButton"
+            android:background="@mipmap/fav_1"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
 
 </LinearLayout>

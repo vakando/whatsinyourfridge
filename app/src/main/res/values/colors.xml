@@ -13,7 +13,7 @@
     <color name="black">#000</color>
     <color name="red">#f3920505</color>
     <color name="lightBlue">#9fa4db</color>
-    <color name="colorPrimary2">#7984ee</color>
+    <color name="colorPrimary2">#ffffff</color>
     <color name="grey">#FF615E5E</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="theme_darkblue_1">#0f0ca6</color>
@@ -31,4 +31,8 @@
     <color name="theme_black_3">#1f1e1e</color>
     <color name="theme_black_5">#373434</color>
     <color name="theme_black_4">#000000</color>
+    <color name="blueButton">#628ef7</color>
+
+
+
 </resources>

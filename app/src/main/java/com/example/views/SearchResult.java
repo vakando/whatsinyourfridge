@@ -22,10 +22,10 @@ import com.squareup.picasso.Picasso;
 /**
  * Created by CanMorPro on 16-04-06.
  */
-public class Favorites extends Fragment {
+public class SearchResult extends Fragment {
 
 
-    public Favorites(){
+    public SearchResult(){
     }
 
     ListView listView;
@@ -39,9 +39,9 @@ public class Favorites extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.favorites, container , false);
+        View rootView = inflater.inflate(R.layout.search_result, container , false);
 
-        curs = dbh.getFavorites();
+        curs = dbh.getRecipesTmpTrue();
         adapter = new MyCursorAdapter(getContext(),curs,0);
         listView.setAdapter(adapter);
 
