@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+//import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,9 +24,6 @@ import com.example.canmorpro.whatsinyourfridge3.DBHelper;
 
 import java.util.ArrayList;
 
-/**
- * Created by CanMorPro on 16-04-06.
- */
 public class ShoppingList extends Fragment implements View.OnClickListener {
     private Button select;
     private Button delete;
@@ -43,8 +40,6 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
     public ShoppingList(){
     }
 
-
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -77,6 +72,16 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         dbh.setIngredients(4, "quatre", 1, 1);
         dbh.setIngredients(5, "cinq", 1, 0);
         dbh.setIngredients(6, "six", 1, 1);
+        dbh.setIngredients(7, "six", 1, 1);
+        dbh.setIngredients(8, "six", 1, 1);
+        dbh.setIngredients(9, "six", 1, 1);
+        dbh.setIngredients(10, "six", 1, 1);
+        dbh.setIngredients(11, "six", 1, 1);
+        dbh.setIngredients(12, "six", 1, 1);
+        dbh.setIngredients(13, "six", 1, 1);
+        dbh.setIngredients(14, "six", 1, 1);
+        dbh.setIngredients(15, "six", 1, 1);
+        dbh.setIngredients(16, "six", 1, 1);
         Log.d("dbh", dbh.toString());
 
         DownloadTask dt = new DownloadTask();

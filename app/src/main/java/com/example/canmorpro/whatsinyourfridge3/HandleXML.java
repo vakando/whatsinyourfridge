@@ -1,9 +1,5 @@
 package com.example.canmorpro.whatsinyourfridge3;
 
-
-import android.content.Context;
-import android.util.Log;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.InputStream;
@@ -11,18 +7,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-
 public class HandleXML {
-
-
-
-    private ArrayList<String> RecipeIdList =  new ArrayList<String>();
-    private ArrayList<String> RecipeNameList =  new ArrayList<String>();
-    private ArrayList<String> NumberOfIngredientsList =  new ArrayList<String>();
-    private ArrayList<String> PhotoUrlList =  new ArrayList<String>();
-    private ArrayList<String> IngredientIdList =  new ArrayList<String>();
-    private ArrayList<String> IngredientNameList =  new ArrayList<String>();
-    private ArrayList<String> PreparationDescriptionList =  new ArrayList<String>();
+    private ArrayList<String> RecipeIdList =  new ArrayList<>();
+    private ArrayList<String> RecipeNameList =  new ArrayList<>();
+    private ArrayList<String> NumberOfIngredientsList =  new ArrayList<>();
+    private ArrayList<String> PhotoUrlList =  new ArrayList<>();
+    private ArrayList<String> IngredientIdList =  new ArrayList<>();
+    private ArrayList<String> IngredientNameList =  new ArrayList<>();
+    private ArrayList<String> PreparationDescriptionList =  new ArrayList<>();
 
 
     private String TotalCount = "TotalCount";

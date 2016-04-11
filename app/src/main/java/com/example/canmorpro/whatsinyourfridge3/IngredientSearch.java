@@ -2,9 +2,6 @@ package com.example.canmorpro.whatsinyourfridge3;
 
 import java.util.ArrayList;
 
-/**
- * Created by CanMorPro on 16-03-30.
- */
 public class IngredientSearch {
 
 

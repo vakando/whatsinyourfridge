@@ -21,9 +21,6 @@ import com.example.views.Search;
 import com.example.views.ShoppingList;
 //import com.example.views.simpleFragment;
 
-/**
- * Created by CanMorPro on 16-04-06.
- */
 public class Menu extends Fragment implements View.OnClickListener {
 
 
