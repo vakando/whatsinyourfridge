@@ -35,7 +35,6 @@ public class SearchResult extends Fragment {
     DBHelper dbh = new DBHelper(this.getContext());
 
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
