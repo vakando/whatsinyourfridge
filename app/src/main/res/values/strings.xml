@@ -25,7 +25,7 @@
     <string name="theme4">White</string>
     <string name="theme5">Dark Blue</string>
 
-    <string name="hint">What\'sInYourFridge helps you find recipes by ingredients or recipe\'s name</string>
+    <string name="hint">WhatsInYourFridge helps you find recipes by ingredients or recipe\'s name</string>
     <string name="addShopping">Add to shopping list</string>
     <string name="addCalendar">Add to calendar</string>
 </resources>

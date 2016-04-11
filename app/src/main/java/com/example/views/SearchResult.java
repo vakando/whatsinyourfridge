@@ -68,10 +68,10 @@ public class SearchResult extends Fragment {
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
             // Find fields to populate in inflated template
-            TextView textVueTitre = (TextView)view.findViewById(R.id.favoriteTitre);
-            TextView textVueIngrediants = (TextView)view.findViewById(R.id.favoriteIngrediants);
-            ImageView imageView = (ImageView)view.findViewById(R.id.favoriteImage);
-            ImageButton imageButton = (ImageButton)view.findViewById(R.id.favoriteImageButton);
+            TextView textVueTitre = (TextView)view.findViewById(R.id.recipe_title_line);
+            TextView textVueIngrediants = (TextView)view.findViewById(R.id.recipe_ingredient_line);
+            ImageView imageView = (ImageView)view.findViewById(R.id.recipe_image_line);
+            ImageButton imageButton = (ImageButton)view.findViewById(R.id.fav_line);
 
             // Extract properties from cursor
             String title = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_NAME));
