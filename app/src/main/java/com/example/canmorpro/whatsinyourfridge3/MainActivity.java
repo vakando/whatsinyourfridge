@@ -26,7 +26,7 @@ import com.example.views.MultiViews;
 
 public class MainActivity extends AppCompatActivity {
 
-//
+
     private DBHelper dbh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
