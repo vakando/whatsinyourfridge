@@ -11,7 +11,7 @@
         <ImageView
             android:layout_width="43dp"
             android:layout_height="match_parent"
-            android:id="@+id/favoriteImage"
+            android:id="@+id/recipe_image_line"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
 
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Small Text"
-            android:id="@+id/favoriteTitre"
+            android:id="@+id/recipe_title_line"
             android:layout_weight="1" />
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Small Text"
-            android:id="@+id/favoriteIngrediants"
+            android:id="@+id/recipe_ingredient_line"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -45,7 +45,7 @@
         <ImageButton
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:id="@+id/favoriteImageButton"
+            android:id="@+id/fav_line"
             android:background="@mipmap/fav_1"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp" />
