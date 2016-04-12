@@ -15,11 +15,22 @@ public class RecipeSearch {
     private int startRow, endRow;
     private HandleXML obj1,  obj2 ;
 
+    private DBHelper dbh;
+
+    private ArrayList<String> RecipeIdList =  new ArrayList<String>();
+    private ArrayList<String> RecipeNameList =  new ArrayList<String>();
+    private ArrayList<String> PhotoUrlList =  new ArrayList<String>();
+    private ArrayList<String> NumberOfIngredientsList =  new ArrayList<String>();
+
+    private ArrayList<String> IngredientIdList =  new ArrayList<String>();
+    private ArrayList<String> IngredientNameList =  new ArrayList<String>();
+    private ArrayList<String> PreparationDescriptionList =  new ArrayList<String>();
 
 
-    public RecipeSearch(String keyword){
+    public RecipeSearch(String keyword, DBHelper dbh){
 
         this.keyword = keyword;
+        this.dbh= dbh;
         startRow = 1;
         endRow = 5;
         url_recipesByKeyword = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipesByKeywords?sKeyword1="+keyword+"&sKeyword2=&sKeyword3=&sKeyword4=&sKeyword5=&sKeyword6=&bIsRecipePhotoRequired=true&bIsReadyIn30Mins=false&sSortField=&sSortDirection=&iBrandID=1&iLangID=1&iStartRow="+startRow+"&iEndRow="+endRow+"";
@@ -31,27 +42,33 @@ public class RecipeSearch {
 
         obj1 = new HandleXML(url_recipesByKeyword);
         obj1.fetchXML();
-      System.out.println(url_recipesByKeyword);
+        System.out.println(url_recipesByKeyword);
         while(obj1.parsingComplete);
 
-        System.out.println("recipe ID is "+obj1.getRecipeID().get(0)+" the second is "+obj1.getRecipeID().get(1));
+        System.out.println("recipe ID is " + obj1.getRecipeID().get(0) + " the second is " + obj1.getRecipeID().get(1));
 //        obj1.getStatus();
         obj1.getTotalCount();
-        obj1.getRecipeID();
-        obj1.getRecipeName();
-        obj1.getNumberOfIngredients();
-        obj1.getPhotoURL();
+        RecipeIdList= obj1.getRecipeID();
+        RecipeNameList= obj1.getRecipeName();
+        NumberOfIngredientsList= obj1.getNumberOfIngredients();
+        PhotoUrlList= obj1.getPhotoURL();
+        PreparationDescriptionList= obj1.getPreparationDescription();
 
-//        getIngredients(obj1.getRecipeID()); // chercher les ingredients a partir de recipeID
+        for(int i=0; i<RecipeIdList.size(); i++){
+            dbh.setRecettes(Integer.parseInt(RecipeIdList.get(i)), RecipeNameList.get(i), Integer.parseInt(NumberOfIngredientsList.get(i)), PhotoUrlList.get(i), 0, "", 0, 0);
+            dbh.setPreparation(Integer.parseInt(RecipeIdList.get(i)), PreparationDescriptionList.get(i) );
+        }
+
+        getIngredients(obj1.getRecipeID()); // chercher les ingredients a partir de recipeID
 
 
     }
 
-    public void getIngredients(ArrayList ingredients) {
+    public void getIngredients(ArrayList recipesId) {
 
 
-        for (int i = 0; i < ingredients.size(); i++) {
-            String recipeId = obj1.getRecipeID().get(i).toString();
+        for (int i = 0; i < recipesId.size(); i++) {
+            String recipeId = recipesId.get(i).toString();
             url_recipesById = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipeByRecipeID?iRecipeID=" + recipeId + "&bStripHTML=true&iBrandID=1&iLangID=1";
 //            System.out.println("url" +i+ " est : "+url_recipesById);
 
@@ -61,9 +78,16 @@ public class RecipeSearch {
 //            System.out.println(obj2.getIngredientID());
 //            System.out.println("retourne ID index 1:  "+obj2.getIngredientID().get(0)+ "index 2 : "+obj2.getIngredientID().get(1));
 
-            obj2.getIngredientID();
-            obj2.getIngredientName();
-            obj2.getPreparationDescription();
+            IngredientIdList.clear();
+            IngredientNameList.clear();
+
+            IngredientIdList= obj2.getIngredientID();
+            IngredientNameList= obj2.getIngredientName();
+
+            for(int j=0; i<IngredientIdList.size(); i++){
+                dbh.setIngredients(Integer.parseInt(IngredientIdList.get(j)), IngredientNameList.get(j), 0, 0);
+            }
+
         }
 
     }

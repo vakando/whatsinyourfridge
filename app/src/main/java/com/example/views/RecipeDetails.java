@@ -73,7 +73,7 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
 
         } else if (v.equals(addToShopping)) {
 
-//            fragment = new ();
+//            fragment = new AddShoppingList();
 //            replaceFragment(fragment);
 
         } else if (v.equals(favButton)) {

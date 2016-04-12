@@ -29,6 +29,9 @@ public class MultiViews extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.multi_fragment);
 
+        dbh = new DBHelper(this);
+
+
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setLogo(R.mipmap.action_bar_logo);
         actionBar.setDisplayUseLogoEnabled(true);

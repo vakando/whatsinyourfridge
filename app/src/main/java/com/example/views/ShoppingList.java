@@ -45,6 +45,10 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         dbh = new DBHelper(getContext());
         Log.d("dbh", "created");
 
+
+//        MenuItem item = menu.findItem(R.id.action_share);
+//        item.setVisible(false);
+
         //layout pour la shopping list donc view2
         View rootView = inflater.inflate(R.layout.shopping_list,container , false);
 

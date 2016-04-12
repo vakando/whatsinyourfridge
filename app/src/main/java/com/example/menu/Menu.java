@@ -18,6 +18,7 @@ import com.example.views.Calendar;
 import com.example.views.Favorites;
 import com.example.views.RecipeDetails;
 import com.example.views.Search;
+import com.example.views.SearchResult;
 import com.example.views.ShoppingList;
 //import com.example.views.simpleFragment;
 
@@ -142,7 +143,7 @@ public class Menu extends Fragment implements View.OnClickListener {
             favoritesButton.setBackgroundColor(selectedColor);
             favoritesText.setBackgroundColor(selectedColor);
 
-            fragment = new Favorites();
+            fragment = new SearchResult();
             replaceFragment(fragment);
 
         }
