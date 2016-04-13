@@ -174,8 +174,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getFavorites(){
-        return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_FAV + " = ?", new String[]{"1"}, null, null, null);
-        //return db.rawQuery("select * from " + TABLE_RECIPES + " where favorites=true", null);
+        //return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_FAV + " = ?", new String[]{"1"}, null, null, null);
+        return db.rawQuery("select * from " + TABLE_RECIPES + " where " + KEY_R_FAV + " = 1", null);
     }
 
     public Cursor getPreparationsByRecipeId( int recipeId){

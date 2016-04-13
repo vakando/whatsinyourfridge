@@ -143,7 +143,8 @@ public class Menu extends Fragment implements View.OnClickListener {
             favoritesButton.setBackgroundColor(selectedColor);
             favoritesText.setBackgroundColor(selectedColor);
 
-            fragment = new SearchResult();
+            //fragment = new SearchResult();
+            fragment = new Favorites();
             replaceFragment(fragment);
 
         }
