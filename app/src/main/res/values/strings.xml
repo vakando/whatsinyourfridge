@@ -28,4 +28,5 @@
     <string name="hint">WhatsInYourFridge helps you find recipes by ingredients or recipe\'s name</string>
     <string name="addShopping">Add to shopping list</string>
     <string name="addCalendar">Add to calendar</string>
+    <string name="Search">Search</string>
 </resources>

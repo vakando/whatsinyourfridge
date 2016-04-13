@@ -33,7 +33,9 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
     }
 
 
-    @Nullable
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -73,8 +75,18 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
 
         } else if (v.equals(addToShopping)) {
 
-//            fragment = new AddShoppingList();
-//            replaceFragment(fragment);
+            fragment = new addShoppingList();
+
+            Bundle bundle = new Bundle();
+//          bundle.putInt("par1", value);
+            fragment.setArguments(bundle);
+
+//            on the other fragment
+
+//            Bundle bundle = this.getArguments();
+//            int myInt = bundle.getInt(key, defaultValue);
+
+            replaceFragment(fragment);
 
         } else if (v.equals(favButton)) {
 

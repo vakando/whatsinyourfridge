@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.canmorpro.whatsinyourfridge3.R;
 import com.example.views.Calendar;
 import com.example.views.Favorites;
+import com.example.views.PagerRecipeDetails;
 import com.example.views.RecipeDetails;
 import com.example.views.Search;
 import com.example.views.SearchResult;
@@ -111,6 +112,8 @@ public class Menu extends Fragment implements View.OnClickListener {
 
             fragment = new Search();
             replaceFragment(fragment);
+
+
         }
         else if (v.equals(shoppingButton)){
 

@@ -31,7 +31,6 @@
             android:layout_width="337dp"
             android:layout_height="60dp"
             android:text="@string/hint"
-            android:id="@+id/textView9"
             android:singleLine="false"
             android:layout_weight="1" />
     </LinearLayout>
@@ -54,7 +53,7 @@
         <AutoCompleteTextView
             android:layout_width="278dp"
             android:layout_height="wrap_content"
-            android:id="@+id/atc_tv_Id"
+            android:id="@+id/searchfield"
             android:hint=""
             android:layout_weight="1" />
 
@@ -64,9 +63,10 @@
             android:text="+"
             android:id="@+id/addButton"
             style="?android:attr/buttonStyleSmall"
-            android:visibility="visible"
             android:background="@color/colorApp"
-            android:textSize="30dp" />
+            android:visibility="visible"
+            android:textSize="30dp"
+            android:layout_marginRight="5dp" />
 
     </LinearLayout>
 
@@ -80,18 +80,18 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="by ingredient"
-            android:id="@+id/ingredientButton"
             android:clickable="true"
             android:checked="true"
             android:layout_gravity="left"
             android:layout_weight="1"
-            android:phoneNumber="false" />
+            android:phoneNumber="false"
+            android:id="@+id/ingredientRadio" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="by recipe"
-            android:id="@+id/recipeButton"
+            android:id="@+id/recipeRadio"
             android:layout_weight="1"
             android:clickable="true"
             android:checked="false"
@@ -102,6 +102,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/layoutFrame"
+        android:visibility="visible"
         android:alwaysDrawnWithCache="false"
         android:animateLayoutChanges="false"
         android:animationCache="false"
@@ -122,7 +124,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="ingredient1"
                 android:id="@+id/ingrView1"
                 android:gravity="center"
                 android:visibility="invisible" />
@@ -147,7 +148,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="ingredient2"
                 android:id="@+id/ingrView2"
                 android:gravity="center"
                 android:visibility="invisible" />
@@ -171,7 +171,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="ingredient3"
                 android:id="@+id/ingrView3"
                 android:gravity="center"
                 android:visibility="invisible" />
@@ -189,24 +188,24 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
-        android:id="@+id/searchButtonIngr"
+        android:text="search"
+        android:id="@+id/searchButton"
         android:layout_gravity="center_horizontal"
         android:layout_row="16"
         android:layout_column="1"
         android:gravity="center_horizontal"
-        android:layout_marginTop="10dp"
         android:allowUndo="false"
         android:background="@color/colorApp"
-        android:paddingTop="8dp" />
+        android:paddingTop="8dp"
+        android:layout_marginTop="10dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
-        android:id="@+id/searchButtonReci"
-        android:singleLine="false"
-        android:layout_gravity="center_horizontal"
-        android:visibility="invisible" />
+        android:text="New Button"
+        android:visibility="invisible"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>
     <!--</ScrollView>-->

@@ -107,7 +107,7 @@ public class Favorites extends Fragment {
                 //textVueIngrediants.setText(noms[0] + noms[1] + noms[2] + "...");
                 textVueIngrediants.setText(url + " ...");
                 //Picasso.with(getContext()).load(url).into(imageView);
-                imageView.setImageResource(R.drawable.menu_exemple);
+//                imageView.setImageResource(R.drawable.menu_exemple);
             }
         }
     }

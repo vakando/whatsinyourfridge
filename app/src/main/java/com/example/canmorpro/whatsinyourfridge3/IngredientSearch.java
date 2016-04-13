@@ -49,15 +49,19 @@ public class IngredientSearch {
         RecipeNameList= obj1.getRecipeName();
         NumberOfIngredientsList= obj1.getNumberOfIngredients();
         PhotoUrlList= obj1.getPhotoURL();
-        PreparationDescriptionList= obj1.getPreparationDescription();
+
+//        clear tables
+        dbh.clearRecipeTable();
+        dbh.clearIngredientTable();
+        dbh.clearPreparationTable();
 
         for(int i=0; i<RecipeIdList.size(); i++){
-            dbh.setRecettes(Integer.parseInt(RecipeIdList.get(i)), RecipeNameList.get(i), Integer.parseInt(NumberOfIngredientsList.get(i)), PhotoUrlList.get(i), 0, "", 0, 0);
-            dbh.setPreparation(Integer.parseInt(RecipeIdList.get(i)), PreparationDescriptionList.get(i) );
+            // set the recipe table
+            dbh.setRecettes(Integer.parseInt(RecipeIdList.get(i)), RecipeNameList.get(i), Integer.parseInt(NumberOfIngredientsList.get(i)), PhotoUrlList.get(i), 0, "", 1, 0);
+//            System.out.println(RecipeNameList.get(i));
         }
 
         getIngredients(obj1.getRecipeID()); // chercher les ingredients a partir de recipeID
-
 
     }
 
@@ -77,12 +81,23 @@ public class IngredientSearch {
 
             IngredientIdList.clear();
             IngredientNameList.clear();
+            PreparationDescriptionList.clear();
 
             IngredientIdList= obj2.getIngredientID();
             IngredientNameList= obj2.getIngredientName();
+            PreparationDescriptionList= obj2.getPreparationDescription();
 
-            for(int j=0; i<IngredientIdList.size(); i++){
+
+            for(int j=0; j<IngredientIdList.size(); j++){
+                // set the Ingredients table and link table
                 dbh.setIngredients(Integer.parseInt(IngredientIdList.get(j)), IngredientNameList.get(j), 0, 0);
+                dbh.setLinkRecetteIng(Integer.parseInt(recipeId), Integer.parseInt(IngredientIdList.get(j)), 0);
+            }
+            for(int k=0; k<PreparationDescriptionList.size() ; k++ ){
+
+                //set the preparation table
+                dbh.setPreparation(Integer.parseInt(recipeId),PreparationDescriptionList.get(k));
+
             }
         }
     }

@@ -37,7 +37,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public static final String TABLE_PREPARATIONS = "preparations";
-    public static final String KEY_P_R_ID = "_id";
+    public static final String KEY_P_ID = "_id";
+    public static final String KEY_P_R_ID = "idRecipe";
     public static final String KEY_P_PREP = "preparation";
 
     public static final String TABLE_LINK = "linkRecipeIngredients";
@@ -82,6 +83,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+
+//       context.deleteDatabase(DATABASE_NAME);
+
         if(db == null)
             db = getWritableDatabase();
     }
@@ -110,7 +115,8 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.d("TABLE_INGREDIENTS", CREATE_TABLE_INGREDIENTS);
 
         String CREATE_TABLE_PREPARATIONS = "CREATE TABLE " + TABLE_PREPARATIONS + " ("
-                + KEY_P_R_ID + " INTEGER PRIMARY KEY, "
+                + KEY_P_ID + " INTEGER PRIMARY KEY, "
+                + KEY_P_R_ID + " INTEGER, "
                 + KEY_P_PREP + " TEXT);";
         Log.d("TABLE_PREPARATIONS", CREATE_TABLE_PREPARATIONS);
         db.execSQL(CREATE_TABLE_PREPARATIONS);
@@ -280,12 +286,28 @@ public class DBHelper extends SQLiteOpenHelper {
         try{
             db.insertOrThrow(TABLE_RECIPES, null, cv);
         }catch (SQLException e){}
+
+        Log.d("inserted", name);
+
+    }
+
+    public void setLinkRecetteIng(int idRecipe, int idIngredient, int shoppingList){
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_L_R_ID,idRecipe);
+        cv.put(KEY_L_I_ID, idIngredient);
+        cv.put(KEY_L_SL, shoppingList);
+        try{
+            db.insertOrThrow(TABLE_LINK, null, cv);
+        }catch (SQLException e){}
+
     }
 
 
-    public void setPreparation(int id, String preparation){
+
+    public void setPreparation(int recipeId, String preparation){
         ContentValues cv = new ContentValues();
-        cv.put(KEY_P_R_ID,id);
+        cv.put(KEY_P_R_ID, recipeId);
         cv.put(KEY_P_PREP, preparation);
         try{
             db.insertOrThrow(TABLE_PREPARATIONS, null, cv);
@@ -298,5 +320,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getRecipesTmpTrue(){
         return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_TMP + " = ?", new String[]{"1"}, null, null, null);
+    }
+
+    public void clearRecipeTable(){
+        db.delete(TABLE_RECIPES, KEY_R_TMP + " = ?", new String[]{"1"});
+        Log.d("deleted", TABLE_RECIPES);
+    }
+    public void clearIngredientTable(){
+        db.delete(TABLE_INGREDIENTS, KEY_I_SL + " = ?", new String[]{"0"});
+        Log.d("deleted", TABLE_INGREDIENTS);
+    }
+
+    public void clearPreparationTable(){
+        db.delete(TABLE_PREPARATIONS, null, null);
+        Log.d("deleted", TABLE_PREPARATIONS);
     }
 }
