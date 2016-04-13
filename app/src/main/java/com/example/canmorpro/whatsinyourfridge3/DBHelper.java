@@ -85,7 +85,6 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
 
-//       context.deleteDatabase(DATABASE_NAME);
 
         if(db == null)
             db = getWritableDatabase();

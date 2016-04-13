@@ -87,8 +87,8 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         dbh.setIngredients(16, "six", 1, 1);
         Log.d("dbh", dbh.toString());
 
-        DownloadTask dt = new DownloadTask();
-        dt.execute();
+//        DownloadTask dt = new DownloadTask();
+//        dt.execute();
 
         shoppingList = dbh.getShoppingList();
         Log.d("DBH", "nombreIingredientsSL = " + shoppingList.getCount());
@@ -181,25 +181,25 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         list.setAdapter(adapter);
     }
 
-    public class DownloadTask extends AsyncTask<Void, Void, Void>{
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            //creation autocompleteIngredient
-            String[] ingr = getResources().getStringArray(R.array.ingredients);
-            for(int i=0;i<ingr.length;i++)
-                dbh.addIngredients(ingr[i]);
-            return null;
-        }
-    }
+//    public class DownloadTask extends AsyncTask<Void, Void, Void>{
+//
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void aVoid) {
+//
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... params) {
+//            //creation autocompleteIngredient
+//            String[] ingr = getResources().getStringArray(R.array.ingredients);
+//            for(int i=0;i<ingr.length;i++)
+//                dbh.addIngredients(ingr[i]);
+//            return null;
+//        }
+//    }
 }

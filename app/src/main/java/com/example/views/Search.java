@@ -1,5 +1,6 @@
 package com.example.views;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -48,6 +49,7 @@ public class Search extends Fragment implements View.OnClickListener {
 
     private ArrayList<String> ingredients;
     private ArrayList<String> list_recipes;
+
     int count = 0;//On initialise un compteur qui compte le nombre d'ingredients ajouté
     private IngredientSearch search;
 
@@ -67,7 +69,12 @@ public class Search extends Fragment implements View.OnClickListener {
 
         dbh = new DBHelper(getContext());
 
+
+        ingredients = dbh.getAllIngredients();
+
         View rootView = inflater.inflate(R.layout.search ,container , false);
+
+        searchfield = (AutoCompleteTextView)rootView.findViewById(R.id.searching);
 
 
         addButton=(Button) rootView.findViewById(R.id.addButton);
@@ -93,12 +100,12 @@ public class Search extends Fragment implements View.OnClickListener {
 
         searchfield = (AutoCompleteTextView) rootView.findViewById(R.id.searchfield);
 
-        //pour l'autocomplete de la recherche par recette
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, list_recipes);
-        searchfield.setAdapter(adapter);
+//        //pour l'autocomplete de la recherche par recette
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, list_recipes);
+//        searchfield.setAdapter(adapter);
 
         //pour l'autocomplete de la recherche par ingredient
-        ArrayAdapter<String> adapter1= new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, ingredients);
+        ArrayAdapter<String> adapter1= new ArrayAdapter<String>(getContext(), R.layout.drop_down, ingredients);
         searchfield.setAdapter(adapter1);
 
         return rootView;
@@ -251,4 +258,6 @@ public class Search extends Fragment implements View.OnClickListener {
 
 
     }
+
+
 }

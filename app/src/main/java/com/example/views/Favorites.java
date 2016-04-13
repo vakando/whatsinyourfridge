@@ -41,20 +41,6 @@ public class Favorites extends Fragment {
         View rootView = inflater.inflate(R.layout.favorites, container, false);
         listView= (ListView)rootView.findViewById(R.id.fovoriteListView);
 
-        //Test insertion dans la table recette
-        dbh.setRecettes(1, "Recette1", 1, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(2, "Recette2", 2, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(3, "Recette3", 3, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(4, "Recette4", 4, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(5, "Recette5", 5, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(6, "Recette6", 6, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(7, "Recette7", 7, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(8, "Recette8", 8, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(9, "Recette9", 9, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(10, "Recette10", 1, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(11, "Recette11", 1, "PhotoUrl1", 0, "date1", 0, 0);
-        dbh.setRecettes(12, "Recette12", 1, "PhotoUrl1", 0, "date1", 0, 0);
-
         curs = dbh.getFavorites();
         adapter = new MyCursorAdapter(getContext(),curs,0);
         listView.setAdapter(adapter);

@@ -61,7 +61,7 @@ public class IngredientSearch {
 //            System.out.println(RecipeNameList.get(i));
         }
 
-        getIngredients(obj1.getRecipeID()); // chercher les ingredients a partir de recipeID
+        getIngredients(RecipeIdList); // chercher les ingredients a partir de recipeID
 
     }
 
