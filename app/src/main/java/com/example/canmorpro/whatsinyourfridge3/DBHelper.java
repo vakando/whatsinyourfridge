@@ -114,7 +114,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.d("TABLE_INGREDIENTS", CREATE_TABLE_INGREDIENTS);
 
         String CREATE_TABLE_PREPARATIONS = "CREATE TABLE " + TABLE_PREPARATIONS + " ("
-                + KEY_P_ID + " INTEGER PRIMARY KEY, "
+                + KEY_P_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + KEY_P_R_ID + " INTEGER, "
                 + KEY_P_PREP + " TEXT);";
         Log.d("TABLE_PREPARATIONS", CREATE_TABLE_PREPARATIONS);
