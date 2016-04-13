@@ -5,19 +5,21 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="122dp"
+        android:layout_width="80dp"
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="43dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/recipe_image_line"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="2dp" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="217dp"
+        android:layout_width="200dp"
         android:layout_height="match_parent">
 
         <TextView
@@ -40,15 +42,13 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="30dp">
 
         <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/fav_line"
-            android:background="@mipmap/fav_1"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp" />
+            android:background="#ffffff" />
     </LinearLayout>
 
 </LinearLayout>
