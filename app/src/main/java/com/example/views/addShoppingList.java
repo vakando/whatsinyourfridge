@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 
 import com.example.canmorpro.whatsinyourfridge3.R;
 
-/**
- * Created by CanMorPro on 16-04-06.
- */
 public class addShoppingList extends Fragment {
 
 
@@ -24,7 +21,6 @@ public class addShoppingList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.search ,container , false);
-
 
         return rootView;
     }
