@@ -302,8 +302,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-
-
     public void setPreparation(int recipeId, String preparation){
         ContentValues cv = new ContentValues();
         cv.put(KEY_P_R_ID, recipeId);

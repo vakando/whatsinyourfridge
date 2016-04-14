@@ -29,4 +29,6 @@
     <string name="addShopping">Add to shopping list</string>
     <string name="addCalendar">Add to calendar</string>
     <string name="Search">Search</string>
+    <string name="byIngredient">By ingredient</string>
+    <string name="byRecipe">By recipe</string>
 </resources>

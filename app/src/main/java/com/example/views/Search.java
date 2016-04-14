@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.canmorpro.whatsinyourfridge3.DBHelper;
@@ -28,6 +29,7 @@ public class Search extends Fragment implements View.OnClickListener {
 
     DBHelper dbh;
     IngredientSearch ingSearch;
+    RecipeSearch recipSearch;
 
     Button addButton;
     Button ingredientRadio;
@@ -45,7 +47,6 @@ public class Search extends Fragment implements View.OnClickListener {
     AutoCompleteTextView searchfield;
 
     LinearLayout layoutFrame;
-
 
     private ArrayList<String> ingredients;
     private ArrayList<String> list_recipes;
@@ -90,6 +91,8 @@ public class Search extends Fragment implements View.OnClickListener {
 
         layoutFrame = (LinearLayout) rootView.findViewById(R.id.layoutFrame);
 
+        ingredientRadio.setSelected(true);
+
         addButton.setOnClickListener(this);
         recipeRadio.setOnClickListener(this);
         ingredientRadio.setOnClickListener(this);
@@ -120,23 +123,23 @@ public class Search extends Fragment implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.addButton://pour le bouton plus
-                String ingredient = searchfield.getText().toString();//recupérer le texte de l'autoComplete
-                if (ingredient.length() == 0)
+                String text = searchfield.getText().toString();//recupérer le texte de l'autoComplete
+                if (text.length() == 0)
                     break;
                 else if (count == 0) {
-                    ing1.setText(ingredient);//on met le texte de l'autoComplete dans le premier textView
+                    ing1.setText(text);//on met le texte de l'autoComplete dans le premier textView
                     ing1.setVisibility(View.VISIBLE);
                     delBut1.setVisibility(View.VISIBLE);
                     searchfield.setText("");
                     count++;
                 } else if (count == 1) {
-                    ing2.setText(ingredient);//on le met dans le second textView
+                    ing2.setText(text);//on le met dans le second textView
                     ing2.setVisibility(View.VISIBLE);
                     delBut2.setVisibility(View.VISIBLE);
                     searchfield.setText("");
                     count++;
                 } else if (count == 2) {
-                    ing3.setText(ingredient);//on le met dans le 3ième textView
+                    ing3.setText(text);//on le met dans le 3ième textView
                     ing3.setVisibility(View.VISIBLE);
                     delBut3.setVisibility(View.VISIBLE);
                     searchfield.setText("");
@@ -147,25 +150,24 @@ public class Search extends Fragment implements View.OnClickListener {
             case R.id.ingredientRadio://pour le bouton by ingredient
                 addButton.setVisibility(View.VISIBLE);
                 layoutFrame.setVisibility(View.VISIBLE);
-
-
+                ingredientRadio.setSelected(true);
+                recipeRadio.setSelected(false);
                 ing1.setText("");
                 ing2.setText("");
                 ing3.setText("");
-//                delBut1.setVisibility(View.INVISIBLE);
-//                delBut2.setVisibility(View.INVISIBLE);
-//                delBut3.setVisibility(View.INVISIBLE);
+                delBut1.setVisibility(View.INVISIBLE);
+                delBut2.setVisibility(View.INVISIBLE);
+                delBut3.setVisibility(View.INVISIBLE);
 
                 break;
 
             case R.id.recipeRadio://pour le bouton by recipe
                 addButton.setVisibility(View.INVISIBLE);
                 layoutFrame.setVisibility(View.INVISIBLE);
+                recipeRadio.setSelected(true);
+                ingredientRadio.setSelected(false);
 
-//                LayoutParams params = new LayoutParams(
-//                        LayoutParams.WRAP_CONTENT,
-//                        LayoutParams.WRAP_CONTENT
-//                );
+
 //                searchButton
 //                ing1.setVisibility(View.INVISIBLE);
 //                ing2.setVisibility(View.INVISIBLE);
@@ -199,7 +201,13 @@ public class Search extends Fragment implements View.OnClickListener {
 
             case R.id.searchButton://pour le bouton search
 
-                searchIngProc(ing1.getText().toString(),ing2.getText().toString(),ing3.getText().toString());
+            System.out.println("ing radio : "+ingredientRadio.isSelected());
+
+                System.out.println("recip radio : " + recipeRadio.isSelected());
+
+
+                if(ingredientRadio.isSelected())  searchIngProc(ing1.getText().toString(),ing2.getText().toString(),ing3.getText().toString());
+                else if (recipeRadio.isSelected()) searchRecipProc(searchfield.getText().toString());
 
                 break;
 //
@@ -209,6 +217,22 @@ public class Search extends Fragment implements View.OnClickListener {
 
 
         }
+    }
+
+
+    public void searchRecipProc(String recipeName){
+
+        if(recipeName.length() == 0){
+
+            System.out.println(" need to enter data");
+
+        }else {
+
+            recipSearch = new RecipeSearch(recipeName, dbh);
+            recipSearch.storeData();
+
+        }
+
     }
 
     public void searchIngProc (String ingredient1 , String ingredient2 , String ingredient3){

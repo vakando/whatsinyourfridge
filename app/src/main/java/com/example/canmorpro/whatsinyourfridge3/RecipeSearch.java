@@ -42,11 +42,9 @@ public class RecipeSearch {
 
         obj1 = new HandleXML(url_recipesByKeyword);
         obj1.fetchXML();
-        System.out.println(url_recipesByKeyword);
+//        System.out.println(url_recipesByKeyword);
         while(obj1.parsingComplete);
 
-        System.out.println("recipe ID is " + obj1.getRecipeID().get(0) + " the second is " + obj1.getRecipeID().get(1));
-//        obj1.getStatus();
         obj1.getTotalCount();
         RecipeIdList= obj1.getRecipeID();
         RecipeNameList= obj1.getRecipeName();
@@ -54,9 +52,13 @@ public class RecipeSearch {
         PhotoUrlList= obj1.getPhotoURL();
         PreparationDescriptionList= obj1.getPreparationDescription();
 
+        //        clear tables
+        dbh.clearRecipeTable();
+        dbh.clearIngredientTable();
+        dbh.clearPreparationTable();
+
         for(int i=0; i<RecipeIdList.size(); i++){
-            dbh.setRecettes(Integer.parseInt(RecipeIdList.get(i)), RecipeNameList.get(i), Integer.parseInt(NumberOfIngredientsList.get(i)), PhotoUrlList.get(i), 0, "", 0, 0);
-            dbh.setPreparation(Integer.parseInt(RecipeIdList.get(i)), PreparationDescriptionList.get(i) );
+            dbh.setRecettes(Integer.parseInt(RecipeIdList.get(i)), RecipeNameList.get(i), Integer.parseInt(NumberOfIngredientsList.get(i)), PhotoUrlList.get(i), 0, "", 1, 0);
         }
 
         getIngredients(obj1.getRecipeID()); // chercher les ingredients a partir de recipeID
@@ -75,17 +77,25 @@ public class RecipeSearch {
             obj2 = new HandleXML(url_recipesById);
             obj2.fetchXML();
             while (obj2.parsingComplete) ;
-//            System.out.println(obj2.getIngredientID());
-//            System.out.println("retourne ID index 1:  "+obj2.getIngredientID().get(0)+ "index 2 : "+obj2.getIngredientID().get(1));
 
             IngredientIdList.clear();
             IngredientNameList.clear();
+            PreparationDescriptionList.clear();
 
             IngredientIdList= obj2.getIngredientID();
             IngredientNameList= obj2.getIngredientName();
+            PreparationDescriptionList= obj2.getPreparationDescription();
 
-            for(int j=0; i<IngredientIdList.size(); i++){
+            for(int j=0; j<IngredientIdList.size(); j++){
+                // set the Ingredients table and link table
                 dbh.setIngredients(Integer.parseInt(IngredientIdList.get(j)), IngredientNameList.get(j), 0, 0);
+                dbh.setLinkRecetteIng(Integer.parseInt(recipeId), Integer.parseInt(IngredientIdList.get(j)), 0);
+            }
+            for(int k=0; k<PreparationDescriptionList.size() ; k++ ){
+
+                //set the preparation table
+                dbh.setPreparation(Integer.parseInt(recipeId), PreparationDescriptionList.get(k));
+
             }
 
         }

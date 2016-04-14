@@ -79,7 +79,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="by ingredient"
+            android:text="@string/byIngredient"
             android:clickable="true"
             android:checked="true"
             android:layout_gravity="left"
@@ -90,7 +90,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="by recipe"
+            android:text="@string/byRecipe"
             android:id="@+id/recipeRadio"
             android:layout_weight="1"
             android:clickable="true"

@@ -58,7 +58,6 @@ public class IngredientSearch {
         for(int i=0; i<RecipeIdList.size(); i++){
             // set the recipe table
             dbh.setRecettes(Integer.parseInt(RecipeIdList.get(i)), RecipeNameList.get(i), Integer.parseInt(NumberOfIngredientsList.get(i)), PhotoUrlList.get(i), 0, "", 1, 0);
-//            System.out.println(RecipeNameList.get(i));
         }
 
         getIngredients(RecipeIdList); // chercher les ingredients a partir de recipeID
