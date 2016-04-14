@@ -29,7 +29,7 @@ public class Favorites extends Fragment {
     }
 
     ListView listView;
-    Cursor curs= null;
+    Cursor curs;
     MyCursorAdapter adapter;
     DBHelper dbh = new DBHelper(getContext());
 
@@ -38,18 +38,70 @@ public class Favorites extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.favorites, container, false);
-        listView= (ListView)rootView.findViewById(R.id.fovoriteListView);
+/*
+        //Test insertion dans la table recette
+        dbh.deleteAllFromTable();
 
+
+        dbh.setRecettes(1, "Recette1", 1, "PhotoUrl1", 1, "date1", 0, 0);
+        dbh.setRecettes(2, "Recette2", 2, "PhotoUrl1", 1, "date1", 0, 0);
+        dbh.setRecettes(3, "Recette3", 3, "PhotoUrl1", 1, "date1", 0, 0);
+        dbh.setRecettes(4, "Recette4", 4, "PhotoUrl1", 1, "date1", 0, 0);
+        dbh.setRecettes(5, "Recette5", 5, "PhotoUrl1", 1, "date1", 0, 0);
+        dbh.setRecettes(6, "Recette6", 6, "PhotoUrl1", 1, "date1", 0, 0);
+        dbh.setRecettes(7, "Recette7", 7, "PhotoUrl1", 1, "date1", 0, 0);
+        dbh.setRecettes(8, "Recette8", 8, "PhotoUrl1", 1, "date1", 0, 0);
+        dbh.setRecettes(9, "Recette9", 9, "PhotoUrl1", 1, "date1", 0, 0);
+        dbh.setRecettes(10, "Recette10", 1, "PhotoUrl1", 1, "date1", 0, 0);
+        dbh.setRecettes(11, "Recette11", 1, "PhotoUrl1", 1, "date1", 0, 0);
+        dbh.setRecettes(12, "Recette12", 1, "PhotoUrl1", 0, "date1", 0, 0);
+
+        dbh.setLinkRecipeIngredients(1, 1, 1, 0);
+        dbh.setLinkRecipeIngredients(2, 2, 3, 0);
+        dbh.setLinkRecipeIngredients(3, 3, 3, 0);
+        dbh.setLinkRecipeIngredients(4, 4, 4, 0);
+        dbh.setLinkRecipeIngredients(5, 5, 1, 0);
+        dbh.setLinkRecipeIngredients(6, 6, 3, 0);
+        dbh.setLinkRecipeIngredients(7, 7, 3, 0);
+        dbh.setLinkRecipeIngredients(8, 8, 4, 0);
+        dbh.setLinkRecipeIngredients(9, 9, 1, 0);
+        dbh.setLinkRecipeIngredients(10, 10, 3, 0);
+        dbh.setLinkRecipeIngredients(11, 11, 3, 0);
+        dbh.setLinkRecipeIngredients(12, 12, 4, 0);
+
+        dbh.setLinkRecipeIngredients(13, 1, 3, 0);
+        dbh.setLinkRecipeIngredients(14, 2, 4, 0);
+
+        dbh.setLinkRecipeIngredients(15, 1, 8, 0);
+        dbh.setLinkRecipeIngredients(16, 2, 9, 0);
+
+        dbh.setLinkRecipeIngredients(17, 1, 10, 0);
+        dbh.setLinkRecipeIngredients(18,2,11,0);
+
+*/
         curs = dbh.getFavorites();
-        adapter = new MyCursorAdapter(getContext(),curs,0);
-        listView.setAdapter(adapter);
 
-        return rootView;
+        if(curs.getCount()!=0) {
+
+            View rootView = inflater.inflate(R.layout.favorites, container, false);
+            listView = (ListView) rootView.findViewById(R.id.fovoriteListView);
+
+            adapter = new MyCursorAdapter(getContext(), curs, 0);
+            listView.setAdapter(adapter);
+
+            return rootView;
+        }
+
+        else {
+            View rootView = inflater.inflate(R.layout.nofavorites, container, false);
+
+            return rootView;
+        }
     }
 
 
     public class MyCursorAdapter extends CursorAdapter {
+
         public MyCursorAdapter(Context context, Cursor cursor, int flags) {
             super(context, cursor, 0);
         }
@@ -71,30 +123,31 @@ public class Favorites extends Fragment {
                 TextView textVueIngrediants = (TextView) view.findViewById(R.id.recipe_ingredient_line);
                 ImageView imageView = (ImageView) view.findViewById(R.id.recipe_image_line);
                 ImageButton imageButton = (ImageButton) view.findViewById(R.id.fav_line);
-            if(cursor!=null){
+
                 // Extract properties from cursor
                 String title = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_NAME));
+                //String fav = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_FAV));
 
                 int IdRecipe = cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_ID));
-                //Cursor c = dbh.getIngredientsNamesByRecipeId(IdRecipe);
-                //int n = 0;
-                //String[] noms = new String[3];
-                //c.moveToFirst();
-                //while (!c.isAfterLast() && n < 3) {
-                    //noms[n] = c.getString(c.getColumnIndexOrThrow(DBHelper.KEY_I_NAME));
-                    //c.moveToNext();
-                    //n++;
-                //}
+                Cursor c = dbh.getIngredientsNamesByRecipeId(IdRecipe);
+                int n = 0;
+                String noms="";
+                c.moveToFirst();
+                while (!c.isAfterLast() && n < 3) {
+                    noms = noms +  c.getString(c.getColumnIndexOrThrow(DBHelper.KEY_I_NAME)) + " ";
+                    c.moveToNext();
+                    if(n==2) noms= noms + "...";
+                    n++;
+                }
                 String url = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_URL));
 
                 // Populate fields with extracted properties
-                imageButton.setImageResource(R.mipmap.fav_0);
+                imageButton.setImageResource(R.mipmap.fav_2);
                 textVueTitre.setText(title);
-                //textVueIngrediants.setText(noms[0] + noms[1] + noms[2] + "...");
-                textVueIngrediants.setText(url + " ...");
-                //Picasso.with(getContext()).load(url).into(imageView);
-//                imageView.setImageResource(R.drawable.menu_exemple);
-            }
+                textVueIngrediants.setText(noms);
+                //textVueIngrediants.setText(url + " ...");
+                Picasso.with(getContext()).load(url).into(imageView);
+                //imageView.setImageResource(R.drawable.menu_exemple);
         }
     }
 }

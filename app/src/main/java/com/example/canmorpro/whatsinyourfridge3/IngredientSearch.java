@@ -57,7 +57,7 @@ public class IngredientSearch {
 
         for(int i=0; i<RecipeIdList.size(); i++){
             // set the recipe table
-            dbh.setRecettes(Integer.parseInt(RecipeIdList.get(i)), RecipeNameList.get(i), Integer.parseInt(NumberOfIngredientsList.get(i)), PhotoUrlList.get(i), 0, "", 1, 0);
+            dbh.setRecettes(Integer.parseInt(RecipeIdList.get(i)), RecipeNameList.get(i), Integer.parseInt(NumberOfIngredientsList.get(i)), PhotoUrlList.get(i), 1, "", 1, 0);
         }
 
         getIngredients(RecipeIdList); // chercher les ingredients a partir de recipeID
@@ -90,7 +90,7 @@ public class IngredientSearch {
             for(int j=0; j<IngredientIdList.size(); j++){
                 // set the Ingredients table and link table
                 dbh.setIngredients(Integer.parseInt(IngredientIdList.get(j)), IngredientNameList.get(j), 0, 0);
-                dbh.setLinkRecetteIng(Integer.parseInt(recipeId), Integer.parseInt(IngredientIdList.get(j)), 0);
+                dbh.setLinkRecipeIngredients(j,Integer.parseInt(recipeId), Integer.parseInt(IngredientIdList.get(j)), 0);
             }
             for(int k=0; k<PreparationDescriptionList.size() ; k++ ){
 

@@ -180,7 +180,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getFavorites(){
         //return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_FAV + " = ?", new String[]{"1"}, null, null, null);
-        return db.rawQuery("select * from " + TABLE_RECIPES + " where " + KEY_R_FAV + " = 1", null);
+        return db.rawQuery("select * from " + TABLE_RECIPES + " where " + KEY_R_FAV + " = 1 " , null);
     }
 
     public Cursor getPreparationsByRecipeId( int recipeId){
@@ -268,7 +268,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getIngredientsNamesByRecipeId(int IdRecipe){
-        return db.rawQuery( "select" + KEY_I_NAME + "from " + TABLE_LINK  + "," + TABLE_INGREDIENTS + " WHERE " + TABLE_LINK + "." + KEY_L_R_ID + " = " + IdRecipe + " AND " + TABLE_LINK + "." + KEY_L_I_ID + " = " + TABLE_INGREDIENTS + "." + KEY_I_ID, null );
+        return db.rawQuery( "select " + KEY_I_NAME + " from " + TABLE_INGREDIENTS + " , " + TABLE_LINK + " WHERE " + TABLE_LINK + "." + KEY_L_R_ID + " = " + IdRecipe + " AND " + TABLE_LINK + "." + KEY_L_I_ID + " = " + TABLE_INGREDIENTS + "." + KEY_I_ID, null );
     }
 
     public void setRecettes(int id, String name, int nbIngredients, String photoUrl, int favorite, String date, int temp, int view){
@@ -290,6 +290,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+ /*
     public void setLinkRecetteIng(int idRecipe, int idIngredient, int shoppingList){
 
         ContentValues cv = new ContentValues();
@@ -301,6 +302,22 @@ public class DBHelper extends SQLiteOpenHelper {
         }catch (SQLException e){}
 
     }
+
+   */
+
+    public void setLinkRecipeIngredients(int id,int idRecipe,int idIngredient,int shoppingList){
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_L_ID,id);
+        cv.put(KEY_L_R_ID, idRecipe);
+        cv.put(KEY_L_I_ID, idIngredient);
+        cv.put(KEY_L_SL, shoppingList);
+
+        try{
+            db.insertOrThrow(TABLE_LINK, null, cv);
+        }catch (SQLException e){}
+    }
+
+
 
     public void setPreparation(int recipeId, String preparation){
         ContentValues cv = new ContentValues();
@@ -317,6 +334,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getRecipesTmpTrue(){
         return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_TMP + " = ?", new String[]{"1"}, null, null, null);
+    }
+
+
+    public void deleteAllFromTable(){
+        db.delete(DBHelper.TABLE_RECIPES, null, null);
+        db.delete(DBHelper.TABLE_LINK, null, null);
     }
 
     public void clearRecipeTable(){
