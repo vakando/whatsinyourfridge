@@ -172,11 +172,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.query(TABLE_INGREDIENTS, new String[]{KEY_I_ID,KEY_I_NAME}, KEY_I_ID + " = ?", new String[]{""+ingredientId}, null, null, null);
         //return  db.rawQuery("select " + KEY_INGREDIENT_NAME + " from " + TABLE_INGREDIENTS + " where id_ingredient=" + ingredientId + "", null);
     }
-
+/*
     public Cursor getShoppingList(){
         return db.query(TABLE_INGREDIENTS, new String[]{KEY_I_ID, KEY_I_NAME, KEY_I_CHECK}, KEY_I_SL + " = ?", new String[]{"1"}, null, null, null);
-//        return db.rawQuery( "select * from "+TABLE_INGREDIENTS+" where shoppingList='true'", null );
+        return db.rawQuery( "select * from "+TABLE_INGREDIENTS+" where shoppingList='true'", null );
     }
+
+*/
 
     public Cursor getFavorites(){
         //return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_FAV + " = ?", new String[]{"1"}, null, null, null);
@@ -306,7 +308,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
- /*
+
     public void setLinkRecetteIng(int idRecipe, int idIngredient, int shoppingList){
 
         ContentValues cv = new ContentValues();
@@ -319,7 +321,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-   */
+
 
     public void setLinkRecipeIngredients(int id,int idRecipe,int idIngredient,int shoppingList){
         ContentValues cv = new ContentValues();
