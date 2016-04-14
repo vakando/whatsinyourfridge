@@ -11,9 +11,9 @@
 
     <style name="White" parent="Theme.AppCompat.Light" />
 
-    <style name="DarkRed" />
+    <style name="DarkRed" parent="Theme.AppCompat.Light.DarkActionBar" />
 
-    <style name="DarkBlue" />
+    <style name="DarkBlue" parent="Theme.AppCompat.Light.DarkActionBar" />
 
-    <style name="Black" parent="android:Theme.DeviceDefault" />
+    <style name="Black" parent="Theme.AppCompat" />
 </resources>

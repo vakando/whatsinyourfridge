@@ -20,8 +20,8 @@
         android:layout_gravity="center_horizontal">
 
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:id="@+id/search_icone"
             android:contentDescription="@string/searchImage"
             android:src="@mipmap/search_bar"
@@ -44,7 +44,8 @@
             android:text="@string/addButton"
             android:id="@+id/add_button"
             android:background="@color/colorApp"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
