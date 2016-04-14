@@ -1,17 +1,20 @@
 package com.example.views;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
-
 import com.example.canmorpro.whatsinyourfridge3.R;
 import com.example.canmorpro.whatsinyourfridge3.CustomAdapter;
 import com.example.canmorpro.whatsinyourfridge3.DBHelper;
@@ -177,5 +180,40 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
 
         adapter = new CustomAdapter(getContext(),shoppingList,0,checked,unchecked);
         list.setAdapter(adapter);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_share, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_share) {
+            doShare();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void doShare() {
+        Cursor curseur = dbh.getShoppingList();
+        StringBuilder text = new StringBuilder();
+        curseur.moveToFirst();
+        while(!curseur.isAfterLast()){
+            text.append(curseur.getString(curseur.getColumnIndex(DBHelper.KEY_I_NAME)));
+            text.append("\n");
+            curseur.moveToNext();
+        }
+        Log.d("share", text.toString());
+        Intent share_i = new Intent(Intent.ACTION_SEND);
+        share_i.putExtra(Intent.EXTRA_SUBJECT, "This is your shopping list");
+        share_i.putExtra(Intent.EXTRA_TEXT, text.toString());
+        share_i.setType("text/plain");
+        try{
+            startActivity(Intent.createChooser(share_i, getResources().getText(R.string.send)));
+        }catch(Exception e){
+            Log.e("SHARE",e.getMessage());
+        }
     }
 }
