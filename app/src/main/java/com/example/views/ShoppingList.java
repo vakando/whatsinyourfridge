@@ -35,8 +35,8 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
     private AutoCompleteTextView actv;
     private int idIngredient = 1;
 
-    public ShoppingList(){
-    }
+//    public ShoppingList(){
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,11 +46,7 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
 
         setHasOptionsMenu(true);
 
-//        MenuItem item = menu.findItem(R.id.action_share);
-//        item.setVisible(false);
-
-        //layout pour la shopping list donc view2
-        View rootView = inflater.inflate(R.layout.shopping_list,container , false);
+        View rootView = inflater.inflate(R.layout.shopping_list, container, false);
 
         ingredients = dbh.getAllIngredients();
 
@@ -70,10 +66,10 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         //Test insertion dans la table ingredients
         dbh.setIngredients(1,"un",1,0);
         dbh.setIngredients(2,"deux",0,0);
-        dbh.setIngredients(3,"trois",1,0);
-        dbh.setIngredients(4, "quatre", 1, 1);
-        dbh.setIngredients(5, "cinq", 1, 0);
-        dbh.setIngredients(6, "six", 1, 1);
+        dbh.setIngredients(3,"trois",1,1);
+        dbh.setIngredients(4, "quatre", 1, 0);
+        dbh.setIngredients(5, "cinq", 1, 1);
+        dbh.setIngredients(6, "six", 1, 0);
         dbh.setRecettes(1, "recette1", 2, "url", 0, "date", 1, 1);
         dbh.setRecettes(2, "recette2", 2, "url", 0, "date", 1, 1);
         dbh.setRecettes(3,"recette3",2,"url",0,"date",1,1);
@@ -91,7 +87,7 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         int i=0;
         while(!shoppingList.isAfterLast()){
             Log.d("DBH", "ingr " + i + " name = " + shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_I_NAME)));
-            Log.d("DBH", "recipe " + i + " name = " + shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_R_NAME)));
+            //Log.d("DBH", "recipe " + i + " name = " + shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_R_NAME)));
             Log.d("DBH", "ingr " + i + " checked = " + shoppingList.getInt(shoppingList.getColumnIndex(DBHelper.KEY_I_CHECK)));
             Log.d("alert", "checked ? " + (shoppingList.getInt(shoppingList.getColumnIndex(DBHelper.KEY_I_CHECK)) == 1));
             if(shoppingList.getInt(shoppingList.getColumnIndex(DBHelper.KEY_I_CHECK)) == 1) {
@@ -142,25 +138,23 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
                 dbh.clearIngredientTable();
                 break;
             case R.id.add_button:
-                //AutoCompleteTextView actv = (AutoCompleteTextView)findViewById(R.id.searching);
                 String ingredient = actv.getText().toString();
                 if(ingredient.length()==0)
                     break;
                 if(!ingredients.contains(ingredient)){
                     dbh.addIngredients(ingredient);
                     ingredients = dbh.getAllIngredients();
-                    //ajout de l'ingredient dans la shopping list
-                    Cursor c = dbh.getIngredientIdByName(ingredient);
-                    long result = -1;
-                    if(c.getCount()==0){
-                        while(result<0){
-                            result = dbh.setIngredients(idIngredient,ingredient,1,0);
-                            idIngredient++;
-                        }
-                    }
-                    else
-                        dbh.addInShoppingList(ingredient);
                 }
+                Cursor c = dbh.getIngredientIdByName(ingredient);
+                long result = -1;
+                if(c.getCount() <= 0){
+                    while(result<0){
+                        result = dbh.setIngredients(idIngredient,ingredient,1,0);
+                        idIngredient++;
+                    }
+                }
+                else
+                    dbh.addInShoppingList(ingredient);
                 actv.setAdapter(new ArrayAdapter<>(getContext(), R.layout.drop_down, dbh.getAllIngredients()));
                 actv.setText("");
                 break;
@@ -171,7 +165,8 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         shoppingList.moveToFirst();
         while(!shoppingList.isAfterLast()){
             Log.d("DBH", "nom = " + shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_I_NAME)));
-            if(shoppingList.getInt(shoppingList.getColumnIndex(DBHelper.KEY_I_CHECK)) == 1 && !checked.contains(shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_I_NAME))))
+            if(shoppingList.getInt(shoppingList.getColumnIndex(DBHelper.KEY_I_CHECK)) == 1
+                    && !checked.contains(shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_I_NAME))))
                 checked.add(shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_I_NAME)));
             else
                 unchecked.add(shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_I_NAME)));
@@ -201,7 +196,9 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         StringBuilder text = new StringBuilder();
         curseur.moveToFirst();
         while(!curseur.isAfterLast()){
-            text.append(curseur.getString(curseur.getColumnIndex(DBHelper.KEY_I_NAME)));
+            text.append("ingredient : "+curseur.getString(curseur.getColumnIndex(DBHelper.KEY_I_NAME)));
+            if(curseur.getString(curseur.getColumnIndex(DBHelper.KEY_R_NAME)) != null)
+                text.append(" for recipe :"+curseur.getString(curseur.getColumnIndex(DBHelper.KEY_R_NAME)));
             text.append("\n");
             curseur.moveToNext();
         }

@@ -1,6 +1,5 @@
 package com.example.views;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,14 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.example.canmorpro.whatsinyourfridge3.DBHelper;
 import com.example.canmorpro.whatsinyourfridge3.IngredientSearch;
 import com.example.canmorpro.whatsinyourfridge3.R;
 import com.example.canmorpro.whatsinyourfridge3.RecipeSearch;
-
 import java.util.ArrayList;
 
 /**
@@ -75,9 +71,6 @@ public class Search extends Fragment implements View.OnClickListener {
 
         View rootView = inflater.inflate(R.layout.search ,container , false);
 
-        searchfield = (AutoCompleteTextView)rootView.findViewById(R.id.searching);
-
-
         addButton=(Button) rootView.findViewById(R.id.addButton);
         recipeRadio = (Button)rootView.findViewById(R.id.recipeRadio);
         ingredientRadio = (Button)rootView.findViewById(R.id.ingredientRadio);
@@ -108,8 +101,7 @@ public class Search extends Fragment implements View.OnClickListener {
 //        searchfield.setAdapter(adapter);
 
         //pour l'autocomplete de la recherche par ingredient
-        ArrayAdapter<String> adapter1= new ArrayAdapter<String>(getContext(), R.layout.drop_down, ingredients);
-        searchfield.setAdapter(adapter1);
+        searchfield.setAdapter(new ArrayAdapter<>(getContext(), R.layout.drop_down, ingredients));
 
         return rootView;
     }

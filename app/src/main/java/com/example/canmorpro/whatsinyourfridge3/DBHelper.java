@@ -59,32 +59,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String KEY_REQ_ID = "_id";
     public static final String KEY_REQ_NUM = "nombreResultats";
 
-//
-//    //Table Columns
-//    static final String KEY_LINK_ID = "_idLink";
-//    static final String KEY_REQUEST_ID = "_id";
-//    static final String KEY_AUTO_COMP_INGREDIENT_ID = "_id";
-//    static final String KEY_AUTO_COMP_RECIPE_ID = "_id";
-//    static final String KEY_ID_RECIPE = "_idRecipe";
-//    static final String KEY_RECIPE_NAME = "recipeName";
-//    static final String KEY_INGREDIENT_NB = "ingredientNB";
-//    static final String KEY_RECIPE_IMAGE_URL = "recipeImageURL";
-//    static final String KEY_FAVORITES = "favorites";
-//    static final String KEY_TO_DO_DATE_TIME = "toDoDateTime";
-//    static final String KEY_ID_INGREDIENT = "_id";
-//    static final String KEY_INGREDIENT_NAME = "ingredientName";
-//    static final String KEY_SHOPPING_LIST = "shoppingList";
-//    static final String KEY_PREPARATION = "preparations";
-//    static final String KEY_RESPONSE = "response";
-//    static final String KEY_NUMBER_RESULT = "numberResults";
-//    static final String KEY_CHECKED = "checked";
-
     private static SQLiteDatabase db = null;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
-
 
         if(db == null)
             db = getWritableDatabase();
@@ -172,13 +150,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.query(TABLE_INGREDIENTS, new String[]{KEY_I_ID,KEY_I_NAME}, KEY_I_ID + " = ?", new String[]{""+ingredientId}, null, null, null);
         //return  db.rawQuery("select " + KEY_INGREDIENT_NAME + " from " + TABLE_INGREDIENTS + " where id_ingredient=" + ingredientId + "", null);
     }
-/*
-    public Cursor getShoppingList(){
-        return db.query(TABLE_INGREDIENTS, new String[]{KEY_I_ID, KEY_I_NAME, KEY_I_CHECK}, KEY_I_SL + " = ?", new String[]{"1"}, null, null, null);
-        return db.rawQuery( "select * from "+TABLE_INGREDIENTS+" where shoppingList='true'", null );
-    }
-
-*/
 
     public Cursor getFavorites(){
         //return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_FAV + " = ?", new String[]{"1"}, null, null, null);
@@ -186,12 +157,12 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getPreparationsByRecipeId( int recipeId){
-        return db.query(TABLE_PREPARATIONS, new String[]{KEY_P_R_ID,KEY_P_PREP}, KEY_P_R_ID + " = ?", new String[]{""+recipeId}, null, null, null);
+        return db.query(TABLE_PREPARATIONS, new String[]{KEY_P_R_ID, KEY_P_PREP}, KEY_P_R_ID + " = ?", new String[]{"" + recipeId}, null, null, null);
         //return db.rawQuery("select * from " + TABLE_PREPARATIONS + " where id_recipe=" + recipeId, null);
     }
 
     public Cursor getIngredientIdByName(String name){
-        return db.query(TABLE_INGREDIENTS, new String[]{KEY_I_ID}, KEY_I_NAME + " = ?", new String[]{name}, null, null, null);
+        return db.query(TABLE_INGREDIENTS, new String[]{KEY_I_ID, KEY_I_NAME}, KEY_I_NAME + " = ?", new String[]{name}, null, null, null);
     }
 
     //je crois que je ne l'utilise plus
@@ -202,12 +173,6 @@ public class DBHelper extends SQLiteOpenHelper {
 //        db.replace(TABLE_INGREDIENTS, null, cv);
 //        Log.d("replaced",KEY_I_SL);
 //    }
-
-    //enleve des ingredients de la table TABLE_INGREDIENTS
-    public void removeIngredient(){
-        db.delete(TABLE_INGREDIENTS, KEY_I_SL + " = ?", new String[]{"0"});
-        Log.d("removed", KEY_I_SL);
-    }
 
     //ajoute des ingredients pour l'autocompleteIngredient
     public void addIngredients(String name){
@@ -276,7 +241,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getIngredientsNamesByRecipeId(int IdRecipe){
-        return db.rawQuery( "select " + KEY_I_NAME + " from " + TABLE_INGREDIENTS + " , " + TABLE_LINK + " WHERE " + TABLE_LINK + "." + KEY_L_R_ID + " = " + IdRecipe + " AND " + TABLE_LINK + "." + KEY_L_I_ID + " = " + TABLE_INGREDIENTS + "." + KEY_I_ID, null );
+        return db.rawQuery("SELECT " + KEY_I_NAME + "FROM " + TABLE_LINK  + ", " + TABLE_INGREDIENTS + " WHERE " + TABLE_LINK + "." + KEY_L_R_ID + " = " + IdRecipe + " AND " + TABLE_LINK + "." + KEY_L_I_ID + " = " + TABLE_INGREDIENTS + "." + KEY_I_ID, null );
     }
 
     public Cursor getRecipeNameByIngredientId(int ingredientId){
@@ -286,8 +251,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getShoppingList() {
         return db.rawQuery("SELECT " + TABLE_INGREDIENTS + "." + KEY_I_ID + ", " + KEY_I_NAME + ", " + KEY_R_NAME + ", " + KEY_I_CHECK
                 + " FROM " + TABLE_INGREDIENTS + " LEFT OUTER JOIN " + TABLE_LINK
-                + " ON (" + TABLE_LINK + "." + KEY_L_I_ID + " = " + TABLE_INGREDIENTS + "." + KEY_I_ID + " AND " + TABLE_LINK + "." + KEY_L_SL + " = 1) "
-                + " LEFT OUTER JOIN " + TABLE_RECIPES + " ON " + TABLE_LINK + "." + KEY_L_R_ID + " = " + TABLE_RECIPES + "." + KEY_R_ID, null);
+                + " ON (" + TABLE_LINK + "." + KEY_L_I_ID + " = " + TABLE_INGREDIENTS + "." + KEY_I_ID + " AND " + TABLE_LINK + "." + KEY_L_SL + " = 1)"
+                + " LEFT OUTER JOIN " + TABLE_RECIPES + " ON " + TABLE_LINK + "." + KEY_L_R_ID + " = " + TABLE_RECIPES + "." + KEY_R_ID , null);
     }
 
     public void setRecettes(int id, String name, int nbIngredients, String photoUrl, int favorite, String date, int temp, int view){
@@ -303,40 +268,24 @@ public class DBHelper extends SQLiteOpenHelper {
         try{
             db.insertOrThrow(TABLE_RECIPES, null, cv);
         }catch (SQLException e){}
-
         Log.d("inserted", name);
-
     }
 
-
-    public void setLinkRecetteIng(int idRecipe, int idIngredient, int shoppingList){
-
-        ContentValues cv = new ContentValues();
-        cv.put(KEY_L_R_ID,idRecipe);
-        cv.put(KEY_L_I_ID, idIngredient);
-        cv.put(KEY_L_SL, shoppingList);
-        try{
-            db.insertOrThrow(TABLE_LINK, null, cv);
-        }catch (SQLException e){}
-
+    public void setLinkRecetteIng(int recipeId, int ingredientId, int sl){
+        Cursor c = db.query(TABLE_LINK, new String[]{KEY_L_ID}, KEY_L_I_ID + " = ? AND " + KEY_L_R_ID + " = ?", new String[]{""+ingredientId,""+recipeId}, null, null, null);
+        if(c.getCount() <= 0) {
+            ContentValues cv = new ContentValues();
+            cv.put(KEY_L_R_ID, recipeId);
+            cv.put(KEY_L_I_ID, ingredientId);
+            cv.put(KEY_L_SL, sl);
+            try {
+                db.insertOrThrow(TABLE_LINK, null, cv);
+            } catch (SQLException e) {
+            }
+            Log.d("inserted", "recette :" + recipeId + ", ingredient :" + ingredientId + " in sl" + sl);
+        }
     }
-
-
-
-    public void setLinkRecipeIngredients(int id,int idRecipe,int idIngredient,int shoppingList){
-        ContentValues cv = new ContentValues();
-        cv.put(KEY_L_ID,id);
-        cv.put(KEY_L_R_ID, idRecipe);
-        cv.put(KEY_L_I_ID, idIngredient);
-        cv.put(KEY_L_SL, shoppingList);
-
-        try{
-            db.insertOrThrow(TABLE_LINK, null, cv);
-        }catch (SQLException e){}
-    }
-
-
-
+    
     public void setPreparation(int recipeId, String preparation){
         ContentValues cv = new ContentValues();
         cv.put(KEY_P_R_ID, recipeId);
@@ -353,7 +302,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getRecipesTmpTrue(){
         return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_TMP + " = ?", new String[]{"1"}, null, null, null);
     }
-
 
     public void deleteAllFromTable(){
         db.delete(DBHelper.TABLE_RECIPES, null, null);
@@ -372,5 +320,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public void clearPreparationTable(){
         db.delete(TABLE_PREPARATIONS, null, null);
         Log.d("deleted", TABLE_PREPARATIONS);
+    }
+
+    public int checkTable(){
+        Cursor c = db.query(TABLE_AUTOCOMPLETE_INGREDIENT, new String[]{KEY_AI_ID}, null, null, null, null, null);
+        return c.getCount();
     }
 }

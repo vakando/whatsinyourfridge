@@ -1,12 +1,8 @@
 package com.example.canmorpro.whatsinyourfridge3;
 
-import android.content.Intent;
-import android.database.Cursor;
-//import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         dbh = new DBHelper(this);
         DownloadTask dt = new DownloadTask();
-        if(dbh.TABLE_AUTOCOMPLETE_INGREDIENT == null)
+        if(dbh.checkTable() == 0)
             dt.execute();
 
         setContentView(R.layout.multi_fragment);
@@ -68,14 +64,6 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.settings);
             return true;
         }
-//        switch (item.getItemId()){
-//            case R.id.action_share:
-//                doShare();
-//                return true;
-//            case R.id.action_settings:
-//                setContentView(R.layout.settings);
-//                return true;
-//        }
         return super.onOptionsItemSelected(item);
     }
 }
