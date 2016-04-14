@@ -22,7 +22,7 @@ android:layout_height="wrap_content">
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="3dp"
+            android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@color/colorApp" />
 
@@ -47,14 +47,14 @@ android:layout_height="wrap_content">
                 android:textSize="8dp"
                 android:layout_height="0dp"
                 android:layout_width="match_parent"
-                android:text="Search"
+                android:text="@string/search"
                 android:layout_weight="1"
                 android:background="#ffffff" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="3dp"
+            android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@color/colorApp" />
 
@@ -80,13 +80,13 @@ android:layout_height="wrap_content">
                 android:textSize="8dp"
                 android:layout_height="0dp"
                 android:layout_width="match_parent"
-                android:text="Shopping List"
+                android:text="@string/shoppingList"
                 android:background="#ffffff" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="3dp"
+            android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@color/colorApp" />
 
@@ -118,7 +118,7 @@ android:layout_height="wrap_content">
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="3dp"
+            android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@color/colorApp"></LinearLayout>
 
@@ -144,13 +144,13 @@ android:layout_height="wrap_content">
                 android:textSize="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:text="Favorites"
+                android:text="@string/favorites"
                 android:background="#ffffff" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="3dp"
+            android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@color/colorApp" />
 

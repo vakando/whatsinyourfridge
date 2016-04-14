@@ -325,7 +325,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void setLinkRecipeIngredients(int id,int idRecipe,int idIngredient,int shoppingList){
         ContentValues cv = new ContentValues();
-        cv.put(KEY_L_ID,id);
         cv.put(KEY_L_R_ID, idRecipe);
         cv.put(KEY_L_I_ID, idIngredient);
         cv.put(KEY_L_SL, shoppingList);
@@ -351,7 +350,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getRecipesTmpTrue(){
-        return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_TMP + " = ?", new String[]{"1"}, null, null, null);
+        return db.rawQuery("select * from " + TABLE_RECIPES + " where " + KEY_R_TMP + " = 1", null);
     }
 
 

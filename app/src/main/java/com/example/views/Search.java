@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ public class Search extends Fragment implements View.OnClickListener {
     DBHelper dbh;
     IngredientSearch ingSearch;
     RecipeSearch recipSearch;
+    Fragment fragment;
+    FragmentTransaction fragmentTransaction;
 
     Button addButton;
     Button ingredientRadio;
@@ -47,6 +50,7 @@ public class Search extends Fragment implements View.OnClickListener {
     AutoCompleteTextView searchfield;
 
     LinearLayout layoutFrame;
+    LinearLayout layoutButtonSearch;
 
     private ArrayList<String> ingredients;
     private ArrayList<String> list_recipes;
@@ -90,6 +94,7 @@ public class Search extends Fragment implements View.OnClickListener {
         delBut3 = (Button)rootView.findViewById(R.id.delButton3);
 
         layoutFrame = (LinearLayout) rootView.findViewById(R.id.layoutFrame);
+        layoutButtonSearch = (LinearLayout)rootView.findViewById(R.id.layoutSearchButton);
 
         ingredientRadio.setSelected(true);
 
@@ -102,6 +107,9 @@ public class Search extends Fragment implements View.OnClickListener {
         delBut3.setOnClickListener(this);
 
         searchfield = (AutoCompleteTextView) rootView.findViewById(R.id.searchfield);
+
+
+
 
 //        //pour l'autocomplete de la recherche par recette
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, list_recipes);
@@ -117,9 +125,8 @@ public class Search extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-
-//        addButton.setVisibility(View.VISIBLE);
-//        layoutFrame.setVisibility(View.VISIBLE);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         switch (v.getId()) {
             case R.id.addButton://pour le bouton plus
@@ -159,6 +166,10 @@ public class Search extends Fragment implements View.OnClickListener {
                 delBut2.setVisibility(View.INVISIBLE);
                 delBut3.setVisibility(View.INVISIBLE);
 
+                params.topMargin = 30;
+                layoutButtonSearch.setLayoutParams(params);
+
+
                 break;
 
             case R.id.recipeRadio://pour le bouton by recipe
@@ -167,6 +178,8 @@ public class Search extends Fragment implements View.OnClickListener {
                 recipeRadio.setSelected(true);
                 ingredientRadio.setSelected(false);
 
+                params.topMargin = -350;
+                layoutButtonSearch.setLayoutParams(params);
 
 //                searchButton
 //                ing1.setVisibility(View.INVISIBLE);
@@ -209,6 +222,7 @@ public class Search extends Fragment implements View.OnClickListener {
                 if(ingredientRadio.isSelected())  searchIngProc(ing1.getText().toString(),ing2.getText().toString(),ing3.getText().toString());
                 else if (recipeRadio.isSelected()) searchRecipProc(searchfield.getText().toString());
 
+
                 break;
 //
 //            case R.id.searchButtonReci:
@@ -217,6 +231,13 @@ public class Search extends Fragment implements View.OnClickListener {
 
 
         }
+    }
+
+    public void replaceFragment(Fragment fragment){
+
+        fragmentTransaction = getFragmentManager().beginTransaction().replace(R.id.main_container, fragment);
+        fragmentTransaction.commit();
+
     }
 
 
@@ -230,6 +251,10 @@ public class Search extends Fragment implements View.OnClickListener {
 
             recipSearch = new RecipeSearch(recipeName, dbh);
             recipSearch.storeData();
+
+            //        show search result page
+            fragment = new SearchResult();
+            replaceFragment(fragment);
 
         }
 
@@ -265,17 +290,29 @@ public class Search extends Fragment implements View.OnClickListener {
             ingSearch = new IngredientSearch(ingResult.get(0),"","",dbh);
             ingSearch.storeData();
 
+            //        show search result page
+            fragment = new SearchResult();
+            replaceFragment(fragment);
+
         }
         else if (ingResult.size() == 2){
 
             ingSearch = new IngredientSearch(ingResult.get(0),ingResult.get(1),"",dbh);
             ingSearch.storeData();
 
+            //        show search result page
+            fragment = new SearchResult();
+            replaceFragment(fragment);
+
         }
         else if (ingResult.size() == 3){
 
             ingSearch = new IngredientSearch(ingResult.get(0),ingResult.get(1),ingResult.get(2),dbh);
             ingSearch.storeData();
+
+            //        show search result page
+            fragment = new SearchResult();
+            replaceFragment(fragment);
 
 
         }

@@ -74,6 +74,7 @@ public class Menu extends Fragment implements View.OnClickListener {
          searchText.setBackgroundColor(selectedColor);
 
 
+
         return view;
     }
 
@@ -135,7 +136,7 @@ public class Menu extends Fragment implements View.OnClickListener {
             calendarButton.setBackgroundColor(selectedColor);
             calendarText.setBackgroundColor(selectedColor);
 
-            fragment = new PagerRecipeDetails();
+            fragment = new Favorites();
             replaceFragment(fragment);
 
         }

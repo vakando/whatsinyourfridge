@@ -31,4 +31,5 @@
     <string name="Search">Search</string>
     <string name="byIngredient">By ingredient</string>
     <string name="byRecipe">By recipe</string>
+    <string name="shoppingList">Shopping List</string>
 </resources>

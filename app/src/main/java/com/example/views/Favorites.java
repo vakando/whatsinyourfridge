@@ -39,47 +39,6 @@ public class Favorites extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-/*
-        //Test insertion dans la table recette
-        dbh.deleteAllFromTable();
-
-
-        dbh.setRecettes(1, "Recette1", 1, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(2, "Recette2", 2, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(3, "Recette3", 3, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(4, "Recette4", 4, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(5, "Recette5", 5, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(6, "Recette6", 6, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(7, "Recette7", 7, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(8, "Recette8", 8, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(9, "Recette9", 9, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(10, "Recette10", 1, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(11, "Recette11", 1, "PhotoUrl1", 1, "date1", 0, 0);
-        dbh.setRecettes(12, "Recette12", 1, "PhotoUrl1", 0, "date1", 0, 0);
-
-        dbh.setLinkRecipeIngredients(1, 1, 1, 0);
-        dbh.setLinkRecipeIngredients(2, 2, 3, 0);
-        dbh.setLinkRecipeIngredients(3, 3, 3, 0);
-        dbh.setLinkRecipeIngredients(4, 4, 4, 0);
-        dbh.setLinkRecipeIngredients(5, 5, 1, 0);
-        dbh.setLinkRecipeIngredients(6, 6, 3, 0);
-        dbh.setLinkRecipeIngredients(7, 7, 3, 0);
-        dbh.setLinkRecipeIngredients(8, 8, 4, 0);
-        dbh.setLinkRecipeIngredients(9, 9, 1, 0);
-        dbh.setLinkRecipeIngredients(10, 10, 3, 0);
-        dbh.setLinkRecipeIngredients(11, 11, 3, 0);
-        dbh.setLinkRecipeIngredients(12, 12, 4, 0);
-
-        dbh.setLinkRecipeIngredients(13, 1, 3, 0);
-        dbh.setLinkRecipeIngredients(14, 2, 4, 0);
-
-        dbh.setLinkRecipeIngredients(15, 1, 8, 0);
-        dbh.setLinkRecipeIngredients(16, 2, 9, 0);
-
-        dbh.setLinkRecipeIngredients(17, 1, 10, 0);
-        dbh.setLinkRecipeIngredients(18,2,11,0);
-
-*/
         curs = dbh.getFavorites();
 
         if(curs.getCount()!=0) {
@@ -147,7 +106,7 @@ public class Favorites extends Fragment {
 
 
                 // Populate fields with extracted properties
-                imageButton.setImageResource(R.mipmap.fav_2);
+                imageButton.setImageResource(R.mipmap.fav_1);
                 textVueTitre.setText(title);
                 textVueIngrediants.setText(noms);
                 //textVueIngrediants.setText(url + " ...");
