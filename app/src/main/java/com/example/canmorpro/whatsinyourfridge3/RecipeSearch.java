@@ -89,7 +89,7 @@ public class RecipeSearch {
             for(int j=0; j<IngredientIdList.size(); j++){
                 // set the Ingredients table and link table
                 dbh.setIngredients(Integer.parseInt(IngredientIdList.get(j)), IngredientNameList.get(j), 0, 0);
-                dbh.setLinkRecipeIngredients(j,Integer.parseInt(recipeId), Integer.parseInt(IngredientIdList.get(j)), 0);
+                dbh.setLinkRecetteIng(Integer.parseInt(recipeId), Integer.parseInt(IngredientIdList.get(j)), 0);
             }
             for(int k=0; k<PreparationDescriptionList.size() ; k++ ){
 

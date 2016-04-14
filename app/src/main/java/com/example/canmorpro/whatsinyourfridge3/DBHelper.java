@@ -241,7 +241,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getIngredientsNamesByRecipeId(int IdRecipe){
-        return db.rawQuery("SELECT " + KEY_I_NAME + "FROM " + TABLE_LINK  + ", " + TABLE_INGREDIENTS + " WHERE " + TABLE_LINK + "." + KEY_L_R_ID + " = " + IdRecipe + " AND " + TABLE_LINK + "." + KEY_L_I_ID + " = " + TABLE_INGREDIENTS + "." + KEY_I_ID, null );
+        return db.rawQuery("SELECT " + KEY_I_NAME + " FROM " + TABLE_LINK  + ", " + TABLE_INGREDIENTS + " WHERE " + TABLE_LINK + "." + KEY_L_R_ID + " = " + IdRecipe + " AND " + TABLE_LINK + "." + KEY_L_I_ID + " = " + TABLE_INGREDIENTS + "." + KEY_I_ID, null );
     }
 
     public Cursor getRecipeNameByIngredientId(int ingredientId){
@@ -300,7 +300,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getRecipesTmpTrue(){
-        return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_TMP + " = ?", new String[]{"1"}, null, null, null);
+        return db.rawQuery("select * from " + TABLE_RECIPES + " where " + KEY_R_TMP + " = 1", null);
     }
 
     public void deleteAllFromTable(){
