@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -126,9 +127,13 @@ public class Favorites extends Fragment {
 
                 // Extract properties from cursor
                 String title = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_NAME));
-                //String fav = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_FAV));
-
                 int IdRecipe = cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_ID));
+                String url = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_URL));
+
+                textVueTitre.setOnClickListener(new MyOnClickListener(IdRecipe, title, url));
+                textVueIngrediants.setOnClickListener(new MyOnClickListener(IdRecipe, title, url));
+                imageView.setOnClickListener(new MyOnClickListener(IdRecipe, title, url));
+
                 Cursor c = dbh.getIngredientsNamesByRecipeId(IdRecipe);
                 int n = 0;
                 String noms="";
@@ -139,7 +144,7 @@ public class Favorites extends Fragment {
                     if(n==2) noms= noms + "...";
                     n++;
                 }
-                String url = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_URL));
+
 
                 // Populate fields with extracted properties
                 imageButton.setImageResource(R.mipmap.fav_2);
@@ -150,4 +155,28 @@ public class Favorites extends Fragment {
                 //imageView.setImageResource(R.drawable.menu_exemple);
         }
     }
+
+    public class   MyOnClickListener implements View.OnClickListener {
+        int idRecipe;
+        String recipeName;
+        String imageUrl;
+
+        public MyOnClickListener(int idRecipe, String recipName, String imageUrl) {
+            this.idRecipe = idRecipe;
+            this.recipeName = recipeName;
+            this.imageUrl = imageUrl;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Fragment  fragment = new RecipeDetails();
+            Bundle args = new Bundle();
+            args.putInt("idRecipe", idRecipe);
+            args.putString("recipeName", recipeName);
+            args.putString("imageUrl", imageUrl);
+            fragment.setArguments(args);
+            getFragmentManager().beginTransaction().replace(R.id.main_container, fragment).commit();
+        }
+    }
+
 }

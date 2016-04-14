@@ -83,7 +83,7 @@
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Small Text"
-            android:id="@+id/preparatoinLink" />
+            android:id="@+id/preparationText" />
     </LinearLayout>
 
     <LinearLayout

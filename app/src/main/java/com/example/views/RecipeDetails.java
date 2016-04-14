@@ -1,5 +1,6 @@
 package com.example.views;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.canmorpro.whatsinyourfridge3.DBHelper;
 import com.example.canmorpro.whatsinyourfridge3.R;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by CanMorPro on 16-04-06.
@@ -23,11 +26,12 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
 
     Fragment fragment;
     FragmentTransaction fragmentTransaction;
+    DBHelper dbh = new DBHelper(getContext());
 
     ImageButton addToShopping, addToCalendar, favButton;
     ImageView recipeImage;
 
-    TextView recipeTitle, ingredientsText;
+    TextView recipeTitle, ingredientsText, preparationText;
 
     public RecipeDetails() {
     }
@@ -49,14 +53,38 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
         recipeImage = (ImageView) rootView.findViewById(R.id.recipeImage);
         recipeTitle = (TextView) rootView.findViewById(R.id.recipeTitle);
         ingredientsText = (TextView) rootView.findViewById(R.id.ingredientsText);
+        preparationText = (TextView) rootView.findViewById(R.id.preparationText);
 
         addToCalendar.setOnClickListener(this);
         addToShopping.setOnClickListener(this);
         favButton.setOnClickListener(this);
 
+        //Recuperer les info du recipe dans la base
+        Bundle args = getArguments();
+        int idRecipe = args.getInt("idRecipe");
+        String recipeName = args.getString("recipeName");
+        String imageUrl = args.getString("imageUrl");
+
+        Cursor curs= dbh.getPreparationsByRecipeId(idRecipe);
+        //String preparation = curs.getString(curs.getColumnIndexOrThrow(DBHelper.KEY_P_PREP));
+
+        Cursor c = dbh.getIngredientsNamesByRecipeId(idRecipe);
+        String nomsIngredients="";
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            nomsIngredients = nomsIngredients +  c.getString(c.getColumnIndexOrThrow(DBHelper.KEY_I_NAME)) + " ";
+            c.moveToNext();
+        }
+
+        recipeTitle.setText(recipeName);
+        ingredientsText.setText(nomsIngredients);
+       // preparationText.setText(preparation);
+        Picasso.with(getContext()).load(imageUrl).into(recipeImage);
 
         return rootView;
     }
+
+
 
     public void replaceFragment(Fragment fragment) {
 

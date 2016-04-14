@@ -58,7 +58,7 @@ public class RecipeSearch {
         dbh.clearPreparationTable();
 
         for(int i=0; i<RecipeIdList.size(); i++){
-            dbh.setRecettes(Integer.parseInt(RecipeIdList.get(i)), RecipeNameList.get(i), Integer.parseInt(NumberOfIngredientsList.get(i)), PhotoUrlList.get(i), 1, "", 1, 0);
+            dbh.setRecettes(Integer.parseInt(RecipeIdList.get(i)), RecipeNameList.get(i), Integer.parseInt(NumberOfIngredientsList.get(i)), PhotoUrlList.get(i), 0, "", 1, 0);
         }
 
         getIngredients(obj1.getRecipeID()); // chercher les ingredients a partir de recipeID
