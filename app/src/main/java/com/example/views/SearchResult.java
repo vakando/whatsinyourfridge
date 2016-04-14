@@ -47,6 +47,7 @@ public class SearchResult extends Fragment {
             View rootView = inflater.inflate(R.layout.search_result, container, false);
             listView = (ListView) rootView.findViewById(R.id.searchResultListView);
 
+
             adapter = new MyCursorAdapter(getContext(),curs,0);
             listView.setAdapter(adapter);
 
