@@ -1,14 +1,10 @@
 package com.example.views;
 
-import android.content.Intent;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -16,7 +12,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.canmorpro.whatsinyourfridge3.MainActivity;
 import com.example.canmorpro.whatsinyourfridge3.R;
 import com.example.canmorpro.whatsinyourfridge3.CustomAdapter;
 import com.example.canmorpro.whatsinyourfridge3.DBHelper;
@@ -35,6 +30,7 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
     private ArrayList<String> checked = new ArrayList<>();
     private ArrayList<String> unchecked = new ArrayList<>();
     private AutoCompleteTextView actv;
+    private int idIngredient = 1;
 
     public ShoppingList(){
     }
@@ -45,13 +41,13 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         dbh = new DBHelper(getContext());
         Log.d("dbh", "created");
 
+        setHasOptionsMenu(true);
 
 //        MenuItem item = menu.findItem(R.id.action_share);
 //        item.setVisible(false);
 
         //layout pour la shopping list donc view2
         View rootView = inflater.inflate(R.layout.shopping_list,container , false);
-
 
         ingredients = dbh.getAllIngredients();
 
@@ -75,20 +71,16 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         dbh.setIngredients(4, "quatre", 1, 1);
         dbh.setIngredients(5, "cinq", 1, 0);
         dbh.setIngredients(6, "six", 1, 1);
-        dbh.setIngredients(7, "six", 1, 1);
-        dbh.setIngredients(8, "six", 1, 1);
-        dbh.setIngredients(9, "six", 1, 1);
-        dbh.setIngredients(10, "six", 1, 1);
-        dbh.setIngredients(11, "six", 1, 1);
-        dbh.setIngredients(12, "six", 1, 1);
-        dbh.setIngredients(13, "six", 1, 1);
-        dbh.setIngredients(14, "six", 1, 1);
-        dbh.setIngredients(15, "six", 1, 1);
-        dbh.setIngredients(16, "six", 1, 1);
+        dbh.setRecettes(1, "recette1", 2, "url", 0, "date", 1, 1);
+        dbh.setRecettes(2, "recette2", 2, "url", 0, "date", 1, 1);
+        dbh.setRecettes(3,"recette3",2,"url",0,"date",1,1);
+        dbh.setRecettes(4,"recette4",2,"url",0,"date",1,1);
+        dbh.setRecettes(5,"recette5",2,"url",0,"date",1,1);
+        dbh.setLinkRecetteIng(1, 2, 0);
+        dbh.setLinkRecetteIng(2, 1, 1);
+        dbh.setLinkRecetteIng(5, 4, 1);
+        dbh.setLinkRecetteIng(4, 4, 1);
         Log.d("dbh", dbh.toString());
-
-//        DownloadTask dt = new DownloadTask();
-//        dt.execute();
 
         shoppingList = dbh.getShoppingList();
         Log.d("DBH", "nombreIingredientsSL = " + shoppingList.getCount());
@@ -96,6 +88,7 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         int i=0;
         while(!shoppingList.isAfterLast()){
             Log.d("DBH", "ingr " + i + " name = " + shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_I_NAME)));
+            Log.d("DBH", "recipe " + i + " name = " + shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_R_NAME)));
             Log.d("DBH", "ingr " + i + " checked = " + shoppingList.getInt(shoppingList.getColumnIndex(DBHelper.KEY_I_CHECK)));
             Log.d("alert", "checked ? " + (shoppingList.getInt(shoppingList.getColumnIndex(DBHelper.KEY_I_CHECK)) == 1));
             if(shoppingList.getInt(shoppingList.getColumnIndex(DBHelper.KEY_I_CHECK)) == 1) {
@@ -114,13 +107,8 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         adapter = new CustomAdapter(getContext(),shoppingList,0,checked,unchecked);
         list.setAdapter(adapter);
 
-
-
         return rootView;
     }
-
-
-
 
     @Override
     public void onClick(View v) {
@@ -148,7 +136,7 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
             case R.id.delete_button:
                 for(int i=0;i<checked.size();i++)
                     dbh.removeFromShoppingList(checked.get(i));
-                dbh.removeIngredient();
+                dbh.clearIngredientTable();
                 break;
             case R.id.add_button:
                 //AutoCompleteTextView actv = (AutoCompleteTextView)findViewById(R.id.searching);
@@ -159,6 +147,16 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
                     dbh.addIngredients(ingredient);
                     ingredients = dbh.getAllIngredients();
                     //ajout de l'ingredient dans la shopping list
+                    Cursor c = dbh.getIngredientIdByName(ingredient);
+                    long result = -1;
+                    if(c.getCount()==0){
+                        while(result<0){
+                            result = dbh.setIngredients(idIngredient,ingredient,1,0);
+                            idIngredient++;
+                        }
+                    }
+                    else
+                        dbh.addInShoppingList(ingredient);
                 }
                 actv.setAdapter(new ArrayAdapter<>(getContext(), R.layout.drop_down, dbh.getAllIngredients()));
                 actv.setText("");
@@ -180,26 +178,4 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         adapter = new CustomAdapter(getContext(),shoppingList,0,checked,unchecked);
         list.setAdapter(adapter);
     }
-
-//    public class DownloadTask extends AsyncTask<Void, Void, Void>{
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-//
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//            //creation autocompleteIngredient
-//            String[] ingr = getResources().getStringArray(R.array.ingredients);
-//            for(int i=0;i<ingr.length;i++)
-//                dbh.addIngredients(ingr[i]);
-//            return null;
-//        }
-//    }
 }

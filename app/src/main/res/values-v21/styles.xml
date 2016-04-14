@@ -1,27 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="DarkBlue" parent="android:Theme.Material">
+    <style name="DarkBlue" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:colorBackground">@color/theme_darkblue_4</item>
         <item name="android:navigationBarColor">@color/theme_darkblue_5</item>
         <item name="android:colorPrimary">@color/theme_darkblue_1</item>
         <item name="android:colorPrimaryDark">@color/theme_darkblue_2</item>
         <item name="android:colorAccent">@color/theme_darkblue_3</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:actionBarStyle">@style/DarkBlueBar</item>
     </style>
 
-    <style name="DarkRed" parent="android:Theme.Material" >
+    <style name="DarkRed" parent="Theme.AppCompat.Light.DarkActionBar" >
         <item name="android:colorPrimary">@color/theme_darkred_1</item>
         <item name="android:colorPrimaryDark">@color/theme_darkred_2</item>
         <item name="android:colorAccent">@color/theme_darkred_3</item>
         <item name="android:colorBackground">@color/theme_darkred_4</item>
         <item name="android:navigationBarColor">@color/theme_darkred_5</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:actionBarStyle">@style/DarkRedBar</item>
     </style>
 
-    <style name="Black" parent="android:Theme.DeviceDefault">
+    <style name="Black" parent="Theme.AppCompat">
         <item name="android:colorPrimary">@color/theme_black_1</item>
         <item name="android:colorBackground">@color/theme_black_4</item>
         <item name="android:colorAccent">@color/theme_black_3</item>
         <item name="android:colorPrimaryDark">@color/theme_black_2</item>
         <item name="android:navigationBarColor">@color/theme_black_5</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="DarkBlueBar" parent="@android:style/Widget.ActionBar">
+        <item name="android:background">@color/theme_darkblue_1</item>
+    </style>
+
+    <style name="DarkRedBar" parent="@android:style/Widget.ActionBar">
+        <item name="android:background">@color/theme_darkred_1</item>
+    </style>
+
 </resources>
