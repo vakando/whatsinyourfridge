@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.example.canmorpro.whatsinyourfridge3.DBHelper;
 import com.example.canmorpro.whatsinyourfridge3.IngredientSearch;
+import com.example.canmorpro.whatsinyourfridge3.ProcessSearch;
 import com.example.canmorpro.whatsinyourfridge3.R;
 import com.example.canmorpro.whatsinyourfridge3.RecipeSearch;
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ public class Search extends Fragment implements View.OnClickListener {
     DBHelper dbh;
     IngredientSearch ingSearch;
     RecipeSearch recipSearch;
+//    private IngredientSearch search;
+
     Fragment fragment;
     FragmentTransaction fragmentTransaction;
 
@@ -53,6 +56,7 @@ public class Search extends Fragment implements View.OnClickListener {
     AutoCompleteTextView searchfield;
 
     LinearLayout layoutFrame;
+
     LinearLayout layoutButtonSearch;
     LinearLayout layoutProgressBar;
 
@@ -60,7 +64,6 @@ public class Search extends Fragment implements View.OnClickListener {
     private ArrayList<String> list_recipes;
 
     int count = 0;//On initialise un compteur qui compte le nombre d'ingredients ajouté
-    private IngredientSearch search;
 
     private ArrayList<String> ingResult;
 
@@ -114,6 +117,7 @@ public class Search extends Fragment implements View.OnClickListener {
 
         searchfield = (AutoCompleteTextView) rootView.findViewById(R.id.searchfield);
         searchfield.setAdapter(new ArrayAdapter<>(getContext(), R.layout.drop_down, ingredients));
+
 
 //        //pour l'autocomplete de la recherche par recette
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, list_recipes);
@@ -187,7 +191,7 @@ public class Search extends Fragment implements View.OnClickListener {
                 recipeRadio.setSelected(true);
                 ingredientRadio.setSelected(false);
 
-                params.topMargin = -350;
+                params.topMargin = -200;
                 layoutButtonSearch.setLayoutParams(params);
 
                 break;
@@ -213,15 +217,37 @@ public class Search extends Fragment implements View.OnClickListener {
 
                 break;
 
-            case R.id.searchButton://pour le bouton search
+            case R.id.searchButton:   //pour le bouton search
 
                 if(ingredientRadio.isSelected()) {
 
-                    searchIngProc(ing1.getText().toString(), ing2.getText().toString(), ing3.getText().toString());
+                    layoutButtonSearch.setVisibility(View.INVISIBLE);
+                    layoutFrame.setVisibility(View.INVISIBLE);
+
+                    ProcessSearch process = new ProcessSearch(layoutProgressBar,  progressBar, new FragmentCallback() {
+                        @Override
+                        public void onTaskDone() {
+
+                            fragment = new SearchResult();
+                            replaceFragment(fragment);
+                        }
+                    },getContext(),ing1.getText().toString(), ing2.getText().toString(), ing3.getText().toString(), "", 1, dbh);
+                    process.execute();
+
+
                 }
                 else if (recipeRadio.isSelected()) {
 
-                    searchRecipProc(searchfield.getText().toString());
+                    layoutButtonSearch.setVisibility(View.INVISIBLE);
+                    ProcessSearch process = new ProcessSearch(layoutProgressBar, progressBar, new FragmentCallback() {
+                        @Override
+                        public void onTaskDone() {
+
+                            fragment = new SearchResult();
+                            replaceFragment(fragment);
+                        }
+                    },getContext(),"", "", "", searchfield.getText().toString() , 2, dbh);
+                    process.execute();
                 }
 
 
@@ -230,25 +256,8 @@ public class Search extends Fragment implements View.OnClickListener {
         }
     }
 
-
-    public void showProgressIndicator(int radio){
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        layoutButtonSearch.setVisibility(View.INVISIBLE);
-        progressBar.setVisibility(View.VISIBLE);
-
-        if(radio == 1){ // if ingredientRadio
-            params.topMargin = -450;
-            layoutProgressBar.setLayoutParams(params);
-
-        }
-        else if(radio == 2){ // if recipeRadio
-           params.topMargin = -150;
-           layoutProgressBar.setLayoutParams(params);
-       }
-
+    public interface FragmentCallback {
+        public void onTaskDone();
     }
 
 
@@ -277,122 +286,15 @@ public class Search extends Fragment implements View.OnClickListener {
        if(radio == 1) {
            empty.setMessage("You need to add at least one ingredient")
                    .create();
-//        .setPositiveButton("OK");
            empty.show();
        }
         else if (radio == 2){
 
            empty.setMessage("You need to add a recipe name to search")
                    .create();
-//        .setPositiveButton("OK");
            empty.show();
 
        }
-    }
-
-
-    public void searchRecipProc(final String recipeName){
-
-        if(recipeName.length() == 0){
-
-//            System.out.println(" need to enter data");
-            emptyAlert(2);
-
-        }else {
-
-            showProgressIndicator(2);
-
-            new Thread(new Runnable() {
-                public void run(){
-                    recipSearch = new RecipeSearch(recipeName, dbh);
-                    recipSearch.storeData();   }
-            }).start();
-
-            //        show search result page
-            fragment = new SearchResult();
-            replaceFragment(fragment);
-
-        }
-
-    }
-
-    public void searchIngProc (String ingredient1 , String ingredient2 , String ingredient3){
-
-        ingResult = new ArrayList<>();
-
-        if(!"".equals(ingredient1)){
-
-            ingResult.add(ingredient1);
-
-        } if(!"".equals(ingredient2)){
-
-            ingResult.add(ingredient2);
-
-        } if(!"".equals(ingredient3)){
-
-            ingResult.add(ingredient3);
-
-        }
-
-
-        if (ingResult.size()==0){
-
-//            pop up message
-            emptyAlert(1);
-
-        }else if (ingResult.size() == 1){
-
-            showProgressIndicator(1);
-
-            new Thread(new Runnable() {
-                public void run(){
-                    ingSearch = new IngredientSearch(ingResult.get(0),"","",dbh);
-                    ingSearch.storeData();
-                }
-            }).start();
-
-            //        show search result page
-            fragment = new SearchResult();
-            replaceFragment(fragment);
-
-        }
-        else if (ingResult.size() == 2){
-
-
-            showProgressIndicator(1);
-
-            new Thread(new Runnable() {
-                public void run(){
-                    ingSearch = new IngredientSearch(ingResult.get(0),ingResult.get(1),"",dbh);
-                    ingSearch.storeData();
-                }
-            }).start();
-
-
-            //        show search result page
-            fragment = new SearchResult();
-            replaceFragment(fragment);
-
-        }
-        else if (ingResult.size() == 3){
-
-            showProgressIndicator(1);
-
-            new Thread(new Runnable() {
-        public void run(){
-                ingSearch = new IngredientSearch(ingResult.get(0),ingResult.get(1),ingResult.get(2),dbh);
-                ingSearch.storeData();
-        }
-        }).start();
-
-            //        show search result page
-            fragment = new SearchResult();
-            replaceFragment(fragment);
-
-
-        }
-
-
     }
 
 

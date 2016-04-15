@@ -25,16 +25,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ingredientName"
-            android:textSize="25sp"
-            android:layout_weight="0.6"
+            android:textSize="20dp"
+            android:layout_weight="0.7"
             android:layout_marginTop="5dp" />
         <TextView
             android:id="@+id/textViewsl2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="recipeName"
-            android:textSize="20sp"
-            android:layout_weight="0.4"
+            android:textSize="15dp"
+            android:layout_weight="0.3"
             android:layout_marginTop="5dp" />
     </LinearLayout>
 </LinearLayout>

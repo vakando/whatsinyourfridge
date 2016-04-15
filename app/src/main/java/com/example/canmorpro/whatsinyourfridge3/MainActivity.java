@@ -15,9 +15,14 @@ public class MainActivity extends AppCompatActivity {
         Themes.onActivityCreateSetTheme(this);
 
         dbh = new DBHelper(this);
-        DownloadTask dt = new DownloadTask();
+        final DownloadTask dt = new DownloadTask();
         if(dbh.checkTable() == 0)
-            dt.execute();
+
+        new Thread(new Runnable() {
+            public void run(){
+                dt.execute();
+            }
+        }).start();
 
         setContentView(R.layout.multi_fragment);
 

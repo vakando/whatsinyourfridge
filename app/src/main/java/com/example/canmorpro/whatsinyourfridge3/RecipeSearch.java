@@ -21,6 +21,8 @@ public class RecipeSearch {
     private ArrayList<String> RecipeNameList =  new ArrayList<String>();
     private ArrayList<String> PhotoUrlList =  new ArrayList<String>();
     private ArrayList<String> NumberOfIngredientsList =  new ArrayList<String>();
+    private String SearchCount =  new String();
+
 
     private ArrayList<String> IngredientIdList =  new ArrayList<String>();
     private ArrayList<String> IngredientNameList =  new ArrayList<String>();
@@ -32,7 +34,7 @@ public class RecipeSearch {
         this.keyword = keyword;
         this.dbh= dbh;
         startRow = 1;
-        endRow = 5;
+        endRow = 15;
         url_recipesByKeyword = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipesByKeywords?sKeyword1="+keyword+"&sKeyword2=&sKeyword3=&sKeyword4=&sKeyword5=&sKeyword6=&bIsRecipePhotoRequired=true&bIsReadyIn30Mins=false&sSortField=&sSortDirection=&iBrandID=1&iLangID=1&iStartRow="+startRow+"&iEndRow="+endRow+"";
 
     }
@@ -45,7 +47,7 @@ public class RecipeSearch {
 //        System.out.println(url_recipesByKeyword);
         while(obj1.parsingComplete);
 
-        obj1.getTotalCount();
+        SearchCount = obj1.getTotalCount(); // number_result
         RecipeIdList= obj1.getRecipeID();
         RecipeNameList= obj1.getRecipeName();
         NumberOfIngredientsList= obj1.getNumberOfIngredients();
@@ -56,6 +58,11 @@ public class RecipeSearch {
         dbh.clearRecipeTable();
         dbh.clearIngredientTable();
         dbh.clearPreparationTable();
+        dbh.clearTableRequest();
+
+
+        dbh.setRequestCount(SearchCount);
+
 
         for(int i=0; i<RecipeIdList.size(); i++){
             dbh.setRecettes(Integer.parseInt(RecipeIdList.get(i)), RecipeNameList.get(i), Integer.parseInt(NumberOfIngredientsList.get(i)), PhotoUrlList.get(i), 0, "", 1, 0);

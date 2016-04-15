@@ -29,7 +29,7 @@ public class IngredientSearch {
     public IngredientSearch( String ing1, String ing2, String ing3, DBHelper dbh){
 
         startRow = 1;
-        endRow = 5;
+        endRow = 15;
         this.ing1= ing1;
         this.ing2= ing2;
         this.ing3= ing3;
