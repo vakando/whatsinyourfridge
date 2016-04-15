@@ -106,7 +106,7 @@ public class Favorites extends Fragment {
 
 
                 // Populate fields with extracted properties
-                imageButton.setImageResource(R.mipmap.fav_1);
+                imageButton.setBackgroundResource(R.drawable.fav_11);
                 textVueTitre.setText(title);
                 textVueIngrediants.setText(noms);
                 //textVueIngrediants.setText(url + " ...");

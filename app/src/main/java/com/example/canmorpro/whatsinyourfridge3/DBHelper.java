@@ -119,7 +119,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_AUTOCOMPLETE_RECIPE);
 
         String CREATE_TABLE_REQUEST = "CREATE TABLE " + TABLE_REQUEST + " ("
-                + KEY_REQ_ID + " INTEGER PRIMARY KEY, "
+                + KEY_REQ_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + KEY_REQ_NUM + " INTEGER);";
         Log.d("CREATE_TABLE_REQUEST", CREATE_TABLE_AUTOCOMPLETE_RECIPE);
         db.execSQL(CREATE_TABLE_REQUEST);
@@ -182,6 +182,15 @@ public class DBHelper extends SQLiteOpenHelper {
             db.insertOrThrow(TABLE_AUTOCOMPLETE_INGREDIENT, null, cv);
         }catch (SQLException e){}
         Log.d("inserted", name);
+    }
+
+    public void setRequestCount(String count){
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_REQ_NUM, count);
+        try{
+            db.insertOrThrow(TABLE_REQUEST, null, cv);
+        }catch (SQLException e){}
+        Log.d("inserted", count);
     }
 
     //retourne tous les ingredients de la table de l'autocompleteIngredient
@@ -303,6 +312,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.rawQuery("select * from " + TABLE_RECIPES + " where " + KEY_R_TMP + " = 1", null);
     }
 
+    public Cursor getSearchCount(){
+
+     return db.rawQuery("select * from "+TABLE_REQUEST+" ",null);
+    }
+
     public void deleteAllFromTable(){
         db.delete(DBHelper.TABLE_RECIPES, null, null);
         db.delete(DBHelper.TABLE_LINK, null, null);
@@ -320,6 +334,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public void clearPreparationTable(){
         db.delete(TABLE_PREPARATIONS, null, null);
         Log.d("deleted", TABLE_PREPARATIONS);
+    }
+
+    public void clearTableRequest(){
+        db.delete(TABLE_REQUEST, null, null);
+        Log.d("deleted", TABLE_REQUEST);
+
     }
 
     public int checkTable(){

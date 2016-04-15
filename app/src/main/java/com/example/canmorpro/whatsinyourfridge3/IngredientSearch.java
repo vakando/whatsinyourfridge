@@ -19,6 +19,8 @@ public class IngredientSearch {
     private ArrayList<String> RecipeNameList =  new ArrayList<String>();
     private ArrayList<String> PhotoUrlList =  new ArrayList<String>();
     private ArrayList<String> NumberOfIngredientsList =  new ArrayList<String>();
+    private String SearchCount =  new String();
+
 
     private ArrayList<String> IngredientIdList =  new ArrayList<String>();
     private ArrayList<String> IngredientNameList =  new ArrayList<String>();
@@ -44,7 +46,7 @@ public class IngredientSearch {
 //      System.out.println(url_recipesByIngredient);
         while(obj1.parsingComplete);
 //        System.out.println("recipe ID is "+obj1.getRecipeID().get(0)+" the second is "+obj1.getRecipeID().get(1));
-        obj1.getTotalCount(); // number_result
+        SearchCount = obj1.getTotalCount(); // number_result
         RecipeIdList= obj1.getRecipeID();
         RecipeNameList= obj1.getRecipeName();
         NumberOfIngredientsList= obj1.getNumberOfIngredients();
@@ -54,6 +56,9 @@ public class IngredientSearch {
         dbh.clearRecipeTable();
         dbh.clearIngredientTable();
         dbh.clearPreparationTable();
+        dbh.clearTableRequest();
+
+        dbh.setRequestCount(SearchCount);
 
         for(int i=0; i<RecipeIdList.size(); i++){
             // set the recipe table

@@ -32,33 +32,38 @@ public class SearchResult extends Fragment {
     }
 
     ListView listView;
-    Cursor curs;
+    Cursor curs, cursCount;
+    String count;
     MyCursorAdapter adapter;
     DBHelper dbh = new DBHelper(getContext());
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         curs = dbh.getRecipesTmpTrue();
+        cursCount = dbh.getSearchCount();
 
-        if(curs.getCount()!=0) {
-
+        cursCount.moveToFirst();
+            count = cursCount.getString(cursCount.getColumnIndex(DBHelper.KEY_REQ_NUM))+" Recipes found";
             View rootView = inflater.inflate(R.layout.search_result, container, false);
             listView = (ListView) rootView.findViewById(R.id.searchResultListView);
 
+            TextView resultCount = (TextView) rootView.findViewById(R.id.resultCount);
+            resultCount.setText(count);
 
             adapter = new MyCursorAdapter(getContext(),curs,0);
             listView.setAdapter(adapter);
 
             return rootView;
-        }
+//        }
 
-        else {
-            View rootView = inflater.inflate(R.layout.nofavorites, container, false);
-
-            return rootView;
-        }
+//        else {
+//            View rootView = inflater.inflate(R.layout.nofavorites, container, false);
+//
+//            return rootView;
+//        }
     }
 
     public class MyCursorAdapter extends CursorAdapter {
@@ -99,7 +104,7 @@ public class SearchResult extends Fragment {
             String noms="";
             c.moveToFirst();
             while (!c.isAfterLast() && n < 3) {
-                noms = noms +  c.getString(c.getColumnIndexOrThrow(DBHelper.KEY_I_NAME)) + " ";
+                noms = noms +  c.getString(c.getColumnIndexOrThrow(DBHelper.KEY_I_NAME)) + ", ";
                 c.moveToNext();
                 if(n==2) noms= noms + "...";
                 n++;
@@ -107,7 +112,8 @@ public class SearchResult extends Fragment {
 
 
             // Populate fields with extracted properties
-            imageButton.setImageResource(R.mipmap.fav_0);
+//            imageButton.setImageResource(R.drawable.fav_00);
+            imageButton.setBackgroundResource(R.drawable.fav_00);
             textVueTitre.setText(title);
             textVueIngrediants.setText(noms);
             //textVueIngrediants.setText(url + " ...");
