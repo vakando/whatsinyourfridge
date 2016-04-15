@@ -59,6 +59,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String KEY_REQ_ID = "_id";
     public static final String KEY_REQ_NUM = "nombreResultats";
 
+    public static final String TABLE_THEMES = "themes";
+    public static final String KEY_T_ID = "_id";
+    public static final String KEY_T_NAME = "themeName";
+    public static final String KEY_T_ENABLE = "enabled";
+
     private static SQLiteDatabase db = null;
 
     public DBHelper(Context context) {
@@ -121,8 +126,15 @@ public class DBHelper extends SQLiteOpenHelper {
         String CREATE_TABLE_REQUEST = "CREATE TABLE " + TABLE_REQUEST + " ("
                 + KEY_REQ_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + KEY_REQ_NUM + " INTEGER);";
-        Log.d("CREATE_TABLE_REQUEST", CREATE_TABLE_AUTOCOMPLETE_RECIPE);
+        Log.d("CREATE_TABLE_REQUEST", CREATE_TABLE_REQUEST);
         db.execSQL(CREATE_TABLE_REQUEST);
+
+        String CREATE_TABLE_THEMES = " CREATE TABLE " + TABLE_THEMES + " ("
+                + KEY_T_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_T_NAME + " TEXT, "
+                + KEY_T_ENABLE + " INTEGER);";
+        Log.d("CREATE_TABLE_THEMES", CREATE_TABLE_THEMES);
+        db.execSQL(CREATE_TABLE_THEMES);
     }
 
     // Upgrading database
@@ -215,7 +227,6 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues value = new ContentValues();
         value.put(KEY_I_SL, 1);
         db.update(TABLE_INGREDIENTS, value, KEY_I_NAME + " = ?", new String[]{name});
-
     }
 
     //selon la variable d'entree check, on sait si l'ingredient a ete selectionne ou non
@@ -223,7 +234,6 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues value = new ContentValues();
         value.put(KEY_I_CHECK, check);
         db.update(TABLE_INGREDIENTS, value, KEY_I_NAME + " = ?", new String[]{name});
-
     }
 
     //met shoppingList a 0 donc false
@@ -289,8 +299,7 @@ public class DBHelper extends SQLiteOpenHelper {
             cv.put(KEY_L_SL, sl);
             try {
                 db.insertOrThrow(TABLE_LINK, null, cv);
-            } catch (SQLException e) {
-            }
+            } catch (SQLException e) {}
             Log.d("inserted", "recette :" + recipeId + ", ingredient :" + ingredientId + " in sl" + sl);
         }
     }
@@ -345,5 +354,25 @@ public class DBHelper extends SQLiteOpenHelper {
     public int checkTable(){
         Cursor c = db.query(TABLE_AUTOCOMPLETE_INGREDIENT, new String[]{KEY_AI_ID}, null, null, null, null, null);
         return c.getCount();
+    }
+
+    public void setTableThemes(String themeName, int enabled){
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_T_NAME, themeName);
+        cv.put(KEY_T_ENABLE, enabled);
+        try {
+            db.insertOrThrow(TABLE_THEMES, null, cv);
+        } catch (SQLException e) {}
+        Log.d("theme inserted", themeName);
+    }
+
+    public void setEnable(String name, int enable){
+        ContentValues value = new ContentValues();
+        value.put(KEY_T_ENABLE, enable);
+        db.update(TABLE_THEMES, value, KEY_T_NAME + " = ?", new String[]{name});
+    }
+
+    public Cursor getEnable(){
+        return  db.query(TABLE_THEMES, new String[]{KEY_T_ID, KEY_T_NAME, KEY_T_ENABLE}, null, null, null, null, null);
     }
 }

@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,6 +22,7 @@ import com.example.views.PagerRecipeDetails;
 import com.example.views.RecipeDetails;
 import com.example.views.Search;
 import com.example.views.SearchResult;
+import com.example.views.Settings;
 import com.example.views.ShoppingList;
 //import com.example.views.simpleFragment;
 
@@ -44,6 +47,8 @@ public class Menu extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.bottom_menu, container, false);
+
+        setHasOptionsMenu(true);
 
         fragment = new Search();
         fragmentTransaction = getFragmentManager().beginTransaction().add(R.id.main_container, fragment );
@@ -154,5 +159,19 @@ public class Menu extends Fragment implements View.OnClickListener {
         }
 
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(android.view.Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_settings, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_settings) {
+            replaceFragment(new Settings());
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

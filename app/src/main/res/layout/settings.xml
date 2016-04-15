@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -8,7 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="15dp">
+        android:layout_margin="15dp"
+        android:layout_weight="0.5">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,7 +24,8 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5">
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +41,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.5">
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,15 +58,15 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/transparent_back">
+        android:background="@drawable/transparent_back"
+        android:layout_weight="1">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/theme1"
             android:id="@+id/theme1"
-            android:background="@color/transparent"
-            android:enabled="false" />
+            android:background="@color/transparent"/>
     </LinearLayout>
 
     <LinearLayout
@@ -70,7 +74,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/transparent_back">
+        android:background="@drawable/transparent_back"
+        android:layout_weight="1">
 
         <Button
             android:layout_width="match_parent"
@@ -86,7 +91,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/transparent_back">
+        android:background="@drawable/transparent_back"
+        android:layout_weight="1">
 
         <Button
             android:layout_width="match_parent"
@@ -102,29 +108,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/transparent_back">
+        android:background="@drawable/transparent_back"
+        android:layout_weight="1">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/theme4"
             android:id="@+id/theme4"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/transparent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/transparent_back">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/theme5"
-            android:id="@+id/theme5"
             android:layout_gravity="center_horizontal"
             android:background="@color/transparent" />
     </LinearLayout>

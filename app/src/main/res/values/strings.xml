@@ -5,7 +5,6 @@
     <string name="shopping">Shopping</string>
     <string name="calendar">Calendar</string>
     <string name="favorites">Favorites</string>
-
     <string name="searchImage">search_icone</string>
     <string name="deleteButton">DELETE SELECTED</string>
     <string name="selectButton">SELECT ALL</string>
@@ -20,11 +19,9 @@
     <string name="theme">THEMES</string>
     <string name="themeHint">Veuillez sélectionner un thème :</string>
     <string name="theme1">Default</string>
-    <string name="theme2">Black</string>
-    <string name="theme3">Dark Red</string>
-    <string name="theme4">White</string>
-    <string name="theme5">Dark Blue</string>
-
+    <string name="theme2">Grey</string>
+    <string name="theme3">Red</string>
+    <string name="theme4">Blue</string>
     <string name="hint">WhatsInYourFridge helps you find recipes by ingredients or recipe\'s name</string>
     <string name="addShopping">Add to shopping list</string>
     <string name="addCalendar">Add to calendar</string>

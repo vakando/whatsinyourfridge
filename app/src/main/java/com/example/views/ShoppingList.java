@@ -35,8 +35,8 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
     private AutoCompleteTextView actv;
     private int idIngredient = 1;
 
-//    public ShoppingList(){
-//    }
+    public ShoppingList(){
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         add.setOnClickListener(this);
 
         list = (ListView)rootView.findViewById(R.id.shopping_list);
-/*
+
         //Test insertion dans la table ingredients
         dbh.setIngredients(1,"un",1,0);
         dbh.setIngredients(2,"deux",0,0);
@@ -80,7 +80,7 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         dbh.setLinkRecetteIng(5, 4, 1);
         dbh.setLinkRecetteIng(4, 4, 1);
         Log.d("dbh", dbh.toString());
-*/
+
         shoppingList = dbh.getShoppingList();
         Log.d("DBH", "nombreIingredientsSL = " + shoppingList.getCount());
         shoppingList.moveToFirst();
