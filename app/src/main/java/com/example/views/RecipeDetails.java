@@ -1,7 +1,9 @@
 package com.example.views;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +20,8 @@ import com.example.canmorpro.whatsinyourfridge3.DBHelper;
 import com.example.canmorpro.whatsinyourfridge3.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.GregorianCalendar;
+
 /**
  * Created by CanMorPro on 16-04-06.
  */
@@ -32,6 +36,10 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
     ImageView recipeImage;
 
     TextView recipeTitle, ingredientsText, preparationText;
+
+    int idRecipe;
+    String recipeName ;
+    String imageUrl;
 
     public RecipeDetails() {
     }
@@ -62,8 +70,8 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
         //Recuperer les info du recipe dans la base
         Bundle args = getArguments();
         int idRecipe = args.getInt("idRecipe");
-        String recipeName = args.getString("recipeName");
-        String imageUrl = args.getString("imageUrl");
+        recipeName = args.getString("recipeName");
+        imageUrl = args.getString("imageUrl");
 
         Cursor curs= dbh.getPreparationsByRecipeId(idRecipe);
         //String preparation = curs.getString(curs.getColumnIndexOrThrow(DBHelper.KEY_P_PREP));
@@ -100,6 +108,26 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
 
 //            fragment = new ();
 //            replaceFragment(fragment);
+
+            Intent intent = new Intent(Intent.ACTION_INSERT);//Intent.ACTION_INSERT
+            intent.setType("vnd.android.cursor.item/event");
+            intent.putExtra(CalendarContract.Events.TITLE, recipeName);
+            intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Home");
+            intent.putExtra(CalendarContract.Events.DESCRIPTION, "Prepare");
+
+            GregorianCalendar calDate = new GregorianCalendar(2016, 3, 01);
+            intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+                    calDate.getTimeInMillis());
+            intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+                    calDate.getTimeInMillis());
+
+            intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+
+
+            intent.putExtra(CalendarContract.Events.ACCESS_LEVEL, CalendarContract.Events.ACCESS_PRIVATE);
+            intent.putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
+
+            startActivity(intent);
 
         } else if (v.equals(addToShopping)) {
 

@@ -127,7 +127,7 @@ public class SearchResult extends Fragment {
         String recipeName;
         String imageUrl;
 
-        public MyOnClickListener(int idRecipe, String recipName, String imageUrl) {
+        public MyOnClickListener(int idRecipe, String recipeName, String imageUrl) {
             this.idRecipe = idRecipe;
             this.recipeName = recipeName;
             this.imageUrl = imageUrl;
