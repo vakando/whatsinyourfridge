@@ -93,9 +93,9 @@ public class Favorites extends Fragment {
                 textVueIngrediants.setOnClickListener(new MyOnClickListener(IdRecipe, title, url));
                 imageView.setOnClickListener(new MyOnClickListener(IdRecipe, title, url));
 
+              int n = 0;
+               String noms="";
                 Cursor c = dbh.getIngredientsNamesByRecipeId(IdRecipe);
-                int n = 0;
-                String noms="";
                 c.moveToFirst();
                 while (!c.isAfterLast() && n < 3) {
                     noms = noms +  c.getString(c.getColumnIndexOrThrow(DBHelper.KEY_I_NAME)) + " ";
