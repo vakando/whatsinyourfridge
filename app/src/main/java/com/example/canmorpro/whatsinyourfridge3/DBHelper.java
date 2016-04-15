@@ -269,9 +269,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getShoppingList() {
         return db.rawQuery("SELECT " + TABLE_INGREDIENTS + "." + KEY_I_ID + ", " + KEY_I_NAME + ", " + KEY_R_NAME + ", " + KEY_I_CHECK
-                + " FROM " + TABLE_INGREDIENTS + " LEFT OUTER JOIN " + TABLE_LINK
-                + " ON (" + TABLE_LINK + "." + KEY_L_I_ID + " = " + TABLE_INGREDIENTS + "." + KEY_I_ID + " AND " + TABLE_LINK + "." + KEY_L_SL + " = 1)"
-                + " LEFT OUTER JOIN " + TABLE_RECIPES + " ON " + TABLE_LINK + "." + KEY_L_R_ID + " = " + TABLE_RECIPES + "." + KEY_R_ID , null);
+                + " FROM " + TABLE_INGREDIENTS + " INNER JOIN " + TABLE_LINK
+                + " ON (" + TABLE_LINK + "." + KEY_L_I_ID + " = " + TABLE_INGREDIENTS + "." + KEY_I_ID + " AND " + TABLE_LINK + "." + KEY_L_SL + " = 1)"// AND " + TABLE_INGREDIENTS + "." + KEY_I_SL + " = 1)"
+                + " INNER JOIN " + TABLE_RECIPES + " ON " + TABLE_LINK + "." + KEY_L_R_ID + " = " + TABLE_RECIPES + "." + KEY_R_ID , null);
     }
 
     public void setRecettes(int id, String name, int nbIngredients, String photoUrl, int favorite, String date, int temp, int view){
@@ -375,4 +375,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getEnable(){
         return  db.query(TABLE_THEMES, new String[]{KEY_T_ID, KEY_T_NAME, KEY_T_ENABLE}, null, null, null, null, null);
     }
+
+    public void updateLink(int idRecipe, int idIngredient, int shoppingList){
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_L_SL, shoppingList);
+        db.update(TABLE_LINK, cv, KEY_L_I_ID + " = ? AND " + KEY_L_R_ID + " = ?", new String[]{""+idIngredient,""+idRecipe});
+    }
+
 }

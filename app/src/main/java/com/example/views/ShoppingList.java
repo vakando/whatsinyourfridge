@@ -15,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.example.canmorpro.whatsinyourfridge3.R;
 import com.example.canmorpro.whatsinyourfridge3.CustomAdapter;
 import com.example.canmorpro.whatsinyourfridge3.DBHelper;
@@ -62,25 +64,9 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         add.setOnClickListener(this);
 
         list = (ListView)rootView.findViewById(R.id.shopping_list);
-/*
-        //Test insertion dans la table ingredients
-        dbh.setIngredients(1,"un",1,0);
-        dbh.setIngredients(2,"deux",0,0);
-        dbh.setIngredients(3,"trois",1,1);
-        dbh.setIngredients(4, "quatre", 1, 0);
-        dbh.setIngredients(5, "cinq", 1, 1);
-        dbh.setIngredients(6, "six", 1, 0);
-        dbh.setRecettes(1, "recette1", 2, "url", 0, "date", 1, 1);
-        dbh.setRecettes(2, "recette2", 2, "url", 0, "date", 1, 1);
-        dbh.setRecettes(3,"recette3",2,"url",0,"date",1,1);
-        dbh.setRecettes(4,"recette4",2,"url",0,"date",1,1);
-        dbh.setRecettes(5,"recette5",2,"url",0,"date",1,1);
-        dbh.setLinkRecetteIng(1, 2, 0);
-        dbh.setLinkRecetteIng(2, 1, 1);
-        dbh.setLinkRecetteIng(5, 4, 1);
-        dbh.setLinkRecetteIng(4, 4, 1);
+
         Log.d("dbh", dbh.toString());
-*/
+
         shoppingList = dbh.getShoppingList();
         Log.d("DBH", "nombreIingredientsSL = " + shoppingList.getCount());
         shoppingList.moveToFirst();
@@ -136,6 +122,7 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
                 for(int i=0;i<checked.size();i++)
                     dbh.removeFromShoppingList(checked.get(i));
                 dbh.clearIngredientTable();
+                Toast.makeText(getContext(),"Delete succesful",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.add_button:
                 String ingredient = actv.getText().toString();
@@ -147,16 +134,21 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
                 }
                 Cursor c = dbh.getIngredientIdByName(ingredient);
                 long result = -1;
+                int id = 0;
                 if(c.getCount() <= 0){
                     while(result<0){
                         result = dbh.setIngredients(idIngredient,ingredient,1,0);
+                        id = idIngredient;
                         idIngredient++;
                     }
+                    dbh.setLinkRecetteIng(id, id, 1);
+                    dbh.setRecettes(id,"",1,"",0,"",0,0);
                 }
                 else
                     dbh.addInShoppingList(ingredient);
                 actv.setAdapter(new ArrayAdapter<>(getContext(), R.layout.drop_down, dbh.getAllIngredients()));
                 actv.setText("");
+                Toast.makeText(getContext(),"Ingredient added successfully",Toast.LENGTH_SHORT).show();
                 break;
         }
         checked = new ArrayList<>();

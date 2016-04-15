@@ -56,7 +56,7 @@ public class CustomAdapter extends CursorAdapter{
         TextView recipe = (TextView) view.findViewById(R.id.textViewsl2);
         CheckBox cb = (CheckBox) view.findViewById(R.id.checkBoxsl);
         name.setText(cursor.getString(cursor.getColumnIndex(DBHelper.KEY_I_NAME)));
-        if(cursor.getString(cursor.getColumnIndex(DBHelper.KEY_R_NAME)) != null)
+        if(cursor.getString(cursor.getColumnIndex(DBHelper.KEY_R_NAME)).length() > 0)
             recipe.setText("        "+cursor.getString(cursor.getColumnIndex(DBHelper.KEY_R_NAME)));
         else
             recipe.setText("");

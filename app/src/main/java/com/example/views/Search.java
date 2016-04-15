@@ -37,7 +37,6 @@ public class Search extends Fragment implements View.OnClickListener {
     Fragment fragment;
     FragmentTransaction fragmentTransaction;
 
-
     ProgressBar progressBar;
 
     Button addButton;
@@ -67,20 +66,14 @@ public class Search extends Fragment implements View.OnClickListener {
 
     private ArrayList<String> ingResult;
 
-
-
-
-
     public Search(){
     }
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         dbh = new DBHelper(getContext());
-
 
         ingredients = dbh.getAllIngredients();
 

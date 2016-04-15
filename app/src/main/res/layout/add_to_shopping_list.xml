@@ -53,7 +53,9 @@
                 android:background="@drawable/little_back"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout1">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -61,7 +63,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient1"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -71,7 +73,7 @@
                     android:id="@+id/delete1"
                     android:textColor="@color/red"
                     android:layout_marginLeft="0.5dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
             </LinearLayout>
 
             <LinearLayout
@@ -82,7 +84,9 @@
                 android:background="@drawable/little_back"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout2">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -90,7 +94,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient2"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -100,7 +104,7 @@
                     android:id="@+id/delete2"
                     android:layout_weight="1"
                     android:textColor="@color/red"
-                    android:layout_marginLeft="0.5dp" />
+                    android:layout_marginLeft="0.5dp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -120,7 +124,9 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout3">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -128,7 +134,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient3"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -138,7 +144,7 @@
                     android:id="@+id/delete3"
                     android:layout_weight="1"
                     android:textColor="@color/red"
-                    android:layout_marginLeft="0.5dp" />
+                    android:layout_marginLeft="0.5dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -150,7 +156,9 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout4">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -158,7 +166,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient4"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -168,7 +176,7 @@
                     android:id="@+id/delete4"
                     android:layout_weight="1"
                     android:textColor="@color/red"
-                    android:layout_marginLeft="0.5dp" />
+                    android:layout_marginLeft="0.5dp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -188,7 +196,9 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout5">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -196,7 +206,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient5"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -206,7 +216,7 @@
                     android:id="@+id/delete5"
                     android:layout_weight="1"
                     android:textColor="@color/red"
-                    android:layout_marginLeft="0.5dp" />
+                    android:layout_marginLeft="0.5dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -218,7 +228,9 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout6">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -226,7 +238,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient6"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -236,7 +248,7 @@
                     android:id="@+id/delete6"
                     android:layout_weight="1"
                     android:textColor="@color/red"
-                    android:layout_marginLeft="0.5dp" />
+                    android:layout_marginLeft="0.5dp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -256,7 +268,9 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout7">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -264,7 +278,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient7"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -274,7 +288,7 @@
                     android:id="@+id/delete7"
                     android:layout_weight="1"
                     android:textColor="@color/red"
-                    android:layout_marginLeft="0.5dp" />
+                    android:layout_marginLeft="0.5dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -286,7 +300,9 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout8">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -294,7 +310,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient8"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -304,7 +320,7 @@
                     android:id="@+id/delete8"
                     android:layout_weight="1"
                     android:textColor="@color/red"
-                    android:layout_marginLeft="0.5dp" />
+                    android:layout_marginLeft="0.5dp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -324,7 +340,9 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout9">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -332,7 +350,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient9"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -342,7 +360,7 @@
                     android:id="@+id/delete9"
                     android:layout_weight="1"
                     android:textColor="@color/red"
-                    android:layout_marginLeft="0.5dp" />
+                    android:layout_marginLeft="0.5dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -354,7 +372,9 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout10">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -362,7 +382,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient10"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -372,7 +392,7 @@
                     android:id="@+id/delete10"
                     android:layout_weight="1"
                     android:textColor="@color/red"
-                    android:layout_marginLeft="0.5dp" />
+                    android:layout_marginLeft="0.5dp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -391,7 +411,9 @@
                 android:background="@drawable/little_back"
                 android:layout_weight="1"
                 android:layout_margin="5dp"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout11">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -399,7 +421,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient11"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -409,7 +431,7 @@
                     android:id="@+id/delete11"
                     android:layout_weight="1"
                     android:textColor="@color/red"
-                    android:layout_marginLeft="0.5dp" />
+                    android:layout_marginLeft="0.5dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -420,7 +442,9 @@
                 android:background="@drawable/little_back"
                 android:layout_weight="1"
                 android:layout_margin="5dp"
-                android:paddingLeft="2dp">
+                android:paddingLeft="2dp"
+                android:visibility="invisible"
+                android:id="@+id/layout12">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -428,7 +452,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/ingredient12"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
@@ -438,7 +462,7 @@
                     android:id="@+id/delete12"
                     android:layout_weight="1"
                     android:textColor="@color/red"
-                    android:layout_marginLeft="0.5dp" />
+                    android:layout_marginLeft="0.5dp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -451,5 +475,6 @@
         android:id="@+id/add_to_sl"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:background="@color/lightBlue" />
+        android:background="@color/lightBlue"
+        android:visibility="invisible"/>
 </LinearLayout>
