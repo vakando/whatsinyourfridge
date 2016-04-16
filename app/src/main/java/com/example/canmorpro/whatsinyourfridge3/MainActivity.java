@@ -14,15 +14,15 @@ public class MainActivity extends AppCompatActivity {
 
         Themes.onActivityCreateSetTheme(this);
 
-        dbh = new DBHelper(this);
-        final DownloadTask dt = new DownloadTask();
-        if(dbh.checkTable() == 0)
-
-        new Thread(new Runnable() {
-            public void run(){
-                dt.execute();
-            }
-        }).start();
+//        dbh = new DBHelper(this);
+//        final DownloadTask dt = new DownloadTask();
+//        if(dbh.checkTable() == 0)
+//
+//        new Thread(new Runnable() {
+//            public void run(){
+//                dt.execute();
+//            }
+//        }).start();
 
         setContentView(R.layout.multi_fragment);
 
@@ -36,31 +36,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public class DownloadTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            //ajout des themes dans la database
-            dbh.setTableThemes("Default",1);
-            dbh.setTableThemes("Grey",0);
-            dbh.setTableThemes("Red",0);
-            dbh.setTableThemes("Blue",0);
-            //creation autocompleteIngredient
-            String[] ingr = getResources().getStringArray(R.array.ingredients);
-            for(int i=0;i<ingr.length;i++)
-                dbh.addIngredients(ingr[i]);
-            return null;
-        }
-    }
+//    public class DownloadTask extends AsyncTask<Void, Void, Void> {
+//
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void aVoid) {
+//
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... params) {
+//            //ajout des themes dans la database
+//            dbh.setTableThemes("Default",1);
+//            dbh.setTableThemes("Grey",0);
+//            dbh.setTableThemes("Red",0);
+//            dbh.setTableThemes("Blue",0);
+//            //creation autocompleteIngredient
+//            String[] ingr = getResources().getStringArray(R.array.ingredients);
+//            for(int i=0;i<ingr.length;i++)
+//                dbh.addIngredients(ingr[i]);
+//            return null;
+//        }
+//    }
 }
 

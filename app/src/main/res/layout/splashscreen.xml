@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/splashscreen"
+        android:layout_weight="0.6"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:text="Concepteurs : \n\n Mohammed BELMAJDOUB \n Valentin AKANDO \n Dorée MAKOUDJOU \n  Khady FALL"
+        android:layout_gravity="bottom"
+        android:layout_weight="0.2"/>
+
+</LinearLayout>
