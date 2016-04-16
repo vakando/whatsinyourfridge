@@ -75,7 +75,7 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
         imageUrl = args.getString("imageUrl");
 
         Cursor curs= dbh.getPreparationsByRecipeId(idRecipe);
-        //String preparation = curs.getString(curs.getColumnIndexOrThrow(DBHelper.KEY_P_PREP));
+        String preparation = curs.getString(curs.getColumnIndexOrThrow(DBHelper.KEY_P_PREP));
 
         Cursor c = dbh.getIngredientsNamesByRecipeId(idRecipe);
         String nomsIngredients="";
@@ -87,7 +87,7 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
 
         recipeTitle.setText(recipeName);
         ingredientsText.setText(nomsIngredients);
-       // preparationText.setText(preparation);
+        preparationText.setText(preparation);
         Picasso.with(getContext()).load(imageUrl).into(recipeImage);
 
         return rootView;

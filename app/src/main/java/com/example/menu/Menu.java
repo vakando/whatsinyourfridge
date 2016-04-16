@@ -1,7 +1,11 @@
 package com.example.menu;
 
+import android.content.ContentUris;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -141,8 +145,17 @@ public class Menu extends Fragment implements View.OnClickListener {
             calendarButton.setBackgroundColor(selectedColor);
             calendarText.setBackgroundColor(selectedColor);
 
-            fragment = new Calendar();
-            replaceFragment(fragment);
+            //fragment = new Calendar();
+            //replaceFragment(fragment);
+
+            //  A date-time specified in milliseconds since the epoch.
+            long startMillis = System.currentTimeMillis ();
+            Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
+            builder.appendPath("time");
+            ContentUris.appendId(builder, startMillis);
+            Intent intent = new Intent(Intent.ACTION_VIEW)
+                    .setData(builder.build());
+            startActivity(intent);
 
         }
         else if (v.equals(favoritesButton)){
