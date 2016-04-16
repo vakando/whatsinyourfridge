@@ -74,15 +74,26 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
         recipeName = args.getString("recipeName");
         imageUrl = args.getString("imageUrl");
 
+        String newline = System.getProperty("line.separator");
+
         Cursor curs= dbh.getPreparationsByRecipeId(idRecipe);
         curs.moveToFirst();
-        String preparation = curs.getString(curs.getColumnIndexOrThrow(DBHelper.KEY_P_PREP));
+//        String prep = curs.getString(curs.getColumnIndexOrThrow(DBHelper.KEY_P_PREP));
+        String preparation ="";
+        while (!curs.isAfterLast()) {
+
+            System.out.print(" curseur -"+curs.getString(curs.getColumnIndexOrThrow(DBHelper.KEY_P_PREP))+"-");
+
+         preparation = preparation + "+"+ curs.getString(curs.getColumnIndexOrThrow(DBHelper.KEY_P_PREP)) + " "+newline+newline;
+            curs.moveToNext();
+
+        }
 
         Cursor c = dbh.getIngredientsNamesByRecipeId(idRecipe);
         String nomsIngredients="";
         c.moveToFirst();
         while (!c.isAfterLast()) {
-            nomsIngredients = nomsIngredients +  c.getString(c.getColumnIndexOrThrow(DBHelper.KEY_I_NAME)) + " ";
+            nomsIngredients = nomsIngredients + "+"+ c.getString(c.getColumnIndexOrThrow(DBHelper.KEY_I_NAME)) + " "+newline;
             c.moveToNext();
         }
 
@@ -139,13 +150,9 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
             fragment = new addShoppingList();
 
             Bundle bundle = new Bundle();
-//          bundle.putInt("par1", value);
+
+            bundle.putInt("recipeId", idRecipe);
             fragment.setArguments(bundle);
-
-//            on the other fragment
-
-//            Bundle bundle = this.getArguments();
-//            int myInt = bundle.getInt(key, defaultValue);
 
             replaceFragment(fragment);
 

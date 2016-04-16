@@ -12,8 +12,12 @@ public class RecipeSearch {
 
     private String url_recipesByKeyword, url_recipesById;
     private String keyword ;
-    private int startRow, endRow;
+    public static int startRow=1;
+    public static int endRow =20;
     private HandleXML obj1,  obj2 ;
+
+    public static int count;
+    private boolean clear;
 
     private DBHelper dbh;
 
@@ -37,8 +41,9 @@ public class RecipeSearch {
         for(int i=0; i<split.length; i++)
             this.keyword = this.keyword + "%20" + split[i];
         this.dbh= dbh;
-        startRow = 1;
-        endRow = 15;
+
+        clear =true;
+
         url_recipesByKeyword = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipesByKeywords?sKeyword1="+keyword+"&sKeyword2=&sKeyword3=&sKeyword4=&sKeyword5=&sKeyword6=&bIsRecipePhotoRequired=true&bIsReadyIn30Mins=false&sSortField=&sSortDirection=&iBrandID=1&iLangID=1&iStartRow="+startRow+"&iEndRow="+endRow+"";
 
     }
@@ -59,11 +64,12 @@ public class RecipeSearch {
         PreparationDescriptionList= obj1.getPreparationDescription();
 
         //        clear tables
-        dbh.clearRecipeTable();
-        dbh.clearIngredientTable();
-        dbh.clearPreparationTable();
-        dbh.clearTableRequest();
-
+        if(clear) {
+            dbh.clearRecipeTable();
+            dbh.clearIngredientTable();
+            dbh.clearPreparationTable();
+            dbh.clearTableRequest();
+        }
 
         dbh.setRequestCount(SearchCount);
 
@@ -110,6 +116,17 @@ public class RecipeSearch {
             }
 
         }
+
+    }
+
+    public void storeRemaining(){
+
+        System.out.println("the storeRemaining is here");
+
+        clear=false;
+        startRow=20;
+        endRow =count;
+        storeData();
 
     }
 }

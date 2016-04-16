@@ -169,12 +169,14 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getPreparationsByRecipeId( int recipeId){
-        return db.query(TABLE_PREPARATIONS, new String[]{KEY_P_R_ID, KEY_P_PREP}, KEY_P_R_ID + " = ?", new String[]{"" + recipeId}, null, null, null);
-        //return db.rawQuery("select * from " + TABLE_PREPARATIONS + " where id_recipe=" + recipeId, null);
+//        return db.query(TABLE_PREPARATIONS, new String[]{KEY_P_ID, KEY_P_R_ID, KEY_P_PREP}, KEY_P_R_ID + " = ?", new String[]{"" + recipeId}, null, null, null);
+        return db.rawQuery("select * from " + TABLE_PREPARATIONS + " where "+KEY_P_R_ID+" = " + recipeId, null);
     }
 
     public Cursor getIngredientIdByName(String name){
-        return db.query(TABLE_INGREDIENTS, new String[]{KEY_I_ID, KEY_I_NAME}, KEY_I_NAME + " = ?", new String[]{name}, null, null, null);
+//        return db.query(TABLE_INGREDIENTS, new String[]{KEY_I_ID, KEY_I_NAME}, KEY_I_NAME + " = ?", new String[]{name}, null, null, null);
+        return db.rawQuery("select * from " + TABLE_INGREDIENTS + " where "+KEY_I_NAME+" = " + name, null);
+
     }
 
     //je crois que je ne l'utilise plus

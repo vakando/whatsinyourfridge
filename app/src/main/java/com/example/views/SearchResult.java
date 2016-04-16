@@ -28,6 +28,7 @@ import com.squareup.picasso.Picasso;
 public class SearchResult extends Fragment {
 
 
+
     public SearchResult(){
     }
 
@@ -48,7 +49,7 @@ public class SearchResult extends Fragment {
         cursCount = dbh.getSearchCount();
 
         cursCount.moveToLast();
-            //count = cursCount.getString(cursCount.getColumnIndex(DBHelper.KEY_REQ_NUM))+" Recipes found";
+            count = cursCount.getString(cursCount.getColumnIndex(DBHelper.KEY_REQ_NUM))+" Recipes found";
             count = cursCount.getCount() +" Recipes found";
             View rootView = inflater.inflate(R.layout.search_result, container, false);
             listView = (ListView) rootView.findViewById(R.id.searchResultListView);
@@ -57,9 +58,14 @@ public class SearchResult extends Fragment {
             resultCount.setText(count);
 
             adapter = new MyCursorAdapter(getContext(),curs,0);
+            adapter.swapCursor(curs);
             listView.setAdapter(adapter);
 
             return rootView;
+
+    }
+
+    public void fetchCursor(){
 
     }
 

@@ -10,8 +10,11 @@ public class IngredientSearch {
 
     private String url_recipesByIngredient, url_recipesById;
     private String ing1, ing2 = "", ing3 = "" ;
-    private int startRow, endRow;
+    public static int startRow=1;
+    public static int endRow =20;
     private HandleXML obj1, obj2 ;
+    public static int count;
+    private boolean clear;
 
     private DBHelper dbh;
 
@@ -28,8 +31,7 @@ public class IngredientSearch {
 
     public IngredientSearch( String ing1, String ing2, String ing3, DBHelper dbh){
 
-        startRow = 1;
-        endRow = 20;
+
 //        this.ing1= ing1;
 //        this.ing2= ing2;
 //        this.ing3= ing3;
@@ -48,6 +50,11 @@ public class IngredientSearch {
         for(int i=0; i<split3.length; i++)
             this.ing3 = this.ing3 + "%20" + split3[i];
 
+        clear =true;
+
+        this.ing1= ing1;
+        this.ing2= ing2;
+        this.ing3= ing3;
         this.dbh= dbh;
         url_recipesByIngredient = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipesByIngredients?sIngredient1="+ing1+"&sIngredient2="+ing2+"&sIngredient3="+ing3+"&bIsRecipePhotoRequired=true&sSortField=&sSortDirection=&iBrandID=1&iLangID=1&iStartRow="+startRow+"&iEndRow="+endRow+"";
 
@@ -62,16 +69,22 @@ public class IngredientSearch {
         while(obj1.parsingComplete);
 //        System.out.println("recipe ID is "+obj1.getRecipeID().get(0)+" the second is "+obj1.getRecipeID().get(1));
         SearchCount = obj1.getTotalCount(); // number_result
+        count = Integer.parseInt(SearchCount);
+
+        System.out.println("search count here "+SearchCount);
+
         RecipeIdList= obj1.getRecipeID();
         RecipeNameList= obj1.getRecipeName();
         NumberOfIngredientsList= obj1.getNumberOfIngredients();
         PhotoUrlList= obj1.getPhotoURL();
 
 //        clear tables
+        if(clear){
         dbh.clearRecipeTable();
         dbh.clearIngredientTable();
         dbh.clearPreparationTable();
         dbh.clearTableRequest();
+        }
 
         dbh.setRequestCount(SearchCount);
 
@@ -81,6 +94,12 @@ public class IngredientSearch {
         }
 
         getIngredients(RecipeIdList); // chercher les ingredients a partir de recipeID
+
+//        if(Integer.parseInt(SearchCount)>endRow){
+//            startRow=20;
+//            endRow =Integer.parseInt(SearchCount);
+//            storeData();
+//        }
 
     }
 
@@ -106,6 +125,14 @@ public class IngredientSearch {
             IngredientNameList= obj2.getIngredientName();
             PreparationDescriptionList= obj2.getPreparationDescription();
 
+//            for(int g=0 ;  g< PreparationDescriptionList.size(); g++ ){
+//
+//                System.out.print( PreparationDescriptionList.get(g));
+//
+//                System.out.print( PreparationDescriptionList.get(g) == "");
+//
+//            }
+
 
             for(int j=0; j<IngredientIdList.size(); j++){
                 // set the Ingredients table and link table
@@ -119,6 +146,17 @@ public class IngredientSearch {
 
             }
         }
+    }
+
+    public void storeRemaining(){
+
+        System.out.println("the storeRemaining is here");
+
+        clear=false;
+        startRow=20;
+        endRow =count;
+        storeData();
+
     }
 
 

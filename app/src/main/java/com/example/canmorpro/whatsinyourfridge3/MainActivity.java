@@ -18,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
 //        final DownloadTask dt = new DownloadTask();
 //        if(dbh.checkTable() == 0)
 //
+
+        
+
 //        new Thread(new Runnable() {
 //            public void run(){
 //                dt.execute();

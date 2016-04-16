@@ -146,6 +146,28 @@ return null;
 
         fragmentCallback.onTaskDone();
         progressBar.setVisibility(View.INVISIBLE);
+//        System.out.println("the postExecute is here : " + ingSearch.count + " and " + ingSearch.endRow);
+        if(radio ==1) {
+            if (ingSearch.count > ingSearch.endRow) {
+                BackgroundDataSearch backgroundDataSearch = new BackgroundDataSearch(ingSearch, recipSearch, 1);
+                backgroundDataSearch.execute();
+            } else {
 
+                System.out.println("work done");
+
+            }
+        }else if( radio == 2){
+
+            if(ingSearch.count>ingSearch.endRow) {
+                BackgroundDataSearch backgroundDataSearch = new BackgroundDataSearch(ingSearch, recipSearch, 2);
+                backgroundDataSearch.execute();
+            }else{
+
+                System.out.println("work done");
+
+            }
+
+        }
     }
+
 }
