@@ -95,11 +95,6 @@ public class IngredientSearch {
 
         getIngredients(RecipeIdList); // chercher les ingredients a partir de recipeID
 
-//        if(Integer.parseInt(SearchCount)>endRow){
-//            startRow=20;
-//            endRow =Integer.parseInt(SearchCount);
-//            storeData();
-//        }
 
     }
 
@@ -125,14 +120,13 @@ public class IngredientSearch {
             IngredientNameList= obj2.getIngredientName();
             PreparationDescriptionList= obj2.getPreparationDescription();
 
-//            for(int g=0 ;  g< PreparationDescriptionList.size(); g++ ){
-//
-//                System.out.print( PreparationDescriptionList.get(g));
-//
-//                System.out.print( PreparationDescriptionList.get(g) == "");
-//
-//            }
+            for(int g=0 ;  g< PreparationDescriptionList.size(); g++ ){
 
+                String s = PreparationDescriptionList.get(g);
+                System.out.println( s.replaceAll("\\s+","").equals(""));
+                System.out.println("first-" + PreparationDescriptionList.get(g) + "-last");
+
+            }
 
             for(int j=0; j<IngredientIdList.size(); j++){
                 // set the Ingredients table and link table
@@ -141,8 +135,12 @@ public class IngredientSearch {
             }
             for(int k=0; k<PreparationDescriptionList.size() ; k++ ){
 
+                String s = PreparationDescriptionList.get(k);
+
                 //set the preparation table
-                dbh.setPreparation(Integer.parseInt(recipeId),PreparationDescriptionList.get(k));
+
+                if(!s.replaceAll("\\s+","").equals("")) dbh.setPreparation(Integer.parseInt(recipeId),PreparationDescriptionList.get(k));
+
 
             }
         }

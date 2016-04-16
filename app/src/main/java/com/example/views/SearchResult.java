@@ -50,7 +50,7 @@ public class SearchResult extends Fragment {
 
         cursCount.moveToLast();
             count = cursCount.getString(cursCount.getColumnIndex(DBHelper.KEY_REQ_NUM))+" Recipes found";
-            count = cursCount.getCount() +" Recipes found";
+//            count = cursCount.getCount() +" Recipes found";
             View rootView = inflater.inflate(R.layout.search_result, container, false);
             listView = (ListView) rootView.findViewById(R.id.searchResultListView);
 
