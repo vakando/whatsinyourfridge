@@ -70,11 +70,12 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
         //Recuperer les info du recipe dans la base
 
         Bundle args = getArguments();
-        int idRecipe = args.getInt("idRecipe");
+        idRecipe = args.getInt("idRecipe");
         recipeName = args.getString("recipeName");
         imageUrl = args.getString("imageUrl");
 
         Cursor curs= dbh.getPreparationsByRecipeId(idRecipe);
+        curs.moveToFirst();
         String preparation = curs.getString(curs.getColumnIndexOrThrow(DBHelper.KEY_P_PREP));
 
         Cursor c = dbh.getIngredientsNamesByRecipeId(idRecipe);
@@ -85,6 +86,9 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
             c.moveToNext();
         }
 
+
+        if(dbh.getFavorit(idRecipe)==1) favButton.setBackgroundResource(R.mipmap.fav_1);
+        else favButton.setBackgroundResource(R.mipmap.fav_0);
         recipeTitle.setText(recipeName);
         ingredientsText.setText(nomsIngredients);
         preparationText.setText(preparation);
@@ -147,8 +151,15 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
 
         } else if (v.equals(favButton)) {
 
-            favButton.setBackgroundResource(R.mipmap.fav_1);
+            if(dbh.getFavorit(idRecipe)==0){
+                dbh.setFavorit(idRecipe, 1);
+                favButton.setBackgroundResource(R.mipmap.fav_1);
+            }
 
+            else{
+                dbh.setFavorit(idRecipe, 0);
+                favButton.setBackgroundResource(R.mipmap.fav_0);
+            }
         }
 
     }

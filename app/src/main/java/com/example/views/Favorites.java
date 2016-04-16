@@ -137,5 +137,4 @@ public class Favorites extends Fragment {
             getFragmentManager().beginTransaction().replace(R.id.main_container, fragment).commit();
         }
     }
-
 }

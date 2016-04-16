@@ -382,4 +382,16 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update(TABLE_LINK, cv, KEY_L_I_ID + " = ? AND " + KEY_L_R_ID + " = ?", new String[]{""+idIngredient,""+idRecipe});
     }
 
+    public void setFavorit(int idReceipe, int valeur){
+        ContentValues value = new ContentValues();
+        value.put(KEY_R_FAV, valeur);
+        db.update(TABLE_RECIPES, value, KEY_R_ID + " = ?", new String[]{Integer.toString(idReceipe)});
+    }
+
+    public int getFavorit(int idReceipe){
+        Cursor c = db.rawQuery("select " + KEY_R_FAV + " from " + TABLE_RECIPES + " where " + KEY_R_ID + " = " + idReceipe, null);
+        c.moveToFirst();
+        return c.getInt(c.getColumnIndexOrThrow(DBHelper.KEY_R_FAV));
+    }
+
 }
