@@ -29,6 +29,7 @@ public class SplashScreen extends Activity {
                     dt.execute();
                 }
             }).start();
+
         setContentView(R.layout.splashscreen);
 
 //        new Handler().postDelayed(new Runnable() {

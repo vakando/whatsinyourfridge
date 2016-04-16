@@ -142,8 +142,11 @@ public class Menu extends Fragment implements View.OnClickListener {
 
             deselectAll();
 
-            calendarButton.setBackgroundColor(selectedColor);
-            calendarText.setBackgroundColor(selectedColor);
+            //calendarButton.setBackgroundColor(selectedColor);
+            //calendarText.setBackgroundColor(selectedColor);
+
+            searchButton.setBackgroundColor(selectedColor);
+            searchText.setBackgroundColor(selectedColor);
 
             //fragment = new Calendar();
             //replaceFragment(fragment);
