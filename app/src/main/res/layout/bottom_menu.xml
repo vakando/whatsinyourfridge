@@ -18,7 +18,8 @@ android:layout_height="wrap_content">
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:id="@+id/footer">
+        android:id="@+id/footer"
+        android:background="#c8c8c8">
 
         <LinearLayout
             android:orientation="vertical"

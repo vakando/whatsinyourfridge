@@ -120,14 +120,6 @@ public class IngredientSearch {
             IngredientNameList= obj2.getIngredientName();
             PreparationDescriptionList= obj2.getPreparationDescription();
 
-            for(int g=0 ;  g< PreparationDescriptionList.size(); g++ ){
-
-                String s = PreparationDescriptionList.get(g);
-                System.out.println( s.replaceAll("\\s+","").equals(""));
-                System.out.println("first-" + PreparationDescriptionList.get(g) + "-last");
-
-            }
-
             for(int j=0; j<IngredientIdList.size(); j++){
                 // set the Ingredients table and link table
                 dbh.setIngredients(Integer.parseInt(IngredientIdList.get(j)), IngredientNameList.get(j), 0, 0);
