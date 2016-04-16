@@ -68,6 +68,7 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
         favButton.setOnClickListener(this);
 
         //Recuperer les info du recipe dans la base
+
         Bundle args = getArguments();
         int idRecipe = args.getInt("idRecipe");
         recipeName = args.getString("recipeName");

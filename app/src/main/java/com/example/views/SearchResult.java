@@ -57,13 +57,7 @@ public class SearchResult extends Fragment {
             listView.setAdapter(adapter);
 
             return rootView;
-//        }
 
-//        else {
-//            View rootView = inflater.inflate(R.layout.nofavorites, container, false);
-//
-//            return rootView;
-//        }
     }
 
     public class MyCursorAdapter extends CursorAdapter {
@@ -95,9 +89,11 @@ public class SearchResult extends Fragment {
             int IdRecipe = cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_ID));
             String url = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_URL));
 
-            textVueTitre.setOnClickListener(new MyOnClickListener(IdRecipe, title, url));
-            textVueIngrediants.setOnClickListener(new MyOnClickListener(IdRecipe, title, url));
-            imageView.setOnClickListener(new MyOnClickListener(IdRecipe, title, url));
+            int cursorPosition = cursor.getPosition();
+
+            textVueTitre.setOnClickListener(new MyOnClickListener(IdRecipe, title, url, cursorPosition ));
+            textVueIngrediants.setOnClickListener(new MyOnClickListener(IdRecipe, title, url, cursorPosition ));
+            imageView.setOnClickListener(new MyOnClickListener(IdRecipe, title, url, cursorPosition ));
 
             Cursor c = dbh.getIngredientsNamesByRecipeId(IdRecipe);
             int n = 0;
@@ -119,6 +115,7 @@ public class SearchResult extends Fragment {
             //textVueIngrediants.setText(url + " ...");
             Picasso.with(getContext()).load(url).into(imageView);
             //imageView.setImageResource(R.drawable.menu_exemple);
+
         }
     }
 
@@ -126,20 +123,26 @@ public class SearchResult extends Fragment {
         int idRecipe;
         String recipeName;
         String imageUrl;
+        int cursorPosition;
 
-        public MyOnClickListener(int idRecipe, String recipeName, String imageUrl) {
+        public MyOnClickListener(int idRecipe, String recipeName, String imageUrl, int cursorPosition ) {
             this.idRecipe = idRecipe;
             this.recipeName = recipeName;
             this.imageUrl = imageUrl;
+            this.cursorPosition = cursorPosition;
+//            this.numberOfRecipes = numberOfRecipes;
         }
 
         @Override
         public void onClick(View v) {
-            Fragment  fragment = new RecipeDetails();
+            Fragment  fragment = new PagerRecipeDetails();
             Bundle args = new Bundle();
             args.putInt("idRecipe", idRecipe);
             args.putString("recipeName", recipeName);
             args.putString("imageUrl", imageUrl);
+            args.putInt("cursorPosition", cursorPosition);
+//            args.putInt("numberOfRecipes", numberOfRecipes);
+
             fragment.setArguments(args);
             getFragmentManager().beginTransaction().replace(R.id.main_container, fragment).commit();
         }

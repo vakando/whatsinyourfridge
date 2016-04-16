@@ -228,7 +228,7 @@ public class Search extends Fragment implements View.OnClickListener {
                     process.execute();
 
 
-                }
+                }//
                 else if (recipeRadio.isSelected()) {
 
                     layoutButtonSearch.setVisibility(View.INVISIBLE);

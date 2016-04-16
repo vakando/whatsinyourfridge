@@ -128,7 +128,7 @@ return null;
         progressBar.setVisibility(View.VISIBLE);
 
         if(radio == 1){ // if ingredientRadio
-            params.topMargin = -450;
+            params.topMargin = -300;
             layoutProgressBar.setLayoutParams(params);
 
         }
