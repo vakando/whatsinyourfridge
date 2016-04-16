@@ -31,7 +31,11 @@ public class RecipeSearch {
 
     public RecipeSearch(String keyword, DBHelper dbh){
 
-        this.keyword = keyword;
+        //this.keyword = keyword;
+        String[] split = keyword.split(" ");
+        this.keyword = "";
+        for(int i=0; i<split.length; i++)
+            this.keyword = this.keyword + "%20" + split[i];
         this.dbh= dbh;
         startRow = 1;
         endRow = 15;

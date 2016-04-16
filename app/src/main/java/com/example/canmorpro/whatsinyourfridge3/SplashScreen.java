@@ -11,7 +11,7 @@ import android.os.Handler;
  */
 public class SplashScreen extends Activity {
     // Splash screen timer
-    private static int SPLASH_TIME_OUT = 10000;
+    private static int SPLASH_TIME_OUT = 5000;
 
     private DBHelper dbh;
 
@@ -31,24 +31,24 @@ public class SplashScreen extends Activity {
             }).start();
         setContentView(R.layout.splashscreen);
 
-        new Handler().postDelayed(new Runnable() {
-
-            /*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             */
-
-            @Override
-            public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
-                Intent i = new Intent(SplashScreen.this, MainActivity.class);
-                startActivity(i);
-
-                // close this activity
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
+//        new Handler().postDelayed(new Runnable() {
+//
+//            /*
+//             * Showing splash screen with a timer. This will be useful when you
+//             * want to show case your app logo / company
+//             */
+//
+//            @Override
+//            public void run() {
+//                // This method will be executed once the timer is over
+//                // Start your app main activity
+//                Intent i = new Intent(SplashScreen.this, MainActivity.class);
+//                startActivity(i);
+//
+//                // close this activity
+//                finish();
+//            }
+//        }, SPLASH_TIME_OUT);
     }
 
     public class DownloadTask extends AsyncTask<Void, Void, Void> {
@@ -63,6 +63,7 @@ public class SplashScreen extends Activity {
             Intent i = new Intent(SplashScreen.this, MainActivity.class);
             //i.putExtra("Database",dbh);
             startActivity(i);
+            finish();
         }
 
         @Override

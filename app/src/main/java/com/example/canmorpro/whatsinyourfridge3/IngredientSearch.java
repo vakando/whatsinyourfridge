@@ -30,9 +30,24 @@ public class IngredientSearch {
 
         startRow = 1;
         endRow = 20;
-        this.ing1= ing1;
-        this.ing2= ing2;
-        this.ing3= ing3;
+//        this.ing1= ing1;
+//        this.ing2= ing2;
+//        this.ing3= ing3;
+        String[] split1 = ing1.split(" ");
+        this.ing1 = "";
+        for(int i=0; i<split1.length; i++)
+            this.ing1 = this.ing1 + "%20" + split1[i];
+
+        String[] split2 = ing2.split(" ");
+        this.ing2 = "";
+        for(int i=0; i<split2.length; i++)
+            this.ing2 = this.ing2 + "%20" + split2[i];
+
+        String[] split3 = ing3.split(" ");
+        this.ing3 = "";
+        for(int i=0; i<split3.length; i++)
+            this.ing3 = this.ing3 + "%20" + split3[i];
+
         this.dbh= dbh;
         url_recipesByIngredient = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipesByIngredients?sIngredient1="+ing1+"&sIngredient2="+ing2+"&sIngredient3="+ing3+"&bIsRecipePhotoRequired=true&sSortField=&sSortDirection=&iBrandID=1&iLangID=1&iStartRow="+startRow+"&iEndRow="+endRow+"";
 
