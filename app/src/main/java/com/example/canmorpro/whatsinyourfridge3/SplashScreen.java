@@ -5,64 +5,65 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.ProgressBar;
 
 /**
  * Created by Empress on 2016-04-15.
  */
 public class SplashScreen extends Activity {
     // Splash screen timer
-    private static int SPLASH_TIME_OUT = 5000;
+    private static int SPLASH_TIME_OUT = 2000;
 
     private DBHelper dbh;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.splashscreen);
+
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+
         dbh = new DBHelper(this);
 
         final DownloadTask dt = new DownloadTask();
-        if(dbh.checkTable() == 0)
 
+        if(dbh.checkTable() == 0){
             new Thread(new Runnable() {
                 public void run(){
                     dt.execute();
                 }
             }).start();
+        }
+        else{
+            progressBar.setVisibility(View.INVISIBLE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // This method will be executed once the timer is over
+                    // Start your app main activity
+                    Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                    startActivity(i);
 
-        setContentView(R.layout.splashscreen);
-
-//        new Handler().postDelayed(new Runnable() {
-//
-//            /*
-//             * Showing splash screen with a timer. This will be useful when you
-//             * want to show case your app logo / company
-//             */
-//
-//            @Override
-//            public void run() {
-//                // This method will be executed once the timer is over
-//                // Start your app main activity
-//                Intent i = new Intent(SplashScreen.this, MainActivity.class);
-//                startActivity(i);
-//
-//                // close this activity
-//                finish();
-//            }
-//        }, SPLASH_TIME_OUT);
+                    // close this activity
+                    finish();
+                }
+            }, SPLASH_TIME_OUT);
+        }
     }
+
 
     public class DownloadTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
-        }
+            super.onPreExecute();}
 
         @Override
         protected void onPostExecute(Void aVoid) {
             Intent i = new Intent(SplashScreen.this, MainActivity.class);
-            //i.putExtra("Database",dbh);
             startActivity(i);
             finish();
         }
