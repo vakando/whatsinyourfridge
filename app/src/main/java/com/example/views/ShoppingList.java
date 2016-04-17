@@ -217,8 +217,8 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         while(!curseur.isAfterLast()){
             text.append("ingredient : "+curseur.getString(curseur.getColumnIndex(DBHelper.KEY_I_NAME)));
             if(curseur.getString(curseur.getColumnIndex(DBHelper.KEY_R_NAME)) != null)
-                text.append(" for recipe :"+curseur.getString(curseur.getColumnIndex(DBHelper.KEY_R_NAME)));
-            text.append("\n");
+                text.append("for recipe :"+curseur.getString(curseur.getColumnIndex(DBHelper.KEY_R_NAME)));
+            text.append("\n \n");
             curseur.moveToNext();
         }
         Log.d("share", text.toString());
