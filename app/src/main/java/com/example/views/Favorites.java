@@ -92,6 +92,7 @@ public class Favorites extends Fragment {
                 textVueTitre.setOnClickListener(new MyOnClickListener(IdRecipe, title, url));
                 textVueIngrediants.setOnClickListener(new MyOnClickListener(IdRecipe, title, url));
                 imageView.setOnClickListener(new MyOnClickListener(IdRecipe, title, url));
+                imageButton.setOnClickListener(new MyFavOnClickListener(IdRecipe));
 
               int n = 0;
                String noms="";
@@ -135,6 +136,30 @@ public class Favorites extends Fragment {
             args.putString("imageUrl", imageUrl);
             fragment.setArguments(args);
             getFragmentManager().beginTransaction().replace(R.id.main_container, fragment).commit();
+        }
+    }
+
+
+
+    public class   MyFavOnClickListener implements View.OnClickListener {
+        int idRecipe;
+
+        public MyFavOnClickListener(int idRecipe) {
+            this.idRecipe = idRecipe;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(dbh.getFavorit(idRecipe)==0){
+                dbh.setFavorit(idRecipe, 1);
+                v.setBackgroundResource(R.drawable.fav_11);
+            }
+
+            else{
+                dbh.setFavorit(idRecipe, 0);
+                v.setBackgroundResource(R.drawable.fav_00);
+            }
+
         }
     }
 }

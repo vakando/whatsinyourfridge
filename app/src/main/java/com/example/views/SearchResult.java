@@ -45,8 +45,7 @@ public class SearchResult extends Fragment {
     String count;
     MyCursorAdapter adapter;
     DBHelper dbh = new DBHelper(getContext());
-    int IdRecipe;
-    ImageButton imageButton;
+
 
 
 
@@ -107,11 +106,11 @@ public class SearchResult extends Fragment {
             TextView textVueTitre = (TextView) view.findViewById(R.id.recipe_title_line);
             TextView textVueIngrediants = (TextView) view.findViewById(R.id.recipe_ingredient_line);
             ImageView imageView = (ImageView) view.findViewById(R.id.recipe_image_line);
-            imageButton = (ImageButton) view.findViewById(R.id.fav_line);
+            ImageButton imageButton = (ImageButton) view.findViewById(R.id.fav_line);
 
             // Extract properties from cursor
             String title = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_NAME));
-            IdRecipe = cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_ID));
+            int IdRecipe = cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_ID));
             String url = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_URL));
 
 
@@ -120,7 +119,7 @@ public class SearchResult extends Fragment {
             textVueTitre.setOnClickListener(new MyOnClickListener(IdRecipe, title, url, cursorPosition ));
             textVueIngrediants.setOnClickListener(new MyOnClickListener(IdRecipe, title, url, cursorPosition ));
             imageView.setOnClickListener(new MyOnClickListener(IdRecipe, title, url, cursorPosition ));
-            imageButton.setOnClickListener(new MyFavOnClickListener());
+            imageButton.setOnClickListener(new MyFavOnClickListener(IdRecipe));
 
             Cursor c = dbh.getIngredientsNamesByRecipeId(IdRecipe);
             int n = 0;
@@ -179,26 +178,26 @@ public class SearchResult extends Fragment {
         }
     }
 
-    public class   MyFavOnClickListener implements View.OnClickListener {
 
-        public MyFavOnClickListener() {
+    public class   MyFavOnClickListener implements View.OnClickListener {
+        int idRecipe;
+
+        public MyFavOnClickListener(int idRecipe) {
+            this.idRecipe = idRecipe;
         }
 
         @Override
         public void onClick(View v) {
-            if(dbh.getFavorit(IdRecipe)==0){
-                dbh.setFavorit(IdRecipe, 1);
-                imageButton.setBackgroundResource(R.drawable.fav_11);
+            if(dbh.getFavorit(idRecipe)==0){
+                dbh.setFavorit(idRecipe, 1);
+                v.setBackgroundResource(R.drawable.fav_11);
             }
 
             else{
-                dbh.setFavorit(IdRecipe, 0);
-                imageButton.setBackgroundResource(R.drawable.fav_00);
+                dbh.setFavorit(idRecipe, 0);
+                v.setBackgroundResource(R.drawable.fav_00);
             }
 
         }
     }
-
-
-
 }
