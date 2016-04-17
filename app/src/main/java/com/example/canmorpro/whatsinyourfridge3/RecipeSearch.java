@@ -35,16 +35,13 @@ public class RecipeSearch {
 
     public RecipeSearch(String keyword, DBHelper dbh){
 
-        //this.keyword = keyword;
-        String[] split = keyword.split(" ");
-        this.keyword = "";
-        for(int i=0; i<split.length; i++)
-            this.keyword = this.keyword + "%20" + split[i];
+        this.keyword = keyword;
         this.dbh= dbh;
 
         clear =true;
 
         url_recipesByKeyword = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipesByKeywords?sKeyword1="+keyword+"&sKeyword2=&sKeyword3=&sKeyword4=&sKeyword5=&sKeyword6=&bIsRecipePhotoRequired=true&bIsReadyIn30Mins=false&sSortField=&sSortDirection=&iBrandID=1&iLangID=1&iStartRow="+startRow+"&iEndRow="+endRow+"";
+        url_recipesByKeyword = url_recipesByKeyword.replaceAll("\\s+","%20");
 
     }
 
@@ -89,7 +86,7 @@ public class RecipeSearch {
         for (int i = 0; i < recipesId.size(); i++) {
             String recipeId = recipesId.get(i).toString();
             url_recipesById = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipeByRecipeID?iRecipeID=" + recipeId + "&bStripHTML=true&iBrandID=1&iLangID=1";
-//            System.out.println("url" +i+ " est : "+url_recipesById);
+            url_recipesById = url_recipesById.replaceAll("\\s+","%20");
 
             obj2 = new HandleXML(url_recipesById);
             obj2.fetchXML();
@@ -110,8 +107,10 @@ public class RecipeSearch {
             }
             for(int k=0; k<PreparationDescriptionList.size() ; k++ ){
 
+                String s = PreparationDescriptionList.get(k);
+
                 //set the preparation table
-                dbh.setPreparation(Integer.parseInt(recipeId), PreparationDescriptionList.get(k));
+                if(!s.replaceAll("\\s+","").equals("")) dbh.setPreparation(Integer.parseInt(recipeId), PreparationDescriptionList.get(k));
 
             }
 

@@ -18,11 +18,13 @@
         android:layout_weight="0.6"/>
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarSplash"
         android:layout_width="match_parent"
+        android:visibility="visible"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        style="@android:style/Widget.ProgressBar.Large" />
+        style="@android:style/Widget.ProgressBar.Large.Inverse"
+        android:indeterminate="false" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -32,7 +34,7 @@
         android:textColor="#000"
         android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
-        android:text="Concepteurs : \n\n Mohammed BELMAJDOUB \n Valentin AKANDO \n Dorée MAKOUDJOU \n  Khady FALL"
+        android:text="Concepteurs : \n\n Mohammed BELMAJDOUB \n Dorée MAKOUDJOU \n Valentin AKANDO \n Khady FALL"
         android:layout_gravity="bottom"
         android:layout_weight="0.2"/>
 

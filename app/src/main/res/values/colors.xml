@@ -34,7 +34,9 @@
     <color name="blueButton">#628ef7</color>
     <color name="recipeTitle">#0b3fb9</color>
     <color name="ingTitle">#2ca400</color>
-    <color name="textDescription">#f99500</color>
+    <color name="textDescription">#de8502</color>
+    <color name="ingButton">#c2c2c2</color>
+
 
 
 

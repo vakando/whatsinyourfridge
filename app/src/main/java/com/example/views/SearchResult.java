@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.example.canmorpro.whatsinyourfridge3.IngredientSearch;
 import com.example.canmorpro.whatsinyourfridge3.R;
 import com.example.canmorpro.whatsinyourfridge3.DBHelper;
 import com.squareup.picasso.Picasso;
@@ -28,9 +31,14 @@ import com.squareup.picasso.Picasso;
 public class SearchResult extends Fragment {
 
 
+//    IngredientSearch ingredientSearch;
+    public static int first = 1;
+    public static int after_last = 21 ;
 
     public SearchResult(){
     }
+
+//    int first = ingredientSearch.count;
 
     ListView listView;
     Cursor curs, cursCount;
@@ -59,20 +67,28 @@ public class SearchResult extends Fragment {
 
             adapter = new MyCursorAdapter(getContext(),curs,0);
             adapter.swapCursor(curs);
+            adapter.notifyDataSetChanged();
             listView.setAdapter(adapter);
 
             return rootView;
 
     }
 
-    public void fetchCursor(){
 
-    }
+
 
     public class MyCursorAdapter extends CursorAdapter {
 
         public MyCursorAdapter(Context context, Cursor cursor, int flags) {
             super(context, cursor, 0);
+        }
+
+        @Override
+        public void notifyDataSetChanged() {
+            super.notifyDataSetChanged();
+
+
+
         }
 
         // The newView method is used to inflate a new view and return it,
@@ -98,6 +114,7 @@ public class SearchResult extends Fragment {
             IdRecipe = cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_ID));
             String url = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_URL));
 
+
             int cursorPosition = cursor.getPosition();
 
             textVueTitre.setOnClickListener(new MyOnClickListener(IdRecipe, title, url, cursorPosition ));
@@ -108,8 +125,8 @@ public class SearchResult extends Fragment {
             Cursor c = dbh.getIngredientsNamesByRecipeId(IdRecipe);
             int n = 0;
             String noms="";
-            c.moveToFirst();
-            while (!c.isAfterLast() && n < 3) {
+            c.move(first);
+            while (c.getPosition()!=after_last && n < 3) {
                 noms = noms +  c.getString(c.getColumnIndexOrThrow(DBHelper.KEY_I_NAME)) + ", ";
                 c.moveToNext();
                 if(n==2) noms= noms + "...";
@@ -158,7 +175,7 @@ public class SearchResult extends Fragment {
 //            args.putInt("numberOfRecipes", numberOfRecipes);
 
             fragment.setArguments(args);
-            getFragmentManager().beginTransaction().replace(R.id.main_container, fragment).commit();
+            getFragmentManager().beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
         }
     }
 
@@ -181,5 +198,7 @@ public class SearchResult extends Fragment {
 
         }
     }
+
+
 
 }

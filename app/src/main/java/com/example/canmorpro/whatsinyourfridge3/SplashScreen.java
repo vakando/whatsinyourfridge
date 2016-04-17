@@ -24,7 +24,7 @@ public class SplashScreen extends Activity {
 
         setContentView(R.layout.splashscreen);
 
-        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progressBar = (ProgressBar)findViewById(R.id.progressBarSplash);
 
         dbh = new DBHelper(this);
 
@@ -38,7 +38,7 @@ public class SplashScreen extends Activity {
             }).start();
         }
         else{
-            progressBar.setVisibility(View.INVISIBLE);
+//            progressBar.setVisibility(View.INVISIBLE);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

@@ -65,7 +65,7 @@
             android:layout_weight="1"
             android:textColor="@color/black"
             style="?android:attr/buttonBarButtonStyle"
-            android:background= "@color/lightGreen"/>
+            android:background= "@color/colorApp"/>
 
         <Button
             android:layout_width="match_parent"

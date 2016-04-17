@@ -105,7 +105,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/layoutFrame"
         android:visibility="visible"
@@ -117,21 +117,27 @@
         android:layout_marginTop="15dp"
         android:keepScreenOn="false"
         android:textAlignment="gravity"
-        android:background="@drawable/big_back">
+        android:background="@drawable/big_back"
+        android:layout_gravity="center_horizontal"
+        android:padding="15dp">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:layout_margin="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/ingrView1"
                 android:gravity="center"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:background="@color/ingButton"
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="30dp"
@@ -139,7 +145,9 @@
                 android:text="x"
                 android:id="@+id/delButton1"
                 android:textColor="#e41b1b"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:background="@color/ingButton"
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -148,14 +156,18 @@
             android:layout_height="40dp"
             android:clipToPadding="false"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:layout_margin="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/ingrView2"
                 android:gravity="center"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:background="@color/ingButton"
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="30dp"
@@ -163,7 +175,9 @@
                 android:text="x"
                 android:id="@+id/delButton2"
                 android:textColor="#e41b1b"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:background="@color/ingButton"
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -171,14 +185,18 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:layout_margin="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/ingrView3"
                 android:gravity="center"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:background="@color/ingButton"
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="30dp"
@@ -186,7 +204,9 @@
                 android:text="x"
                 android:id="@+id/delButton3"
                 android:textColor="#e41b1b"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:background="@color/ingButton"
+                android:textSize="20dp" />
         </LinearLayout>
     </LinearLayout>
 

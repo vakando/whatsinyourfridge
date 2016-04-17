@@ -31,25 +31,6 @@ public class IngredientSearch {
 
     public IngredientSearch( String ing1, String ing2, String ing3, DBHelper dbh){
 
-
-//        this.ing1= ing1;
-//        this.ing2= ing2;
-//        this.ing3= ing3;
-        String[] split1 = ing1.split(" ");
-        this.ing1 = "";
-        for(int i=0; i<split1.length; i++)
-            this.ing1 = this.ing1 + "%20" + split1[i];
-
-        String[] split2 = ing2.split(" ");
-        this.ing2 = "";
-        for(int i=0; i<split2.length; i++)
-            this.ing2 = this.ing2 + "%20" + split2[i];
-
-        String[] split3 = ing3.split(" ");
-        this.ing3 = "";
-        for(int i=0; i<split3.length; i++)
-            this.ing3 = this.ing3 + "%20" + split3[i];
-
         clear =true;
 
         this.ing1= ing1;
@@ -57,7 +38,7 @@ public class IngredientSearch {
         this.ing3= ing3;
         this.dbh= dbh;
         url_recipesByIngredient = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipesByIngredients?sIngredient1="+ing1+"&sIngredient2="+ing2+"&sIngredient3="+ing3+"&bIsRecipePhotoRequired=true&sSortField=&sSortDirection=&iBrandID=1&iLangID=1&iStartRow="+startRow+"&iEndRow="+endRow+"";
-
+        url_recipesByIngredient = url_recipesByIngredient.replaceAll("\\s+","%20");
     }
 
 
@@ -65,7 +46,9 @@ public class IngredientSearch {
 
         obj1 = new HandleXML(url_recipesByIngredient);
         obj1.fetchXML();
-//      System.out.println(url_recipesByIngredient);
+        System.out.println(url_recipesByIngredient);
+        System.out.println("ing here : "+ing1);
+
         while(obj1.parsingComplete);
 //        System.out.println("recipe ID is "+obj1.getRecipeID().get(0)+" the second is "+obj1.getRecipeID().get(1));
         SearchCount = obj1.getTotalCount(); // number_result
@@ -104,7 +87,7 @@ public class IngredientSearch {
         for(int i=0; i<recipesId.size() ; i++) {
             String recipeId = recipesId.get(i).toString();
             url_recipesById = "http://www.kraftfoods.com/ws/RecipeWS.asmx/GetRecipeByRecipeID?iRecipeID=" + recipeId + "&bStripHTML=true&iBrandID=1&iLangID=1";
-//            System.out.println("url" +i+ " est : "+url_recipesById);
+            url_recipesById = url_recipesById.replaceAll("\\s+","%20");
 
             obj2 = new HandleXML(url_recipesById);
             obj2.fetchXML();

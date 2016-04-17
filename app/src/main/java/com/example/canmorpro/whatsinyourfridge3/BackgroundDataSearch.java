@@ -45,7 +45,12 @@ public class BackgroundDataSearch extends AsyncTask {
     protected void onPostExecute(Object o) {
 
         System.out.println("work done");
+
 //        SearchResult searchResult = new SearchResult();
+//        searchResult.after_last =ingSearch.count;
+//        searchResult.first = 21;
+
+
         ingSearch.startRow = 1;
         ingSearch.endRow =20;
 
