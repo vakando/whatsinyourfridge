@@ -38,7 +38,6 @@ public class SplashScreen extends Activity {
             }).start();
         }
         else{
-//            progressBar.setVisibility(View.INVISIBLE);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

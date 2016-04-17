@@ -13,7 +13,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="74dp"
         android:layout_gravity="center_horizontal">
 
         <ImageView
@@ -30,7 +30,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/textviewAddSL"
             android:id="@+id/tv_add_to_sl"
-            
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp" />
     </LinearLayout>
@@ -47,8 +47,8 @@
             android:text="@string/addToShoppingList"
             android:id="@+id/add_to_sl"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:background="@color/colorApp"
+            android:layout_marginTop="30dp"
+            android:background="@color/lightBlue"
             android:visibility="visible"/>
     </LinearLayout>
 

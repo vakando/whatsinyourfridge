@@ -1,5 +1,7 @@
 package com.example.views;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -408,163 +410,178 @@ public class addShoppingList extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.delete1:
                 ingredient1.setText("");
-//                ingredient1.setVisibility(View.INVISIBLE);
-//                delete1.setVisibility(View.INVISIBLE);
                 layout1.setVisibility(View.INVISIBLE);
                 break;
             case R.id.delete2:
                 ingredient2.setText("");
-//                ingredient2.setVisibility(View.INVISIBLE);
-//                delete2.setVisibility(View.INVISIBLE);
                 layout2.setVisibility(View.INVISIBLE);
                 break;
             case R.id.delete3:
                 ingredient3.setText("");
-//                ingredient3.setVisibility(View.INVISIBLE);
-//                delete3.setVisibility(View.INVISIBLE);
                 layout3.setVisibility(View.INVISIBLE);
                 break;
             case R.id.delete4:
                 ingredient4.setText("");
-//                ingredient4.setVisibility(View.INVISIBLE);
-//                delete4.setVisibility(View.INVISIBLE);
                 layout4.setVisibility(View.INVISIBLE);
                 break;
             case R.id.delete5:
                 ingredient5.setText("");
-//                ingredient5.setVisibility(View.INVISIBLE);
-//                delete5.setVisibility(View.INVISIBLE);
                 layout5.setVisibility(View.INVISIBLE);
                 break;
             case R.id.delete6:
                 ingredient6.setText("");
-//                ingredient6.setVisibility(View.INVISIBLE);
-//                delete6.setVisibility(View.INVISIBLE);
                 layout6.setVisibility(View.INVISIBLE);
                 break;
             case R.id.delete7:
                 ingredient7.setText("");
-//                ingredient7.setVisibility(View.INVISIBLE);
-//                delete7.setVisibility(View.INVISIBLE);
                 layout7.setVisibility(View.INVISIBLE);
                 break;
             case R.id.delete8:
                 ingredient8.setText("");
-//                ingredient8.setVisibility(View.INVISIBLE);
-//                delete8.setVisibility(View.INVISIBLE);
                 layout8.setVisibility(View.INVISIBLE);
                 break;
             case R.id.delete9:
                 ingredient9.setText("");
-//                ingredient9.setVisibility(View.INVISIBLE);
-//                delete9.setVisibility(View.INVISIBLE);
                 layout9.setVisibility(View.INVISIBLE);
                 break;
             case R.id.delete10:
                 ingredient10.setText("");
-//                ingredient10.setVisibility(View.INVISIBLE);
-//                delete10.setVisibility(View.INVISIBLE);
                 layout10.setVisibility(View.INVISIBLE);
                 break;
             case R.id.delete11:
                 ingredient11.setText("");
-//                ingredient11.setVisibility(View.INVISIBLE);
-//                delete11.setVisibility(View.INVISIBLE);
                 layout11.setVisibility(View.INVISIBLE);
                 break;
             case R.id.delete12:
                 ingredient12.setText("");
-//                ingredient12.setVisibility(View.INVISIBLE);
-//                delete12.setVisibility(View.INVISIBLE);
                 layout12.setVisibility(View.INVISIBLE);
                 break;
             case R.id.add_to_sl:
+                Boolean count = false;
                 if(ingredient1.getText().toString().length()>0){
                     dbh.addInShoppingList(ingredient1.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient1.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
                 if(ingredient2.getText().toString().length()>0){
                     dbh.addInShoppingList(ingredient2.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient2.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
                 if(ingredient3.getText().toString().length()>0){
                     dbh.addInShoppingList(ingredient3.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient3.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
                 if(ingredient4.getText().toString().length()>0){
                     dbh.addInShoppingList(ingredient4.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient4.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
                 if(ingredient5.getText().toString().length()>0){
                     dbh.addInShoppingList(ingredient5.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient5.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
-                if(ingredient6.getText().toString().length()>0){
+                if(ingredient6.getText().toString().length()>0 && ingredient6.getText().toString() != null){
                     dbh.addInShoppingList(ingredient6.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient6.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
-                if(ingredient7.getText().toString().length()>0){
+                if(ingredient7.getText().toString().length()>0 && ingredient7.getText().toString() != null){
                     dbh.addInShoppingList(ingredient7.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient7.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
-                if(ingredient8.getText().toString().length()>0){
+                if(ingredient8.getText().toString().length()>0 && ingredient8.getText().toString() != null){
                     dbh.addInShoppingList(ingredient8.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient8.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
-                if(ingredient9.getText().toString().length()>0){
+                if(ingredient9.getText().toString().length()>0 && ingredient9.getText().toString() != null){
                     dbh.addInShoppingList(ingredient9.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient9.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
-                if(ingredient10.getText().toString().length()>0){
+                if(ingredient10.getText().toString().length()>0 && ingredient10.getText().toString() != null){
                     dbh.addInShoppingList(ingredient10.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient10.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
-                if(ingredient11.getText().toString().length()>0){
+                if(ingredient11.getText().toString().length()>0 && ingredient11.getText().toString() != null){
                     dbh.addInShoppingList(ingredient11.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient11.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
-                if(ingredient12.getText().toString().length()>0){
+                if(ingredient12.getText().toString().length()>0 && ingredient12.getText().toString() != null){
                     dbh.addInShoppingList(ingredient12.getText().toString());
                     int id;
                     Cursor c = dbh.getIngredientIdByName(ingredient12.getText().toString());
+                    c.moveToFirst();
                     id = c.getInt(c.getColumnIndex(DBHelper.KEY_I_ID));
                     dbh.updateLink(recipeId,id,1);
+                    count = true;
                 }
-                fragment = new ShoppingList();
-                replaceFragment(fragment);
+                if(count == false){
+                    AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+                    alertDialog.setTitle("ALERT");
+                    alertDialog.setMessage("There is no ingredient to add to your shopping list.");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+                else {
+                    fragment = new ShoppingList();
+                    replaceFragment(fragment);
+                }
         }
     }
 

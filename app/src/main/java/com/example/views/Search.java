@@ -1,7 +1,10 @@
 package com.example.views;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.support.annotation.Nullable;
@@ -111,7 +114,6 @@ public class Search extends Fragment implements View.OnClickListener {
         searchfield = (AutoCompleteTextView) rootView.findViewById(R.id.searchfield);
         searchfield.setAdapter(new ArrayAdapter<>(getContext(), R.layout.drop_down, ingredients));
 
-
 //        //pour l'autocomplete de la recherche par recette
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, list_recipes);
 //        searchfield.setAdapter(adapter);
@@ -119,6 +121,13 @@ public class Search extends Fragment implements View.OnClickListener {
         //pour l'autocomplete de la recherche par ingredient
 
         return rootView;
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     @Override
@@ -212,37 +221,51 @@ public class Search extends Fragment implements View.OnClickListener {
 
             case R.id.searchButton:   //pour le bouton search
 
-                if(ingredientRadio.isSelected()) {
-
-                    layoutButtonSearch.setVisibility(View.INVISIBLE);
-                    layoutFrame.setVisibility(View.INVISIBLE);
-
-                    ProcessSearch process = new ProcessSearch(layoutProgressBar,  progressBar, new FragmentCallback() {
-                        @Override
-                        public void onTaskDone() {
-
-                            fragment = new SearchResult();
-                            replaceFragment(fragment);
-                        }
-                    },getContext(),ing1.getText().toString(), ing2.getText().toString(), ing3.getText().toString(), "", 1, dbh);
-                    process.execute();
-
-
-                }//
-                else if (recipeRadio.isSelected()) {
-
-                    layoutButtonSearch.setVisibility(View.INVISIBLE);
-                    ProcessSearch process = new ProcessSearch(layoutProgressBar, progressBar, new FragmentCallback() {
-                        @Override
-                        public void onTaskDone() {
-
-                            fragment = new SearchResult();
-                            replaceFragment(fragment);
-                        }
-                    },getContext(),"", "", "", searchfield.getText().toString() , 2, dbh);
-                    process.execute();
+                if(isNetworkAvailable() == false){
+                    AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+                    alertDialog.setTitle("ALERT");
+                    alertDialog.setMessage("You need to connect to internet.");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
                 }
 
+                else {
+                    if(ingredientRadio.isSelected()) {
+
+                        layoutButtonSearch.setVisibility(View.INVISIBLE);
+                        layoutFrame.setVisibility(View.INVISIBLE);
+
+                        ProcessSearch process = new ProcessSearch(layoutProgressBar,  progressBar, new FragmentCallback() {
+                            @Override
+                            public void onTaskDone() {
+
+                                fragment = new SearchResult();
+                                replaceFragment(fragment);
+                            }
+                        },getContext(),ing1.getText().toString(), ing2.getText().toString(), ing3.getText().toString(), "", 1, dbh);
+                        process.execute();
+
+
+                    }//
+                    else if (recipeRadio.isSelected()) {
+
+                        layoutButtonSearch.setVisibility(View.INVISIBLE);
+                        ProcessSearch process = new ProcessSearch(layoutProgressBar, progressBar, new FragmentCallback() {
+                            @Override
+                            public void onTaskDone() {
+
+                                fragment = new SearchResult();
+                                replaceFragment(fragment);
+                            }
+                        },getContext(),"", "", "", searchfield.getText().toString() , 2, dbh);
+                        process.execute();
+                    }
+                }
 
                 break;
 

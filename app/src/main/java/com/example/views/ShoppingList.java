@@ -1,5 +1,7 @@
 package com.example.views;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -68,12 +70,25 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
         Log.d("dbh", dbh.toString());
 
         shoppingList = dbh.getShoppingList();
+        if(shoppingList.getCount()<=0){
+            select.setEnabled(false);
+            delete.setEnabled(false);
+            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+            alertDialog.setTitle("SHOPPING LIST");
+            alertDialog.setMessage("There is nothing in your shopping list. \n ADD SOMETHING !");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }
         Log.d("DBH", "nombreIingredientsSL = " + shoppingList.getCount());
         shoppingList.moveToFirst();
         int i=0;
         while(!shoppingList.isAfterLast()){
             Log.d("DBH", "ingr " + i + " name = " + shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_I_NAME)));
-            //Log.d("DBH", "recipe " + i + " name = " + shoppingList.getString(shoppingList.getColumnIndex(DBHelper.KEY_R_NAME)));
             Log.d("DBH", "ingr " + i + " checked = " + shoppingList.getInt(shoppingList.getColumnIndex(DBHelper.KEY_I_CHECK)));
             Log.d("alert", "checked ? " + (shoppingList.getInt(shoppingList.getColumnIndex(DBHelper.KEY_I_CHECK)) == 1));
             if(shoppingList.getInt(shoppingList.getColumnIndex(DBHelper.KEY_I_CHECK)) == 1) {
@@ -125,9 +140,21 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(),"Delete succesful",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.add_button:
+                select.setEnabled(true);
+                delete.setEnabled(true);
                 String ingredient = actv.getText().toString();
-                if(ingredient.length()==0)
-                    break;
+                if(ingredient.length()==0){
+                    AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+                    alertDialog.setTitle("ALERT");
+                    alertDialog.setMessage("You have to write an ingredient");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
                 if(!ingredients.contains(ingredient)){
                     dbh.addIngredients(ingredient);
                     ingredients = dbh.getAllIngredients();

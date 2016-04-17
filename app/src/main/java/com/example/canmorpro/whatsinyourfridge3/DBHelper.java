@@ -174,8 +174,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getIngredientIdByName(String name){
-//        return db.query(TABLE_INGREDIENTS, new String[]{KEY_I_ID, KEY_I_NAME}, KEY_I_NAME + " = ?", new String[]{name}, null, null, null);
-        return db.rawQuery("select * from " + TABLE_INGREDIENTS + " where "+KEY_I_NAME+" = " + name, null);
+        return db.query(TABLE_INGREDIENTS, new String[]{KEY_I_ID,KEY_I_NAME}, KEY_I_NAME + " = ?", new String[]{name}, null, null, null);
+//        return db.rawQuery("select * from " + TABLE_INGREDIENTS + " where "+KEY_I_NAME+" = " + name, null);
 
     }
 
@@ -229,6 +229,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues value = new ContentValues();
         value.put(KEY_I_SL, 1);
         db.update(TABLE_INGREDIENTS, value, KEY_I_NAME + " = ?", new String[]{name});
+        Log.d("ingredient added in shopping list",name);
     }
 
     //selon la variable d'entree check, on sait si l'ingredient a ete selectionne ou non
