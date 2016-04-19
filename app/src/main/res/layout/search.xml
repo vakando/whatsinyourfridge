@@ -114,12 +114,11 @@
         android:animationCache="false"
         android:baselineAligned="false"
         android:duplicateParentState="false"
-        android:layout_marginTop="15dp"
         android:keepScreenOn="false"
         android:textAlignment="gravity"
         android:background="@drawable/big_back"
         android:layout_gravity="center_horizontal"
-        android:padding="15dp">
+        android:padding="10dp">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -137,7 +136,8 @@
                 android:gravity="center"
                 android:visibility="invisible"
                 android:background="@color/ingButton"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:paddingLeft="5dp" />
 
             <Button
                 android:layout_width="30dp"
@@ -177,7 +177,8 @@
                 android:textColor="#e41b1b"
                 android:visibility="invisible"
                 android:background="@color/ingButton"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:paddingLeft="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -196,7 +197,8 @@
                 android:gravity="center"
                 android:visibility="invisible"
                 android:background="@color/ingButton"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:paddingLeft="5dp" />
 
             <Button
                 android:layout_width="30dp"

@@ -62,6 +62,7 @@ public class Search extends Fragment implements View.OnClickListener {
     LinearLayout layoutButtonSearch;
     LinearLayout layoutProgressBar;
 
+
     private ArrayList<String> ingredients;
     private ArrayList<String> list_recipes;
 
@@ -113,6 +114,27 @@ public class Search extends Fragment implements View.OnClickListener {
 
         searchfield = (AutoCompleteTextView) rootView.findViewById(R.id.searchfield);
         searchfield.setAdapter(new ArrayAdapter<>(getContext(), R.layout.drop_down, ingredients));
+
+
+        //              Stop database fill from previous search
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                ingSearch.recipeStart = 2000;
+                ingSearch.IngStart = 2000;
+                ingSearch.recipeIdStart = 2000;
+                ingSearch.PrepStart = 2000;
+
+                recipSearch.recipeStart = 2000;
+                recipSearch.IngStart = 2000;
+                recipSearch.recipeIdStart = 2000;
+                recipSearch.PrepStart = 2000;
+
+            }
+        };
+
+        thread.start();
+
 
 //        //pour l'autocomplete de la recherche par recette
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, list_recipes);
@@ -187,6 +209,7 @@ public class Search extends Fragment implements View.OnClickListener {
 
             case R.id.recipeRadio://pour le bouton by recipe
 
+
                 addButton.setVisibility(View.INVISIBLE);
                 layoutFrame.setVisibility(View.INVISIBLE);
 
@@ -221,6 +244,9 @@ public class Search extends Fragment implements View.OnClickListener {
 
             case R.id.searchButton:   //pour le bouton search
 
+
+
+                if(ingredientRadio.isSelected()) {
                 if(isNetworkAvailable() == false){
                     AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
                     alertDialog.setTitle("ALERT");
@@ -234,38 +260,36 @@ public class Search extends Fragment implements View.OnClickListener {
                     alertDialog.show();
                 }
 
-                else {
-                    if(ingredientRadio.isSelected()) {
+                    layoutButtonSearch.setVisibility(View.INVISIBLE);
+                    layoutFrame.setVisibility(View.INVISIBLE);
 
-                        layoutButtonSearch.setVisibility(View.INVISIBLE);
-                        layoutFrame.setVisibility(View.INVISIBLE);
+                    ProcessSearch process = new ProcessSearch(layoutProgressBar,  progressBar, new FragmentCallback() {
+                        @Override
+                        public void onTaskDone() {
 
-                        ProcessSearch process = new ProcessSearch(layoutProgressBar,  progressBar, new FragmentCallback() {
-                            @Override
-                            public void onTaskDone() {
+                            fragment = new SearchResult();
+                            replaceFragment(fragment);
 
-                                fragment = new SearchResult();
-                                replaceFragment(fragment);
-                            }
-                        },getContext(),ing1.getText().toString(), ing2.getText().toString(), ing3.getText().toString(), "", 1, dbh);
-                        process.execute();
+                        }
+                    },getContext(),ing1.getText().toString(), ing2.getText().toString(), ing3.getText().toString(), "", 1, dbh);
+                    process.execute();
 
 
-                    }//
-                    else if (recipeRadio.isSelected()) {
+                }//
+                else if (recipeRadio.isSelected()) {
 
-                        layoutButtonSearch.setVisibility(View.INVISIBLE);
-                        ProcessSearch process = new ProcessSearch(layoutProgressBar, progressBar, new FragmentCallback() {
-                            @Override
-                            public void onTaskDone() {
+                    layoutButtonSearch.setVisibility(View.INVISIBLE);
+                    ProcessSearch process = new ProcessSearch(layoutProgressBar, progressBar, new FragmentCallback() {
+                        @Override
+                        public void onTaskDone() {
 
-                                fragment = new SearchResult();
-                                replaceFragment(fragment);
-                            }
-                        },getContext(),"", "", "", searchfield.getText().toString() , 2, dbh);
-                        process.execute();
-                    }
+                            fragment = new SearchResult();
+                            replaceFragment(fragment);
+                        }
+                    },getContext(),"", "", "", searchfield.getText().toString() , 2, dbh);
+                    process.execute();
                 }
+
 
                 break;
 

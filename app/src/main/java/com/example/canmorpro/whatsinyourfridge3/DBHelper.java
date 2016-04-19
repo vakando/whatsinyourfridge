@@ -137,6 +137,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_THEMES);
     }
 
+
+
+
     // Upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -398,3 +401,4 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 }
+

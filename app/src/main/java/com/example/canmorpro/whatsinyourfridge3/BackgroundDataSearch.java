@@ -1,8 +1,12 @@
 package com.example.canmorpro.whatsinyourfridge3;
 
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.ListView;
 
+import com.example.views.Search;
 import com.example.views.SearchResult;
 
 /**
@@ -14,6 +18,9 @@ public class BackgroundDataSearch extends AsyncTask {
     IngredientSearch ingSearch;
     RecipeSearch recipSearch;
     int radio;
+
+    Fragment fragment;
+    FragmentTransaction fragmentTransaction;
     public BackgroundDataSearch(IngredientSearch ingSearch, RecipeSearch recipSearch, int radio){
 
         this.ingSearch = ingSearch;
@@ -45,12 +52,7 @@ public class BackgroundDataSearch extends AsyncTask {
     protected void onPostExecute(Object o) {
 
         System.out.println("work done");
-
-//        SearchResult searchResult = new SearchResult();
-//        searchResult.after_last =ingSearch.count;
-//        searchResult.first = 21;
-
-
+        // make start and end row have the default value after the process is done
         ingSearch.startRow = 1;
         ingSearch.endRow =20;
 

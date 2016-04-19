@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
@@ -25,6 +27,8 @@ import com.example.canmorpro.whatsinyourfridge3.R;
 import com.example.canmorpro.whatsinyourfridge3.DBHelper;
 import com.squareup.picasso.Picasso;
 
+import java.net.URI;
+
 /**
  * Created by CanMorPro on 16-04-06.
  */
@@ -32,8 +36,8 @@ public class SearchResult extends Fragment {
 
 
 //    IngredientSearch ingredientSearch;
-    public static int first = 1;
-    public static int after_last = 21 ;
+
+
 
     public SearchResult(){
     }
@@ -46,6 +50,8 @@ public class SearchResult extends Fragment {
     MyCursorAdapter adapter;
     DBHelper dbh = new DBHelper(getContext());
 
+    int more = 15;
+//    Cursor c;
 
 
 
@@ -65,14 +71,43 @@ public class SearchResult extends Fragment {
             resultCount.setText(count);
 
             adapter = new MyCursorAdapter(getContext(),curs,0);
-            adapter.swapCursor(curs);
-            adapter.notifyDataSetChanged();
+            fetchData();
             listView.setAdapter(adapter);
+
+            listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+                }
+                @Override
+                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+//                    System.out.println("firstVisibleItem "+firstVisibleItem);
+
+                    if ( firstVisibleItem == more){
+                        fetchData();
+                        more = more+15;
+
+                    }
+                }
+
+            });
 
             return rootView;
 
     }
 
+    public void fetchData(){
+
+//        c.requery();
+        curs.requery();
+        adapter.changeCursor(curs);
+        adapter.notifyDataSetChanged();
+
+        System.out.println(" data fetched ");
+
+//        return ad;
+    }
 
 
 
@@ -85,9 +120,6 @@ public class SearchResult extends Fragment {
         @Override
         public void notifyDataSetChanged() {
             super.notifyDataSetChanged();
-
-
-
         }
 
         // The newView method is used to inflate a new view and return it,
@@ -109,6 +141,7 @@ public class SearchResult extends Fragment {
             ImageButton imageButton = (ImageButton) view.findViewById(R.id.fav_line);
 
             // Extract properties from cursor
+
             String title = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_NAME));
             int IdRecipe = cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_ID));
             String url = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_URL));
@@ -122,10 +155,11 @@ public class SearchResult extends Fragment {
             imageButton.setOnClickListener(new MyFavOnClickListener(IdRecipe));
 
             Cursor c = dbh.getIngredientsNamesByRecipeId(IdRecipe);
+
             int n = 0;
             String noms="";
-            c.move(first);
-            while (c.getPosition()!=after_last && n < 3) {
+            c.moveToFirst();
+            while (!c.isAfterLast() && n < 3) {
                 noms = noms +  c.getString(c.getColumnIndexOrThrow(DBHelper.KEY_I_NAME)) + ", ";
                 c.moveToNext();
                 if(n==2) noms= noms + "...";
@@ -142,8 +176,8 @@ public class SearchResult extends Fragment {
 
             textVueTitre.setText(title);
             textVueIngrediants.setText(noms);
-            //textVueIngrediants.setText(url + " ...");
-            Picasso.with(getContext()).load(url).into(imageView);
+            try{
+            Picasso.with(getContext()).load(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_URL))).into(imageView);}catch (IllegalArgumentException e){}
             //imageView.setImageResource(R.drawable.menu_exemple);
 
         }
@@ -161,10 +195,12 @@ public class SearchResult extends Fragment {
             this.imageUrl = imageUrl;
             this.cursorPosition = cursorPosition;
 //            this.numberOfRecipes = numberOfRecipes;
+
         }
 
         @Override
         public void onClick(View v) {
+
             Fragment  fragment = new PagerRecipeDetails();
             Bundle args = new Bundle();
             args.putInt("idRecipe", idRecipe);
@@ -197,7 +233,6 @@ public class SearchResult extends Fragment {
                 dbh.setFavorit(idRecipe, 0);
                 v.setBackgroundResource(R.drawable.fav_00);
             }
-
         }
     }
 }

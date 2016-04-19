@@ -80,8 +80,18 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/shopping_list"
         android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="No data"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:visibility="visible"
+        android:textSize="20dp" />
 
 </LinearLayout>
