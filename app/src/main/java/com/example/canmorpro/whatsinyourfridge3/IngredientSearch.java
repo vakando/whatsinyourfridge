@@ -85,8 +85,8 @@ public class IngredientSearch {
 
 
 
-                for( recipeStart=0; recipeStart<RecipeIdList.size(); recipeStart++){
-                    dbh.setRecettes(Integer.parseInt(RecipeIdList.get(recipeStart)), RecipeNameList.get(recipeStart), Integer.parseInt(NumberOfIngredientsList.get(recipeStart)), PhotoUrlList.get(recipeStart), 0, "", 1, 0);
+                for( recipeStart = 0; recipeStart<RecipeIdList.size(); recipeStart++){
+                    dbh.setRecettes(Integer.parseInt(RecipeIdList.get(recipeStart)), RecipeNameList.get(recipeStart), Integer.parseInt(NumberOfIngredientsList.get(recipeStart)), PhotoUrlList.get(recipeStart), 0, "", 1, 0,recipeStart);
                 }
 
 

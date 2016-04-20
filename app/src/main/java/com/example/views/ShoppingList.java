@@ -168,7 +168,7 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
                         idIngredient++;
                     }
                     dbh.setLinkRecetteIng(id, id, 1);
-                    dbh.setRecettes(id,"",1,"",0,"",0,0);
+                    dbh.setRecettes(id,"",1,"",0,"",0,0,0);
                 }
                 else
                     dbh.addInShoppingList(ingredient);

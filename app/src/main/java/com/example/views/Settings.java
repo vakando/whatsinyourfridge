@@ -20,7 +20,7 @@ import com.example.canmorpro.whatsinyourfridge3.R;
 public class Settings  extends Fragment implements View.OnClickListener {
     private Button blackTheme;
     private Button redTheme;
-    private Button blueTheme;
+    private Button defaultTheme;
     private DBHelper dbh;
 
     @Override
@@ -34,26 +34,26 @@ public class Settings  extends Fragment implements View.OnClickListener {
         Cursor c = dbh.getEnable();
 
         redTheme = (Button)rootView.findViewById(R.id.theme3);
-        blueTheme = (Button)rootView.findViewById(R.id.theme4);
+        defaultTheme = (Button)rootView.findViewById(R.id.theme4);
         blackTheme = (Button)rootView.findViewById(R.id.theme2);
 
         redTheme.setOnClickListener(this);
-        blueTheme.setOnClickListener(this);
+        defaultTheme.setOnClickListener(this);
         blackTheme.setOnClickListener(this);
 
 //        if(getActivity().getApplicationInfo().theme == 1){
 //            redTheme.setEnabled(true);
-//            blueTheme.setEnabled(true);
+//            defaultTheme.setEnabled(true);
 //            blackTheme.setEnabled(false);
 //        }
 //        else  if(getActivity().getApplicationInfo().theme == 2){
 //            redTheme.setEnabled(false);
-//            blueTheme.setEnabled(true);
+//            defaultTheme.setEnabled(true);
 //            blackTheme.setEnabled(true);
 //        }
 //        else if(getActivity().getApplicationInfo().theme == 1){
 //            redTheme.setEnabled(true);
-//            blueTheme.setEnabled(false);
+//            defaultTheme.setEnabled(false);
 //            blackTheme.setEnabled(true);
 //        }
 
@@ -66,12 +66,12 @@ public class Settings  extends Fragment implements View.OnClickListener {
                 else
                     redTheme.setEnabled(true);
             }
-            if(c.getString(c.getColumnIndex(DBHelper.KEY_T_NAME)) == "Blue"){
-                Log.d("theme found","blue");
+            if(c.getString(c.getColumnIndex(DBHelper.KEY_T_NAME)) == "Default"){
+                Log.d("theme found", "blue");
                 if(c.getInt(c.getColumnIndex(DBHelper.KEY_T_ENABLE)) == 0)
-                    blueTheme.setEnabled(false);
+                    defaultTheme.setEnabled(false);
                 else
-                    blueTheme.setEnabled(true);
+                    defaultTheme.setEnabled(true);
             }
             if(c.getString(c.getColumnIndex(DBHelper.KEY_T_NAME)) == "Grey"){
                 Log.d("theme found", "black");
@@ -92,20 +92,20 @@ public class Settings  extends Fragment implements View.OnClickListener {
             case R.id.theme2:
                 dbh.setEnable("Red", 1);
                 dbh.setEnable("Black", 0);
-                dbh.setEnable("Blue", 1);
+                dbh.setEnable("Default", 1);
                 Themes.changeToTheme(getActivity(), Themes.BLACK);
                 break;
             case R.id.theme3:
                 dbh.setEnable("Red", 0);
                 dbh.setEnable("Black", 1);
-                dbh.setEnable("Blue", 1);
+                dbh.setEnable("Default", 1);
                 Themes.changeToTheme(getActivity(), Themes.RED);
                 break;
             case R.id.theme4:
                 dbh.setEnable("Red", 1);
                 dbh.setEnable("Black", 1);
-                dbh.setEnable("Blue",0);
-                Themes.changeToTheme(getActivity(), Themes.BLUE);
+                dbh.setEnable("Default",0);
+                Themes.changeToTheme(getActivity(), Themes.DEFAULT);
                 break;
         }
     }

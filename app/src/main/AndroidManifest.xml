@@ -8,7 +8,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="WhatsInYourFridge"
         android:supportsRtl="true"
-        android:theme="@style/Default_test"
+        android:theme="@style/Default"
         android:uiOptions="splitActionBarWhenNarrow">
 
         <activity

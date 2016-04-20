@@ -20,6 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // Table Name and table columns
     public static final String TABLE_RECIPES = "recipes";
     public static final String KEY_R_ID = "_id";
+    public static final String KEY_R_IDD = "idd";
     public static final String KEY_R_NAME = "recipeName";
     public static final String KEY_R_I_NB = "ingredientNb";
     public static final String KEY_R_URL = "imageUrl";
@@ -78,6 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE_RECIPES = "CREATE TABLE " + TABLE_RECIPES + " ("
                 + KEY_R_ID + " INTEGER PRIMARY KEY, "
+                + KEY_R_IDD + " INTEGER, "
                 + KEY_R_NAME + " TEXT, "
                 + KEY_R_I_NB + " INTEGER, "
                 + KEY_R_URL + " TEXT, "
@@ -290,9 +292,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 + " INNER JOIN " + TABLE_RECIPES + " ON " + TABLE_LINK + "." + KEY_L_R_ID + " = " + TABLE_RECIPES + "." + KEY_R_ID , null);
     }
 
-    public void setRecettes(int id, String name, int nbIngredients, String photoUrl, int favorite, String date, int temp, int view){
+    public void setRecettes(int id, String name, int nbIngredients, String photoUrl, int favorite, String date, int temp, int view, int id2){
         ContentValues cv = new ContentValues();
         cv.put(KEY_R_ID,id);
+        cv.put(KEY_R_IDD,id2);
         cv.put(KEY_R_NAME, name);
         cv.put(KEY_R_I_NB, nbIngredients);
         cv.put(KEY_R_URL, photoUrl);
@@ -346,7 +349,9 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getRecipesTmpTrue(){
-        return db.rawQuery("select * from " + TABLE_RECIPES + " where " + KEY_R_TMP + " = 1", null);
+//        return db.rawQuery("select * from " + TABLE_RECIPES + " where " + KEY_R_TMP + " = 1", null);
+        return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_TMP, KEY_R_IDD, KEY_R_VIEW, KEY_R_NAME, KEY_R_DATE, KEY_R_FAV, KEY_R_URL}, KEY_R_TMP +" = ?", new String[]{"1"}, null, null, KEY_R_IDD+" ASC");
+
     }
 
     public Cursor getSearchCount(){

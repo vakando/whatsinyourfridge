@@ -72,7 +72,7 @@ public class SplashScreen extends Activity {
             //ajout des themes dans la database
             dbh.setTableThemes(1,"Black",1);
             dbh.setTableThemes(2,"Red",0);
-            dbh.setTableThemes(3,"Blue",1);
+            dbh.setTableThemes(3,"Default",1);
             //creation autocompleteIngredient
             String[] ingr = getResources().getStringArray(R.array.ingredients);
             for(int i=0;i<ingr.length;i++)

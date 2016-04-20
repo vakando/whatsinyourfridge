@@ -10,7 +10,7 @@ public class Themes {
     public static int cTheme = 0;
     public final static int BLACK = 1;
     public final static int RED = 2;
-    public final static int BLUE = 3;
+    public final static int DEFAULT = 3;
 
     public static void changeToTheme(Activity activity, int theme){
         cTheme = theme;
@@ -26,8 +26,8 @@ public class Themes {
             case RED:
                 activity.setTheme(R.style.Red);
                 break;
-            case BLUE:
-                activity.setTheme(R.style.Blue);
+            case DEFAULT:
+                activity.setTheme(R.style.Default);
                 break;
         }
     }
