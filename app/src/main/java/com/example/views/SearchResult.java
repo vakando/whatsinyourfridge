@@ -209,6 +209,7 @@ public class SearchResult extends Fragment {
             args.putInt("cursorPosition", cursorPosition);
 //            args.putInt("numberOfRecipes", numberOfRecipes);
 
+
             fragment.setArguments(args);
             getFragmentManager().beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
         }

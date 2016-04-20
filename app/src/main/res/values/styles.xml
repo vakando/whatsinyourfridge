@@ -41,4 +41,6 @@
         <item name="android:title"></item>
     </style>
 
+    <style name="Default_test" parent="Theme.AppCompat.Light" />
+
 </resources>

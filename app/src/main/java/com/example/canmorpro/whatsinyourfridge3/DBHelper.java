@@ -428,5 +428,17 @@ public class DBHelper extends SQLiteOpenHelper {
         return c.getInt(c.getColumnIndexOrThrow(DBHelper.KEY_R_FAV));
     }
 
+    public int getViewed(int idReceipe){
+        Cursor c = db.rawQuery("select " + KEY_R_VIEW + " from " + TABLE_RECIPES + " where " + KEY_R_ID + " = " + idReceipe, null);
+        c.moveToFirst();
+        return c.getInt(c.getColumnIndexOrThrow(DBHelper.KEY_R_VIEW));
+    }
+
+    public void setViewed(int idReceipe, int valeur){
+        ContentValues value = new ContentValues();
+        value.put(KEY_R_VIEW, valeur);
+        db.update(TABLE_RECIPES, value, KEY_R_ID + " = ?", new String[]{Integer.toString(idReceipe)});
+    }
+
 }
 

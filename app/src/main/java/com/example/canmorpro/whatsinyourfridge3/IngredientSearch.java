@@ -1,12 +1,6 @@
 package com.example.canmorpro.whatsinyourfridge3;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.net.MalformedURLException;
+
 import java.util.ArrayList;
 
 /**
@@ -35,6 +29,9 @@ public class IngredientSearch {
     private ArrayList<String> PhotoUrlList =  new ArrayList<String>();
     private ArrayList<String> NumberOfIngredientsList =  new ArrayList<String>();
     private String SearchCount;
+
+    private ArrayList<String> test =  new ArrayList<String>();
+
 
 
     private ArrayList<String> IngredientIdList =  new ArrayList<String>();
@@ -65,7 +62,7 @@ public class IngredientSearch {
 
 
 //        fix number of result for max 500
-        if(Integer.parseInt(obj1.getTotalCount())>=500) SearchCount = "500";
+        if(Integer.parseInt(obj1.getTotalCount())>=150) SearchCount = "150";
         else SearchCount = obj1.getTotalCount();
 
 
@@ -120,12 +117,14 @@ public class IngredientSearch {
             IngredientNameList= obj2.getIngredientName();
             PreparationDescriptionList= obj2.getPreparationDescription();
 
-            for( IngStart = 0 ; IngStart<IngredientIdList.size(); IngStart++){
+            for( IngStart = 0 ; IngStart<IngredientIdList.size(); IngStart++) {
                 // set the Ingredients table and link table
                 dbh.setIngredients(Integer.parseInt(IngredientIdList.get(IngStart)), IngredientNameList.get(IngStart), 0, 0);
                 dbh.setLinkRecetteIng(Integer.parseInt(recipeId), Integer.parseInt(IngredientIdList.get(IngStart)), 0);
 
+                test.add(IngredientNameList.get(IngStart));
 
+            }
 
             for(PrepStart=0; PrepStart<PreparationDescriptionList.size() ; PrepStart++ ){
 
@@ -133,29 +132,14 @@ public class IngredientSearch {
                 //set the preparation table
                 if(!s.replaceAll("\\s+","").equals("")) dbh.setPreparation(Integer.parseInt(recipeId),PreparationDescriptionList.get(PrepStart));
 
-}
             }
         }
+
+
+
     }
 
-//
-//    public void print(String s){
-//
-//        try(FileWriter fw = new FileWriter("/Users/CanMorPro/Documents/ingredients3000.txt", true);
-//            BufferedWriter bw = new BufferedWriter(fw);
-//            PrintWriter out = new PrintWriter(bw))
-//
-//        {
-//            out.print("ingredient" + "");
-//            //more code
-//            System.out.println(" printed ");
-//
-//            //more code
-//        } catch (IOException e) {
-//            //exception handling left as an exercise for the reader
-//        }
-//
-//    }
+
 
 
 
@@ -163,7 +147,7 @@ public class IngredientSearch {
 
         clear=false;
         startRow=20;
-        endRow =500;
+        endRow =150;
         storeData();
 
     }

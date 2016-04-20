@@ -23,7 +23,7 @@
         <item name="android:actionBarStyle">@style/RedBar</item>
     </style>
 
-    <style name="Black" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Black" parent="Theme.AppCompat.Light">
         <item name="android:colorPrimary">@color/theme_black_1</item>
         <item name="android:colorBackground">@color/theme_black_4</item>
         <item name="android:colorAccent">@color/theme_black_3</item>
@@ -41,5 +41,7 @@
         <item name="android:background">@color/theme_darkred_1</item>
         <item name="android:title"></item>
     </style>
+
+
 
 </resources>
