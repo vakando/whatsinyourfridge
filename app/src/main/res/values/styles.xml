@@ -1,4 +1,5 @@
 <resources>
+    <style name="Default" parent="Theme.AppCompat.Light" />
 
     <style name="Blue" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:colorBackground">@color/theme_darkblue_5</item>
@@ -38,9 +39,6 @@
 
     <style name="RedBar" parent="@android:style/Widget.ActionBar">
         <item name="android:background">@color/theme_darkred_1</item>
-        <item name="android:title"></item>
     </style>
-
-    <style name="Default" parent="Theme.AppCompat.Light" />
 
 </resources>
