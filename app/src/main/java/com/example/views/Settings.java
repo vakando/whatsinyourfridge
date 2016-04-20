@@ -44,21 +44,30 @@ public class Settings  extends Fragment implements View.OnClickListener {
         blackTheme.setOnClickListener(this);
         blueTheme.setOnClickListener(this);
 
-//        if(getActivity().getApplicationInfo().theme == 1){
-//            redTheme.setEnabled(true);
-//            defaultTheme.setEnabled(true);
-//            blackTheme.setEnabled(false);
-//        }
-//        else  if(getActivity().getApplicationInfo().theme == 2){
-//            redTheme.setEnabled(false);
-//            defaultTheme.setEnabled(true);
-//            blackTheme.setEnabled(true);
-//        }
-//        else if(getActivity().getApplicationInfo().theme == 1){
-//            redTheme.setEnabled(true);
-//            defaultTheme.setEnabled(false);
-//            blackTheme.setEnabled(true);
-//        }
+        if(Themes.cTheme == 0 || Themes.cTheme == 3){
+            redTheme.setEnabled(true);
+            defaultTheme.setEnabled(false);
+            blackTheme.setEnabled(true);
+            blueTheme.setEnabled(true);
+        }
+        else  if(Themes.cTheme == 2){
+            redTheme.setEnabled(false);
+            defaultTheme.setEnabled(true);
+            blackTheme.setEnabled(true);
+            blueTheme.setEnabled(true);
+        }
+        else if(Themes.cTheme == 1){
+            redTheme.setEnabled(true);
+            defaultTheme.setEnabled(true);
+            blackTheme.setEnabled(false);
+            blueTheme.setEnabled(true);
+        }
+        else if(Themes.cTheme == 4){
+            redTheme.setEnabled(true);
+            defaultTheme.setEnabled(true);
+            blackTheme.setEnabled(true);
+            blueTheme.setEnabled(false);
+        }
 
 //        c.moveToFirst();
 //        while(!c.isAfterLast()){

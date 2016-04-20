@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:text="@string/theme1"
             android:id="@+id/theme1"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
             android:background="@color/theme_darkblue_2" />
     </LinearLayout>
