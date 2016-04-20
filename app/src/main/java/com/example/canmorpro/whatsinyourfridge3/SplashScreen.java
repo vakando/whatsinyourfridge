@@ -70,14 +70,16 @@ public class SplashScreen extends Activity {
         @Override
         protected Void doInBackground(Void... params) {
             //ajout des themes dans la database
-            dbh.setTableThemes("Default",1);
-            dbh.setTableThemes("Grey",0);
-            dbh.setTableThemes("Red",0);
-            dbh.setTableThemes("Blue",0);
+            dbh.setTableThemes(1,"Black",1);
+            dbh.setTableThemes(2,"Red",0);
+            dbh.setTableThemes(3,"Blue",1);
             //creation autocompleteIngredient
             String[] ingr = getResources().getStringArray(R.array.ingredients);
             for(int i=0;i<ingr.length;i++)
                 dbh.addIngredients(ingr[i]);
+            String[] recipes = getResources().getStringArray(R.array.recipes);
+            for(int i=0;i<ingr.length;i++)
+                dbh.addRecipes(recipes[i]);
             return null;
         }
     }

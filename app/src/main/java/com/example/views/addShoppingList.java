@@ -12,11 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.canmorpro.whatsinyourfridge3.DBHelper;
 import com.example.canmorpro.whatsinyourfridge3.R;
+import com.example.menu.Menu;
 
 public class addShoppingList extends Fragment implements View.OnClickListener {
     private DBHelper dbh;
@@ -62,8 +65,11 @@ public class addShoppingList extends Fragment implements View.OnClickListener {
     private LinearLayout layout11;
     private LinearLayout layout12;
 
+//    int selectedColor, deselectedColor;
+//    ImageButton searchButton, shoppingButton, calendarButton, favoritesButton;
+//    TextView searchText, shoppingText, calendarText, favoritesText;
+
     private int ingredientNumber;
-    private int ingredientId;
     private int recipeId;
 
     public addShoppingList(){
@@ -79,6 +85,8 @@ public class addShoppingList extends Fragment implements View.OnClickListener {
         //layout pour ajouter dans la shopping list a partir de la
         // liste d'ingredients de la recette donc view8
         View rootView = inflater.inflate(R.layout.add_to_shopping_list, container, false);
+
+
 
         delete1 = (Button)rootView.findViewById(R.id.delete1);
         delete2 = (Button)rootView.findViewById(R.id.delete2);
@@ -406,7 +414,7 @@ public class addShoppingList extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
         switch (v.getId()){
             case R.id.delete1:
                 ingredient1.setText("");
@@ -603,22 +611,7 @@ public class addShoppingList extends Fragment implements View.OnClickListener {
                     alertDialog.show();
                 }
                 else {
-//                    new AlertDialog.Builder(getContext())
-//                            .setTitle("Add to shopping list")
-//                            .setMessage("The ingredients were succesfully added to your shopping list. \nDo you want to go to your shopping list ?")
-//                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    fragment = new ShoppingList();
-//                                    replaceFragment(fragment);
-//                                }
-//                            })
-//                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    // do nothing
-//                                }
-//                            })
-//                            .setIcon(android.R.drawable.ic_dialog_alert)
-//                            .show();
+                    Toast.makeText(getContext(),"The ingredients were succesfully added to your shopping list",Toast.LENGTH_SHORT).show();
                     fragment = new ShoppingList();
                     replaceFragment(fragment);
                 }
@@ -626,7 +619,6 @@ public class addShoppingList extends Fragment implements View.OnClickListener {
     }
 
     public void replaceFragment(Fragment fragment){
-
         fragmentTransaction = getFragmentManager().beginTransaction().replace(R.id.main_container, fragment);
         fragmentTransaction.commit();
 

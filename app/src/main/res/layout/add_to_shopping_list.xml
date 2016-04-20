@@ -79,17 +79,17 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient1"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete1"
                 android:textColor="@color/red"
                 android:layout_marginLeft="0.5dp"
-                />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -110,17 +110,18 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient2"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete2"
                 
                 android:textColor="@color/red"
-                android:layout_marginLeft="0.5dp"/>
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -141,17 +142,18 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient3"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete3"
                 
                 android:textColor="@color/red"
-                android:layout_marginLeft="0.5dp"/>
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -172,17 +174,18 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient4"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete4"
                 
                 android:textColor="@color/red"
-                android:layout_marginLeft="0.5dp"/>
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -203,17 +206,18 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient5"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete5"
                 
                 android:textColor="@color/red"
-                android:layout_marginLeft="0.5dp"/>
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -234,17 +238,18 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient6"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete6"
                 
                 android:textColor="@color/red"
-                android:layout_marginLeft="0.5dp"/>
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -265,17 +270,18 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient7"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete7"
                 
                 android:textColor="@color/red"
-                android:layout_marginLeft="0.5dp"/>
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -296,17 +302,18 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient8"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete8"
                 
                 android:textColor="@color/red"
-                android:layout_marginLeft="0.5dp"/>
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -327,17 +334,18 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient9"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete9"
                 
                 android:textColor="@color/red"
-                android:layout_marginLeft="0.5dp"/>
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -358,17 +366,18 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient10"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete10"
                 
                 android:textColor="@color/red"
-                android:layout_marginLeft="0.5dp"/>
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -389,17 +398,18 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient11"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete11"
                 
                 android:textColor="@color/red"
-                android:layout_marginLeft="0.5dp"/>
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -420,17 +430,18 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/ingredient12"
-                />
+                android:layout_weight="1" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/deleteIngredient"
                 android:id="@+id/delete12"
                 
                 android:textColor="@color/red"
-                android:layout_marginLeft="0.5dp"/>
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>

@@ -54,20 +54,7 @@
             android:layout_marginBottom="20dp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/transparent_back"
-        android:layout_weight="1">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/theme1"
-            android:id="@+id/theme1"
-            android:background="@color/transparent"/>
-    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -82,8 +69,9 @@
             android:layout_height="wrap_content"
             android:text="@string/theme2"
             android:id="@+id/theme2"
+            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:background="@color/transparent" />
+            android:background="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -99,8 +87,9 @@
             android:layout_height="wrap_content"
             android:text="@string/theme3"
             android:id="@+id/theme3"
+            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:background="@color/transparent" />
+            android:background="@color/red" />
     </LinearLayout>
 
     <LinearLayout
@@ -116,8 +105,9 @@
             android:layout_height="wrap_content"
             android:text="@string/theme4"
             android:id="@+id/theme4"
+            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:background="@color/transparent" />
+            android:background="@color/theme_darkblue_1" />
     </LinearLayout>
 
 </LinearLayout>

@@ -130,7 +130,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_REQUEST);
 
         String CREATE_TABLE_THEMES = " CREATE TABLE " + TABLE_THEMES + " ("
-                + KEY_T_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_T_ID + " INTEGER PRIMARY KEY, "
                 + KEY_T_NAME + " TEXT, "
                 + KEY_T_ENABLE + " INTEGER);";
         Log.d("CREATE_TABLE_THEMES", CREATE_TABLE_THEMES);
@@ -198,7 +198,17 @@ public class DBHelper extends SQLiteOpenHelper {
         try{
             db.insertOrThrow(TABLE_AUTOCOMPLETE_INGREDIENT, null, cv);
         }catch (SQLException e){}
-        Log.d("inserted", name);
+        Log.d("inserted in AI", name);
+    }
+
+    //ajoute des ingredients pour l'autocompleteRecipe
+    public void addRecipes(String name){
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_AR_NAME, name);
+        try{
+            db.insertOrThrow(TABLE_AUTOCOMPLETE_RECIPE, null, cv);
+        }catch (SQLException e){}
+        Log.d("inserted in AR", name);
     }
 
     public void setRequestCount(String count){
@@ -232,7 +242,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues value = new ContentValues();
         value.put(KEY_I_SL, 1);
         db.update(TABLE_INGREDIENTS, value, KEY_I_NAME + " = ?", new String[]{name});
-        Log.d("ingredient added in shopping list",name);
+        Log.d("ingredient added in sl", name);
     }
 
     //selon la variable d'entree check, on sait si l'ingredient a ete selectionne ou non
@@ -319,8 +329,20 @@ public class DBHelper extends SQLiteOpenHelper {
         }catch (SQLException e){}
     }
 
-    public Cursor getAllRecipes(){
-        return db.query(TABLE_RECIPES, new String[]{KEY_R_ID, KEY_R_NAME}, KEY_R_NAME, null, null, null, null);
+    public ArrayList<String> getAllRecipes(){
+        Cursor cursor = db.query(TABLE_AUTOCOMPLETE_RECIPE, new String[] {KEY_AR_ID,KEY_AR_NAME}, null, null, null, null, null);
+        cursor.moveToFirst();
+        if(cursor.getCount() > 0)
+        {
+            ArrayList<String> str = new ArrayList<>();
+            while (cursor.moveToNext())
+            {
+                str.add(cursor.getString(cursor.getColumnIndex(KEY_AR_NAME)));
+            }
+            return str;
+        }
+        else
+            return new ArrayList<String>(){};
     }
 
     public Cursor getRecipesTmpTrue(){
@@ -362,8 +384,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return c.getCount();
     }
 
-    public void setTableThemes(String themeName, int enabled){
+    public void setTableThemes(int id, String themeName, int enabled){
         ContentValues cv = new ContentValues();
+        cv.put(KEY_T_ID, id);
         cv.put(KEY_T_NAME, themeName);
         cv.put(KEY_T_ENABLE, enabled);
         try {
@@ -376,6 +399,11 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues value = new ContentValues();
         value.put(KEY_T_ENABLE, enable);
         db.update(TABLE_THEMES, value, KEY_T_NAME + " = ?", new String[]{name});
+        Log.d("theme updated",name);
+    }
+
+    public Cursor getTheme(){
+        return db.query(TABLE_THEMES,new String[]{KEY_T_ID,KEY_T_NAME,KEY_T_ENABLE},KEY_T_ENABLE + " = ?", new String[]{"0"},null,null,null);
     }
 
     public Cursor getEnable(){

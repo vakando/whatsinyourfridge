@@ -8,13 +8,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="WhatsInYourFridge"
         android:supportsRtl="true"
-        android:theme="@style/Default"
+        android:theme="@style/Red"
         android:uiOptions="splitActionBarWhenNarrow">
 
         <activity
             android:name=".SplashScreen"
             android:configChanges="orientation|screenSize"
-            android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
             <intent-filter>
@@ -26,6 +25,7 @@
 
         <activity android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
             android:uiOptions="splitActionBarWhenNarrow">
 
             <!--<meta-data android:name="android.support.UI_OPTIONS"-->

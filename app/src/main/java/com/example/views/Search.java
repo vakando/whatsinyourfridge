@@ -64,6 +64,7 @@ public class Search extends Fragment implements View.OnClickListener {
 
 
     private ArrayList<String> ingredients;
+    private ArrayList<String> recipes;
     private ArrayList<String> list_recipes;
 
     int count = 0;//On initialise un compteur qui compte le nombre d'ingredients ajouté
@@ -80,6 +81,8 @@ public class Search extends Fragment implements View.OnClickListener {
         dbh = new DBHelper(getContext());
 
         ingredients = dbh.getAllIngredients();
+
+        recipes = dbh.getAllRecipes();
 
         View rootView = inflater.inflate(R.layout.search ,container , false);
 
@@ -192,6 +195,7 @@ public class Search extends Fragment implements View.OnClickListener {
                 layoutFrame.setVisibility(View.VISIBLE);
                 ingredientRadio.setSelected(true);
                 recipeRadio.setSelected(false);
+                searchfield.setAdapter(new ArrayAdapter<>(getContext(), R.layout.drop_down, ingredients));
 
                 ing1.setText("");
                 ing2.setText("");
@@ -212,6 +216,7 @@ public class Search extends Fragment implements View.OnClickListener {
 
                 addButton.setVisibility(View.INVISIBLE);
                 layoutFrame.setVisibility(View.INVISIBLE);
+                searchfield.setAdapter(new ArrayAdapter<>(getContext(), R.layout.drop_down, recipes));
 
                 recipeRadio.setSelected(true);
                 ingredientRadio.setSelected(false);
@@ -277,7 +282,6 @@ public class Search extends Fragment implements View.OnClickListener {
 
                 }//
                 else if (recipeRadio.isSelected()) {
-
                     layoutButtonSearch.setVisibility(View.INVISIBLE);
                     ProcessSearch process = new ProcessSearch(layoutProgressBar, progressBar, new FragmentCallback() {
                         @Override

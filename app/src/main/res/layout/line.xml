@@ -9,12 +9,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0.04"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
+        android:scaleX="1"
+        android:scaleY="1"
         android:checked="false"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginLeft="2.5dp"
+        android:layout_marginRight="2.5dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ingredientName"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:layout_weight="0.7"
             android:layout_marginTop="5dp" />
         <TextView

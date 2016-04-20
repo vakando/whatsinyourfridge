@@ -7,9 +7,8 @@ import android.content.Intent;
  * Created by Empress on 2016-04-14.
  */
 public class Themes {
-    private static int cTheme;
-    public final static int DEFAULT = 0;
-    public final static int GREY = 1;
+    public static int cTheme = 0;
+    public final static int BLACK = 1;
     public final static int RED = 2;
     public final static int BLUE = 3;
 
@@ -21,10 +20,7 @@ public class Themes {
 
     public static void onActivityCreateSetTheme(Activity activity){
         switch (cTheme){
-            case DEFAULT:
-                activity.setTheme(R.style.Default);
-                break;
-            case GREY:
+            case BLACK:
                 activity.setTheme(R.style.Black);
                 break;
             case RED:
