@@ -45,16 +45,10 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
     public RecipeDetails() {
     }
 
-
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
         View rootView =  inflater.inflate(R.layout.recipe_details, container, false);
-
 
         addToShopping = (ImageButton) rootView.findViewById(R.id.addToShoppingButton);
         addToCalendar = (ImageButton) rootView.findViewById(R.id.addToCalendarButton);
@@ -79,7 +73,6 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
 
         Cursor curs= dbh.getPreparationsByRecipeId(idRecipe);
         curs.moveToFirst();
-//        String prep = curs.getString(curs.getColumnIndexOrThrow(DBHelper.KEY_P_PREP));
         String preparation ="";
         while (!curs.isAfterLast()) {
 
@@ -114,7 +107,7 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
     public void replaceFragment(Fragment fragment) {
 
         fragmentTransaction = getFragmentManager().beginTransaction().replace(R.id.main_container, fragment);
-        fragmentTransaction.commit();
+        fragmentTransaction.addToBackStack("recipeDetails").commit();
 
     }
 
@@ -122,9 +115,6 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         if (v.equals(addToCalendar)) {
-
-//            fragment = new ();
-//            replaceFragment(fragment);
 
             Intent intent = new Intent(Intent.ACTION_INSERT);//Intent.ACTION_INSERT
             intent.setType("vnd.android.cursor.item/event");
@@ -171,9 +161,8 @@ public class RecipeDetails extends Fragment implements View.OnClickListener {
         }
 
     }
-    public void onBackPressed()
-    {
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        fm.popBackStack();
-    }
+//    public void onBackPressed() {
+//        FragmentManager fm = getActivity().getSupportFragmentManager();
+//        fm.popBackStack();
+//    }
 }

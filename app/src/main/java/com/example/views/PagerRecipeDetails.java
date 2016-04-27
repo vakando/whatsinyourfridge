@@ -1,6 +1,5 @@
 package com.example.views;
 
-import android.app.ActionBar;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,17 +19,11 @@ import com.example.canmorpro.whatsinyourfridge3.R;
  */
 public class PagerRecipeDetails extends Fragment {
 
-
     ViewPager pager ;
     ViewPagerAdapter adapter;
 
     public PagerRecipeDetails(){
     }
-
-
-//    int idRecipe ;
-//    String recipeName ;
-//    String imageUrl ;
 
     int cursorPosition;
     DBHelper dbh = new DBHelper(getContext());
@@ -50,12 +43,6 @@ public class PagerRecipeDetails extends Fragment {
         pager.setAdapter(adapter);
         pager.setCurrentItem(cursorPosition);
 
-
-//         idRecipe = args1.getInt("idRecipe");
-//         recipeName = args1.getString("recipeName");
-//         imageUrl = args1.getString("imageUrl");
-
-
         return rootView;
     }
 
@@ -72,12 +59,8 @@ public class PagerRecipeDetails extends Fragment {
 
         }
 
-
-
         @Override
         public RecipeDetails getItem(int position) {
-
-
 
             RecipeDetails recipeDetails = new RecipeDetails();
 
@@ -100,15 +83,7 @@ public class PagerRecipeDetails extends Fragment {
 
         @Override
         public int getCount() {
-
-
             return numberOfRecipes;
-
-
         }
-
-
-
-
     }
 }

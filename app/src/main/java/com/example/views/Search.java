@@ -31,11 +31,9 @@ import java.util.ArrayList;
  */
 public class Search extends Fragment implements View.OnClickListener {
 
-
     DBHelper dbh;
     IngredientSearch ingSearch;
     RecipeSearch recipSearch;
-//    private IngredientSearch search;
 
     Fragment fragment;
     FragmentTransaction fragmentTransaction;
@@ -62,14 +60,14 @@ public class Search extends Fragment implements View.OnClickListener {
     LinearLayout layoutButtonSearch;
     LinearLayout layoutProgressBar;
 
+    LinearLayout layout1;
+    LinearLayout layout2;
+    LinearLayout layout3;
 
     private ArrayList<String> ingredients;
     private ArrayList<String> recipes;
-    private ArrayList<String> list_recipes;
 
     int count = 0;//On initialise un compteur qui compte le nombre d'ingredients ajouté
-
-    private ArrayList<String> ingResult;
 
     public Search(){
     }
@@ -98,6 +96,10 @@ public class Search extends Fragment implements View.OnClickListener {
         delBut1 = (Button)rootView.findViewById(R.id.delButton1);
         delBut2 = (Button)rootView.findViewById(R.id.delButton2);
         delBut3 = (Button)rootView.findViewById(R.id.delButton3);
+
+        layout1 = (LinearLayout)rootView.findViewById(R.id.layout1);
+        layout2 = (LinearLayout)rootView.findViewById(R.id.layout2);
+        layout3 = (LinearLayout)rootView.findViewById(R.id.layout3);
 
         layoutFrame = (LinearLayout) rootView.findViewById(R.id.layoutFrame);
         layoutButtonSearch = (LinearLayout)rootView.findViewById(R.id.layoutSearchButton);
@@ -138,13 +140,6 @@ public class Search extends Fragment implements View.OnClickListener {
 
         thread.start();
 
-
-//        //pour l'autocomplete de la recherche par recette
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, list_recipes);
-//        searchfield.setAdapter(adapter);
-
-        //pour l'autocomplete de la recherche par ingredient
-
         return rootView;
     }
 
@@ -168,23 +163,20 @@ public class Search extends Fragment implements View.OnClickListener {
                     break;
                 else if (count == 0) {
                     ing1.setText(text);//on met le texte de l'autoComplete dans le premier textView
-                    ing1.setVisibility(View.VISIBLE);
+                    layout1.setVisibility(View.VISIBLE);
 
-                    delBut1.setVisibility(View.VISIBLE);
                     searchfield.setText("");
                     count++;
                 } else if (count == 1) {
                     ing2.setText(text);//on le met dans le second textView
-                    ing2.setVisibility(View.VISIBLE);
+                    layout2.setVisibility(View.VISIBLE);
 
-                    delBut2.setVisibility(View.VISIBLE);
                     searchfield.setText("");
                     count++;
                 } else if (count == 2) {
                     ing3.setText(text);//on le met dans le 3ième textView
-                    ing3.setVisibility(View.VISIBLE);
+                    layout3.setVisibility(View.VISIBLE);
 
-                    delBut3.setVisibility(View.VISIBLE);
                     searchfield.setText("");
                     count++;
                 }
@@ -200,10 +192,6 @@ public class Search extends Fragment implements View.OnClickListener {
                 ing1.setText("");
                 ing2.setText("");
                 ing3.setText("");
-
-                delBut1.setVisibility(View.INVISIBLE);
-                delBut2.setVisibility(View.INVISIBLE);
-                delBut3.setVisibility(View.INVISIBLE);
 
                 params.topMargin = 30;
                 layoutButtonSearch.setLayoutParams(params);
@@ -228,28 +216,26 @@ public class Search extends Fragment implements View.OnClickListener {
 
 
             case R.id.delButton1:
+                layout1.setVisibility(View.INVISIBLE);
                 ing1.setText("");
-                delBut1.setVisibility(View.INVISIBLE);
                 count--;
                 break;
 
             case R.id.delButton2:
                 ing2.setText("");
-                delBut2.setVisibility(View.INVISIBLE);
+                layout2.setVisibility(View.INVISIBLE);
                 count--;
 
                 break;
 
             case R.id.delButton3:
                 ing3.setText("");
-                delBut3.setVisibility(View.INVISIBLE);
+                layout3.setVisibility(View.INVISIBLE);
                 count--;
 
                 break;
 
             case R.id.searchButton:   //pour le bouton search
-
-
 
                 if(ingredientRadio.isSelected()) {
                 if(isNetworkAvailable() == false){
@@ -279,8 +265,7 @@ public class Search extends Fragment implements View.OnClickListener {
                     },getContext(),ing1.getText().toString(), ing2.getText().toString(), ing3.getText().toString(), "", 1, dbh);
                     process.execute();
 
-
-                }//
+                }
                 else if (recipeRadio.isSelected()) {
                     layoutButtonSearch.setVisibility(View.INVISIBLE);
                     ProcessSearch process = new ProcessSearch(layoutProgressBar, progressBar, new FragmentCallback() {
@@ -301,7 +286,7 @@ public class Search extends Fragment implements View.OnClickListener {
     }
 
     public interface FragmentCallback {
-        public void onTaskDone();
+        void onTaskDone();
     }
 
 
@@ -340,6 +325,5 @@ public class Search extends Fragment implements View.OnClickListener {
 
        }
     }
-
 
 }

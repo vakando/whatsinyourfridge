@@ -63,29 +63,29 @@ public class Menu extends Fragment implements View.OnClickListener {
         fragmentTransaction = getFragmentManager().beginTransaction().add(R.id.main_container, fragment );
         fragmentTransaction.commit();
 
-         searchText = (TextView) view.findViewById((R.id.menu_search_text));
+        searchText = (TextView) view.findViewById((R.id.menu_search_text));
         shoppingText = (TextView) view.findViewById((R.id.menu_shopping_text));
         calendarText = (TextView) view.findViewById((R.id.menu_calendar_text));
         favoritesText = (TextView) view.findViewById((R.id.menu_favorites_text));
 
 
         searchButton = (ImageButton) view.findViewById(R.id.menu_search_button);
-         shoppingButton = (ImageButton) view.findViewById(R.id.menu_shopping_button);
-         calendarButton = (ImageButton) view.findViewById(R.id.menu_calendar_button);
-         favoritesButton = (ImageButton) view.findViewById(R.id.menu_favorites_button);
+        shoppingButton = (ImageButton) view.findViewById(R.id.menu_shopping_button);
+        calendarButton = (ImageButton) view.findViewById(R.id.menu_calendar_button);
+        favoritesButton = (ImageButton) view.findViewById(R.id.menu_favorites_button);
 
 
-         searchButton.setOnClickListener(this);
-         shoppingButton.setOnClickListener(this);
-         calendarButton.setOnClickListener(this);
-         favoritesButton.setOnClickListener(this);
+        searchButton.setOnClickListener(this);
+        shoppingButton.setOnClickListener(this);
+        calendarButton.setOnClickListener(this);
+        favoritesButton.setOnClickListener(this);
 
-         selectedColor = getResources().getColor(R.color.selected);
-         deselectedColor = getResources().getColor(R.color.deselected);
+        selectedColor = getResources().getColor(R.color.selected);
+        deselectedColor = getResources().getColor(R.color.deselected);
 
 //        select search button by default
-         searchButton.setBackgroundColor(selectedColor);
-         searchText.setBackgroundColor(selectedColor);
+        searchButton.setBackgroundColor(selectedColor);
+        searchText.setBackgroundColor(selectedColor);
 
 
 

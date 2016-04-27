@@ -34,15 +34,8 @@ import java.net.URI;
  */
 public class SearchResult extends Fragment {
 
-
-//    IngredientSearch ingredientSearch;
-
-
-
     public SearchResult(){
     }
-
-//    int first = ingredientSearch.count;
 
     ListView listView;
     Cursor curs, cursCount;
@@ -51,9 +44,6 @@ public class SearchResult extends Fragment {
     DBHelper dbh = new DBHelper(getContext());
 
     int more = 15;
-//    Cursor c;
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,51 +52,41 @@ public class SearchResult extends Fragment {
         cursCount = dbh.getSearchCount();
 
         cursCount.moveToLast();
-            count = cursCount.getString(cursCount.getColumnIndex(DBHelper.KEY_REQ_NUM))+" Recipes found";
-//            count = cursCount.getCount() +" Recipes found";
-            View rootView = inflater.inflate(R.layout.search_result, container, false);
-            listView = (ListView) rootView.findViewById(R.id.searchResultListView);
+        count = cursCount.getString(cursCount.getColumnIndex(DBHelper.KEY_REQ_NUM))+" Recipes found";
+        View rootView = inflater.inflate(R.layout.search_result, container, false);
+        listView = (ListView) rootView.findViewById(R.id.searchResultListView);
 
-            TextView resultCount = (TextView) rootView.findViewById(R.id.resultCount);
-            resultCount.setText(count);
+        TextView resultCount = (TextView) rootView.findViewById(R.id.resultCount);
+        resultCount.setText(count);
 
-            adapter = new MyCursorAdapter(getContext(),curs,0);
-            fetchData();
-            listView.setAdapter(adapter);
+        adapter = new MyCursorAdapter(getContext(),curs,0);
+        fetchData();
+        listView.setAdapter(adapter);
 
-            listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-                @Override
-                public void onScrollStateChanged(AbsListView view, int scrollState) {
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
 
+            }
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if ( firstVisibleItem == more){
+                    fetchData();
+                    more = more+15;
                 }
-                @Override
-                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
 
-//                    System.out.println("firstVisibleItem "+firstVisibleItem);
+        });
 
-                    if ( firstVisibleItem == more){
-                        fetchData();
-                        more = more+15;
-
-                    }
-                }
-
-            });
-
-            return rootView;
+        return rootView;
 
     }
 
     public void fetchData(){
-
-//        c.requery();
         curs.requery();
         adapter.changeCursor(curs);
         adapter.notifyDataSetChanged();
-
         System.out.println(" data fetched ");
-
-//        return ad;
     }
 
 
@@ -168,7 +148,6 @@ public class SearchResult extends Fragment {
 
 
             // Populate fields with extracted properties
-            //imageButton.setImageResource(R.drawable.fav_00);
             imageButton.setBackgroundResource(R.drawable.fav_00);
 
             if(dbh.getFavorit(IdRecipe)==1) imageButton.setBackgroundResource(R.drawable.fav_11);
@@ -178,8 +157,6 @@ public class SearchResult extends Fragment {
             textVueIngrediants.setText(noms);
             try{
             Picasso.with(getContext()).load(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_R_URL))).into(imageView);}catch (IllegalArgumentException e){}
-            //imageView.setImageResource(R.drawable.menu_exemple);
-
         }
     }
 
@@ -194,7 +171,6 @@ public class SearchResult extends Fragment {
             this.recipeName = recipeName;
             this.imageUrl = imageUrl;
             this.cursorPosition = cursorPosition;
-//            this.numberOfRecipes = numberOfRecipes;
 
         }
 
@@ -207,9 +183,6 @@ public class SearchResult extends Fragment {
             args.putString("recipeName", recipeName);
             args.putString("imageUrl", imageUrl);
             args.putInt("cursorPosition", cursorPosition);
-//            args.putInt("numberOfRecipes", numberOfRecipes);
-
-
             fragment.setArguments(args);
             getFragmentManager().beginTransaction().replace(R.id.main_container, fragment).addToBackStack(null).commit();
         }
