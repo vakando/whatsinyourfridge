@@ -153,6 +153,7 @@ public class ShoppingList extends Fragment implements View.OnClickListener {
                                 }
                             });
                     alertDialog.show();
+                    break;
                 }
                 if(!ingredients.contains(ingredient)){
                     dbh.addIngredients(ingredient);
